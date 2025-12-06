@@ -1,16 +1,35 @@
-module com.example.utilitybillcalculatorassignment {
+/**
+ * Module descriptor for the Utility Bill Management System.
+ * This module defines the dependencies and exports for the JavaFX application.
+ */
+module com.utilitybill {
+    // JavaFX modules - using transitive for public API exposure
     requires javafx.controls;
     requires javafx.fxml;
-    requires javafx.web;
+    requires transitive javafx.graphics;
 
+    // JSON processing - using transitive for adapter classes
+    requires transitive com.google.gson;
+
+    // Enhanced UI controls
     requires org.controlsfx.controls;
-    requires com.dlsc.formsfx;
-    requires net.synedra.validatorfx;
-    requires org.kordamp.ikonli.javafx;
-    requires org.kordamp.bootstrapfx.core;
-    requires eu.hansolo.tilesfx;
-    requires com.almasb.fxgl.all;
 
-    opens com.example.utilitybillcalculatorassignment to javafx.fxml;
-    exports com.example.utilitybillcalculatorassignment;
+    // Icons
+    requires org.kordamp.ikonli.javafx;
+    requires org.kordamp.ikonli.fontawesome5;
+
+    // Open packages to JavaFX for FXML injection
+    opens com.utilitybill to javafx.fxml;
+    opens com.utilitybill.controller to javafx.fxml;
+    opens com.utilitybill.model to javafx.fxml, com.google.gson;
+    opens com.utilitybill.dao to com.google.gson;
+
+    // Export packages
+    exports com.utilitybill;
+    exports com.utilitybill.controller;
+    exports com.utilitybill.model;
+    exports com.utilitybill.service;
+    exports com.utilitybill.dao;
+    exports com.utilitybill.util;
+    exports com.utilitybill.exception;
 }

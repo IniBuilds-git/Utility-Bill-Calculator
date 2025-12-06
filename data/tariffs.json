@@ -1,0 +1,46 @@
+[
+  {
+    "_type": "ElectricityTariff",
+    "unitRatePence": 28.62,
+    "tier1Threshold": 0.0,
+    "tieredPricing": false,
+    "tariffId": "473fc394-6e4d-4758-935c-e677b0231a89",
+    "name": "Standard Electricity",
+    "description": "Standard variable rate electricity tariff",
+    "standingCharge": 0.45,
+    "vatRate": 0.05,
+    "active": true,
+    "startDate": "2025-12-06",
+    "meterType": "ELECTRICITY"
+  },
+  {
+    "_type": "ElectricityTariff",
+    "unitRatePence": 25.50,
+    "tier1Threshold": 1000.0,
+    "tier1Rate": 25.50,
+    "tier2Rate": 30.00,
+    "tieredPricing": true,
+    "tariffId": "dfd8e912-d12b-4729-bc95-5a581cb8b149",
+    "name": "Economy Electricity",
+    "description": "Tiered pricing - lower rate for first 1000 kWh",
+    "standingCharge": 0.40,
+    "vatRate": 0.05,
+    "active": true,
+    "startDate": "2025-12-06",
+    "meterType": "ELECTRICITY"
+  },
+  {
+    "_type": "GasTariff",
+    "unitRatePence": 7.42,
+    "calorificValue": 39.5,
+    "showInCubicMeters": false,
+    "tariffId": "83ccecd8-b493-4498-9062-1a389b087825",
+    "name": "Standard Gas",
+    "description": "Standard variable rate gas tariff",
+    "standingCharge": 0.30,
+    "vatRate": 0.05,
+    "active": true,
+    "startDate": "2025-12-06",
+    "meterType": "GAS"
+  }
+]

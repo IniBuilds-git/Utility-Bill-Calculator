@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.utilitybill.controller.CustomerDialogController"
+      prefWidth="550"
+      spacing="0"
+      style="-fx-background-color: white;">
+
+    <!-- Header -->
+    <VBox spacing="5" style="-fx-background-color: #f1f5f9; -fx-padding: 20 25;">
+        <Label fx:id="dialogTitle" text="Add New Customer">
+            <font>
+                <Font name="System Bold" size="20"/>
+            </font>
+        </Label>
+        <Label text="Enter customer details below" style="-fx-font-size: 13px; -fx-text-fill: #64748b;"/>
+    </VBox>
+
+    <!-- Content -->
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;" prefHeight="450">
+        <VBox spacing="20" style="-fx-padding: 15;">
+
+            <!-- Personal Information -->
+            <VBox spacing="15" style="-fx-background-color: #f8fafc; -fx-background-radius: 10; -fx-padding: 20;">
+                <Label text="Personal Information" style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #334155;"/>
+
+                <HBox spacing="15">
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="First Name *" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                        <TextField fx:id="firstNameField" promptText="John" prefHeight="40"
+                                   style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cbd5e1; -fx-border-radius: 8; -fx-padding: 8 12;"/>
+                    </VBox>
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Last Name *" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                        <TextField fx:id="lastNameField" promptText="Doe" prefHeight="40"
+                                   style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cbd5e1; -fx-border-radius: 8; -fx-padding: 8 12;"/>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="15">
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Email Address *" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                        <TextField fx:id="emailField" promptText="john.doe@email.com" prefHeight="40"
+                                   style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cbd5e1; -fx-border-radius: 8; -fx-padding: 8 12;"/>
+                    </VBox>
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Phone Number *" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                        <TextField fx:id="phoneField" promptText="07123456789" prefHeight="40"
+                                   style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cbd5e1; -fx-border-radius: 8; -fx-padding: 8 12;"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- Address Information -->
+            <VBox spacing="15" style="-fx-background-color: #f8fafc; -fx-background-radius: 10; -fx-padding: 20;">
+                <Label text="Service Address" style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #334155;"/>
+
+                <HBox spacing="15">
+                    <VBox spacing="5" prefWidth="100">
+                        <Label text="House No. *" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                        <TextField fx:id="houseNumberField" promptText="42" prefHeight="40"
+                                   style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cbd5e1; -fx-border-radius: 8; -fx-padding: 8 12;"/>
+                    </VBox>
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Street *" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                        <TextField fx:id="streetField" promptText="High Street" prefHeight="40"
+                                   style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cbd5e1; -fx-border-radius: 8; -fx-padding: 8 12;"/>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="15">
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="City *" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                        <TextField fx:id="cityField" promptText="London" prefHeight="40"
+                                   style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cbd5e1; -fx-border-radius: 8; -fx-padding: 8 12;"/>
+                    </VBox>
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="County" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                        <TextField fx:id="countyField" promptText="Greater London" prefHeight="40"
+                                   style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cbd5e1; -fx-border-radius: 8; -fx-padding: 8 12;"/>
+                    </VBox>
+                </HBox>
+
+                <VBox spacing="5" maxWidth="200">
+                    <Label text="Postcode *" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                    <TextField fx:id="postcodeField" promptText="SW1A 1AA" prefHeight="40"
+                               style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cbd5e1; -fx-border-radius: 8; -fx-padding: 8 12;"/>
+                </VBox>
+            </VBox>
+
+            <!-- Meter and Tariff -->
+            <VBox spacing="15" style="-fx-background-color: #f8fafc; -fx-background-radius: 10; -fx-padding: 20;">
+                <Label text="Meter &amp; Tariff" style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #334155;"/>
+
+                <HBox spacing="15">
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Meter Type *" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                        <ComboBox fx:id="meterTypeCombo" promptText="Select meter type"
+                                  maxWidth="Infinity" prefHeight="40"/>
+                    </VBox>
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Tariff *" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                        <ComboBox fx:id="tariffCombo" promptText="Select tariff"
+                                  maxWidth="Infinity" prefHeight="40"/>
+                    </VBox>
+                </HBox>
+
+                <VBox spacing="5">
+                    <Label text="Customer Type" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                    <ComboBox fx:id="customerTypeCombo" promptText="Select type"
+                              maxWidth="200" prefHeight="40"/>
+                </VBox>
+            </VBox>
+
+            <!-- Error Message -->
+            <Label fx:id="errorLabel" visible="false" managed="false" wrapText="true"
+                   style="-fx-text-fill: #ef4444; -fx-font-size: 13px; -fx-padding: 10 15; -fx-background-color: #fef2f2; -fx-background-radius: 8;"/>
+
+        </VBox>
+    </ScrollPane>
+
+    <!-- Button Bar -->
+    <HBox spacing="15" alignment="CENTER_RIGHT" style="-fx-padding: 20; -fx-background-color: #f8fafc;">
+        <Button text="Cancel" onAction="#handleCancel"
+                style="-fx-background-color: #e2e8f0; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 8; -fx-cursor: hand;"/>
+        <Button text="Save Customer" onAction="#handleSave"
+                style="-fx-background-color: #0d9488; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 8; -fx-cursor: hand;"/>
+    </HBox>
+
+</VBox>

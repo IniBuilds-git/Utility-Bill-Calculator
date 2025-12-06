@@ -1,0 +1,13 @@
+[
+  {
+    "readingId": "5145314a-e791-4688-8f9b-5295958ad6b4",
+    "meterId": "ELEC-001000",
+    "customerId": "56325ef6-2ad5-4955-acf2-f2fc1cc06f37",
+    "readingValue": 234.0,
+    "previousReadingValue": 0.0,
+    "readingDate": "2025-12-06",
+    "recordedAt": "2025-12-06T12:21:51.4132",
+    "readingType": "ACTUAL",
+    "billed": true
+  }
+]

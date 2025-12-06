@@ -1,0 +1,15 @@
+[
+  {
+    "userId": "2108ee1e-9a03-421f-a6ba-a73b12b35594",
+    "username": "admin",
+    "passwordHash": "SGrU+jvZIW514xlwgh8etw\u003d\u003d:7KoGNKVscG5Zd4A3c4IQcb14URdW0bsDd5Lrpq9Xl2M\u003d",
+    "fullName": "System Administrator",
+    "email": "admin@utilitybill.com",
+    "role": "ADMIN",
+    "active": true,
+    "createdAt": "2025-12-06T11:44:39.445254",
+    "lastLoginAt": "2025-12-06T13:16:07.567143",
+    "failedLoginAttempts": 0,
+    "locked": false
+  }
+]

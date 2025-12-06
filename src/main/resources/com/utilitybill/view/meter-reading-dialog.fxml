@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.utilitybill.controller.MeterReadingDialogController"
+      spacing="20" prefWidth="450" 
+      style="-fx-background-color: white; -fx-padding: 25;">
+
+    <!-- Header -->
+    <Label text="Record New Meter Reading">
+        <font>
+            <Font name="System Bold" size="22"/>
+        </font>
+    </Label>
+
+    <!-- Error Label -->
+    <Label fx:id="errorLabel" 
+           visible="false" managed="false"
+           style="-fx-background-color: #fef2f2; -fx-text-fill: #dc2626; -fx-padding: 12 15; -fx-background-radius: 8; -fx-font-size: 13px;"/>
+
+    <!-- Form -->
+    <VBox spacing="15">
+        <!-- Customer Selection -->
+        <VBox spacing="5">
+            <Label text="Customer *" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+            <ComboBox fx:id="customerCombo" 
+                      promptText="Select a customer"
+                      maxWidth="Infinity"
+                      prefHeight="40"
+                      style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+        </VBox>
+
+        <!-- Meter Selection -->
+        <VBox spacing="5">
+            <Label text="Meter *" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+            <ComboBox fx:id="meterCombo" 
+                      promptText="Select a meter"
+                      maxWidth="Infinity"
+                      prefHeight="40"
+                      style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+        </VBox>
+
+        <!-- Previous Reading Display -->
+        <HBox spacing="10" alignment="CENTER_LEFT" 
+              style="-fx-background-color: #f1f5f9; -fx-padding: 12; -fx-background-radius: 8;">
+            <Label text="Previous Reading:" style="-fx-font-size: 13px; -fx-text-fill: #64748b;"/>
+            <Label fx:id="previousReadingLabel" text="N/A" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+        </HBox>
+
+        <!-- New Reading Value -->
+        <VBox spacing="5">
+            <Label text="New Reading Value (kWh/m³) *" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+            <TextField fx:id="readingField" 
+                       promptText="Enter reading value"
+                       prefHeight="40"
+                       style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 14px;"/>
+        </VBox>
+
+        <!-- Reading Type and Date -->
+        <HBox spacing="15">
+            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                <Label text="Reading Type" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+                <ComboBox fx:id="readingTypeCombo" 
+                          maxWidth="Infinity"
+                          prefHeight="40"
+                          style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+            </VBox>
+            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                <Label text="Reading Date *" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+                <DatePicker fx:id="readingDatePicker" 
+                            maxWidth="Infinity"
+                            prefHeight="40"/>
+            </VBox>
+        </HBox>
+
+        <!-- Notes -->
+        <VBox spacing="5">
+            <Label text="Notes (Optional)" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+            <TextArea fx:id="notesArea" 
+                      promptText="Any additional notes..."
+                      prefRowCount="3"
+                      wrapText="true"
+                      style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-font-size: 13px;"/>
+        </VBox>
+    </VBox>
+
+    <!-- Action Buttons -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Cancel" 
+                onAction="#handleCancel"
+                prefHeight="40" prefWidth="100"
+                style="-fx-background-color: #e2e8f0; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;"/>
+        <Button text="Save Reading" 
+                onAction="#handleSave"
+                prefHeight="40" prefWidth="130"
+                style="-fx-background-color: #0d9488; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;"/>
+    </HBox>
+
+</VBox>
+

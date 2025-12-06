@@ -1,0 +1,28 @@
+[
+  {
+    "paymentId": "71b0cd0c-3c48-4236-956f-e533feb68b30",
+    "referenceNumber": "PAY-100000",
+    "customerId": "56325ef6-2ad5-4955-acf2-f2fc1cc06f37",
+    "accountNumber": "ACC-100000",
+    "invoiceId": "c09a8cf1-98d4-4c0f-a2ad-6ab7bfa1c6a0",
+    "invoiceNumber": "INV-001000",
+    "amount": 84.97,
+    "paymentDate": "2025-12-06",
+    "recordedAt": "2025-12-06T12:58:35.593404",
+    "paymentMethod": "CASH",
+    "status": "COMPLETED"
+  },
+  {
+    "paymentId": "cc9a5403-404e-40ca-8528-163ab0522008",
+    "referenceNumber": "PAY-100001",
+    "customerId": "56325ef6-2ad5-4955-acf2-f2fc1cc06f37",
+    "accountNumber": "ACC-100000",
+    "invoiceId": "606459ad-b455-4704-9df3-cafdb59c8707",
+    "invoiceNumber": "INV-001002",
+    "amount": 84.97,
+    "paymentDate": "2025-12-06",
+    "recordedAt": "2025-12-06T13:07:30.298222",
+    "paymentMethod": "DEBIT_CARD",
+    "status": "COMPLETED"
+  }
+]

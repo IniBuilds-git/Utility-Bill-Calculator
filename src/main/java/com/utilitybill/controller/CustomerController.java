@@ -1,0 +1,330 @@
+package com.utilitybill.controller;
+
+import com.utilitybill.exception.DataPersistenceException;
+import com.utilitybill.model.Customer;
+import com.utilitybill.service.CustomerService;
+import com.utilitybill.util.DateUtil;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.List;
+
+/**
+ * Controller for the customer management view.
+ * Handles CRUD operations for customers.
+ *
+ * @author Utility Bill Management System
+ * @version 1.0
+ * @since 2024
+ */
+public class CustomerController {
+
+    @FXML private TextField searchField;
+    @FXML private ComboBox<String> filterCombo;
+    @FXML private TableView<Customer> customerTable;
+    @FXML private TableColumn<Customer, String> accountNumberCol;
+    @FXML private TableColumn<Customer, String> nameCol;
+    @FXML private TableColumn<Customer, String> emailCol;
+    @FXML private TableColumn<Customer, String> phoneCol;
+    @FXML private TableColumn<Customer, String> addressCol;
+    @FXML private TableColumn<Customer, String> balanceCol;
+    @FXML private TableColumn<Customer, String> statusCol;
+    @FXML private TableColumn<Customer, Void> actionsCol;
+    @FXML private Label summaryLabel;
+    @FXML private Pagination pagination;
+
+    /** Customer service instance */
+    private final CustomerService customerService;
+
+    /** Observable list for table data */
+    private ObservableList<Customer> customerList;
+
+    /**
+     * Constructs a new CustomerController.
+     */
+    public CustomerController() {
+        this.customerService = CustomerService.getInstance();
+    }
+
+    /**
+     * Initializes the controller.
+     */
+    @FXML
+    public void initialize() {
+        // Setup table columns
+        setupTableColumns();
+
+        // Setup filter combo
+        filterCombo.setItems(FXCollections.observableArrayList(
+                "All Customers", "Active", "Inactive", "With Debt"
+        ));
+        filterCombo.setValue("All Customers");
+        filterCombo.setOnAction(e -> handleSearch());
+
+        // Load initial data
+        refreshData();
+
+        // Setup search on enter
+        searchField.setOnAction(e -> handleSearch());
+    }
+
+    /**
+     * Sets up the table columns.
+     */
+    private void setupTableColumns() {
+        accountNumberCol.setCellValueFactory(data ->
+                new SimpleStringProperty(data.getValue().getAccountNumber()));
+
+        nameCol.setCellValueFactory(data ->
+                new SimpleStringProperty(data.getValue().getFullName()));
+
+        emailCol.setCellValueFactory(data ->
+                new SimpleStringProperty(data.getValue().getEmail()));
+
+        phoneCol.setCellValueFactory(data ->
+                new SimpleStringProperty(data.getValue().getPhone()));
+
+        addressCol.setCellValueFactory(data -> {
+            if (data.getValue().getServiceAddress() != null) {
+                return new SimpleStringProperty(data.getValue().getServiceAddress().getInlineAddress());
+            }
+            return new SimpleStringProperty("");
+        });
+
+        balanceCol.setCellValueFactory(data -> {
+            BigDecimal balance = data.getValue().getAccountBalance();
+            String formatted = String.format("£%.2f", balance);
+            return new SimpleStringProperty(formatted);
+        });
+
+        // Style balance column (red for debt)
+        balanceCol.setCellFactory(col -> new TableCell<>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setStyle("");
+                } else {
+                    setText(item);
+                    if (item.startsWith("-") || item.startsWith("£-")) {
+                        setStyle("-fx-text-fill: #ef4444; -fx-font-weight: bold;");
+                    } else {
+                        setStyle("-fx-text-fill: #10b981;");
+                    }
+                }
+            }
+        });
+
+        statusCol.setCellValueFactory(data ->
+                new SimpleStringProperty(data.getValue().isActive() ? "Active" : "Inactive"));
+
+        // Style status column
+        statusCol.setCellFactory(col -> new TableCell<>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setStyle("");
+                } else {
+                    setText(item);
+                    if ("Active".equals(item)) {
+                        setStyle("-fx-text-fill: #10b981;");
+                    } else {
+                        setStyle("-fx-text-fill: #94a3b8;");
+                    }
+                }
+            }
+        });
+
+        // Setup actions column
+        actionsCol.setCellFactory(col -> new TableCell<>() {
+            private final Button viewBtn = new Button("View");
+            private final Button editBtn = new Button("Edit");
+            private final HBox buttons = new HBox(5, viewBtn, editBtn);
+
+            {
+                viewBtn.setStyle("-fx-background-color: #e0f2f1; -fx-text-fill: #0d9488; " +
+                        "-fx-font-size: 11px; -fx-padding: 5px 10px; -fx-cursor: hand;");
+                editBtn.setStyle("-fx-background-color: #f1f5f9; -fx-text-fill: #475569; " +
+                        "-fx-font-size: 11px; -fx-padding: 5px 10px; -fx-cursor: hand;");
+
+                viewBtn.setOnAction(e -> viewCustomer(getTableView().getItems().get(getIndex())));
+                editBtn.setOnAction(e -> editCustomer(getTableView().getItems().get(getIndex())));
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : buttons);
+            }
+        });
+    }
+
+    /**
+     * Refreshes the customer data.
+     */
+    @FXML
+    public void refreshData() {
+        try {
+            List<Customer> customers = customerService.getAllCustomers();
+            customerList = FXCollections.observableArrayList(customers);
+            customerTable.setItems(customerList);
+            updateSummary(customers.size());
+        } catch (DataPersistenceException e) {
+            showError("Failed to load customers: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Handles the search action.
+     */
+    @FXML
+    public void handleSearch() {
+        String searchText = searchField.getText().trim().toLowerCase();
+        String filter = filterCombo.getValue();
+
+        try {
+            List<Customer> customers;
+
+            // Apply filter first
+            if ("Active".equals(filter)) {
+                customers = customerService.getActiveCustomers();
+            } else if ("Inactive".equals(filter)) {
+                customers = customerService.getAllCustomers().stream()
+                        .filter(c -> !c.isActive())
+                        .toList();
+            } else if ("With Debt".equals(filter)) {
+                customers = customerService.getCustomersWithDebt();
+            } else {
+                customers = customerService.getAllCustomers();
+            }
+
+            // Then apply search text
+            if (!searchText.isEmpty()) {
+                customers = customers.stream()
+                        .filter(c ->
+                                c.getFullName().toLowerCase().contains(searchText) ||
+                                        c.getAccountNumber().toLowerCase().contains(searchText) ||
+                                        c.getEmail().toLowerCase().contains(searchText))
+                        .toList();
+            }
+
+            customerList = FXCollections.observableArrayList(customers);
+            customerTable.setItems(customerList);
+            updateSummary(customers.size());
+
+        } catch (DataPersistenceException e) {
+            showError("Search failed: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Shows the add customer dialog.
+     */
+    @FXML
+    public void showAddCustomerDialog() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/utilitybill/view/customer-dialog.fxml"));
+            Parent root = loader.load();
+            CustomerDialogController controller = loader.getController();
+            controller.setMode(CustomerDialogController.Mode.ADD);
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Add New Customer");
+            dialogStage.initModality(Modality.APPLICATION_MODAL);
+            dialogStage.setScene(new Scene(root));
+            dialogStage.setResizable(false);
+            
+            controller.setDialogStage(dialogStage);
+            dialogStage.showAndWait();
+
+            if (controller.isSaved()) {
+                refreshData();
+            }
+        } catch (IOException e) {
+            showError("Failed to open dialog: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Views customer details.
+     */
+    private void viewCustomer(Customer customer) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Customer Details");
+        alert.setHeaderText(customer.getFullName());
+
+        StringBuilder details = new StringBuilder();
+        details.append("Account Number: ").append(customer.getAccountNumber()).append("\n");
+        details.append("Email: ").append(customer.getEmail()).append("\n");
+        details.append("Phone: ").append(customer.getPhone()).append("\n");
+        details.append("Address: ").append(customer.getServiceAddress() != null ?
+                customer.getServiceAddress().getFullAddress() : "N/A").append("\n");
+        details.append("Balance: £").append(String.format("%.2f", customer.getAccountBalance())).append("\n");
+        details.append("Status: ").append(customer.isActive() ? "Active" : "Inactive").append("\n");
+        details.append("Customer Since: ").append(DateUtil.formatForDisplay(customer.getCreatedAt().toLocalDate()));
+
+        alert.setContentText(details.toString());
+        alert.showAndWait();
+    }
+
+    /**
+     * Edits a customer.
+     */
+    private void editCustomer(Customer customer) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/utilitybill/view/customer-dialog.fxml"));
+            Parent root = loader.load();
+            CustomerDialogController controller = loader.getController();
+            controller.setMode(CustomerDialogController.Mode.EDIT);
+            controller.setCustomer(customer);
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Edit Customer");
+            dialogStage.initModality(Modality.APPLICATION_MODAL);
+            dialogStage.setScene(new Scene(root));
+            dialogStage.setResizable(false);
+            
+            controller.setDialogStage(dialogStage);
+            dialogStage.showAndWait();
+
+            if (controller.isSaved()) {
+                refreshData();
+            }
+        } catch (IOException e) {
+            showError("Failed to open dialog: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Updates the summary label.
+     */
+    private void updateSummary(int count) {
+        summaryLabel.setText(String.format("Showing %d customer%s", count, count == 1 ? "" : "s"));
+    }
+
+    /**
+     * Shows an error alert.
+     */
+    private void showError(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+}
+

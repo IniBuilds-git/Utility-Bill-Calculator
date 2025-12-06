@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.utilitybill.controller.DashboardController"
+            style="-fx-background-color: #f1f5f9;">
+
+    <!-- Top Navigation Bar -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" 
+              style="-fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);">
+            <padding>
+                <Insets top="15" right="30" bottom="15" left="30"/>
+            </padding>
+
+            <!-- Logo -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="⚡" style="-fx-font-size: 28px;"/>
+                <Label text="Utility Bill Manager">
+                    <font>
+                        <Font name="System Bold" size="20"/>
+                    </font>
+                </Label>
+            </HBox>
+
+            <!-- Spacer -->
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <!-- User Info -->
+            <HBox alignment="CENTER_RIGHT" spacing="15">
+                <Label fx:id="userLabel" text="Welcome, Admin" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                <Button text="Logout" onAction="#handleLogout" 
+                        style="-fx-background-color: transparent; -fx-text-fill: #ef4444; -fx-font-size: 13px; -fx-cursor: hand; -fx-padding: 8 16; -fx-background-radius: 6;"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- Main Content Area -->
+    <center>
+        <HBox>
+            <!-- Sidebar Navigation -->
+            <VBox spacing="5" minWidth="250" 
+                  style="-fx-background-color: white; -fx-border-color: #e2e8f0; -fx-border-width: 0 1 0 0;">
+                <padding>
+                    <Insets top="20" right="15" bottom="20" left="15"/>
+                </padding>
+
+                <Label text="NAVIGATION" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #94a3b8; -fx-padding: 15 10 10 10;"/>
+
+                <Button fx:id="dashboardBtn" text="📊  Dashboard"
+                        onAction="#showDashboard"
+                        maxWidth="Infinity"
+                        alignment="CENTER_LEFT"
+                        style="-fx-background-color: #e0f2f1; -fx-text-fill: #0d9488; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 12 15; -fx-background-radius: 8; -fx-cursor: hand;"/>
+
+                <Button fx:id="customersBtn" text="👥  Customers"
+                        onAction="#showCustomers"
+                        maxWidth="Infinity"
+                        alignment="CENTER_LEFT"
+                        style="-fx-background-color: transparent; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-padding: 12 15; -fx-background-radius: 8; -fx-cursor: hand;"/>
+
+                <Button fx:id="meterReadingsBtn" text="📏  Meter Readings"
+                        onAction="#showMeterReadings"
+                        maxWidth="Infinity"
+                        alignment="CENTER_LEFT"
+                        style="-fx-background-color: transparent; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-padding: 12 15; -fx-background-radius: 8; -fx-cursor: hand;"/>
+
+                <Button fx:id="invoicesBtn" text="📄  Invoices"
+                        onAction="#showInvoices"
+                        maxWidth="Infinity"
+                        alignment="CENTER_LEFT"
+                        style="-fx-background-color: transparent; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-padding: 12 15; -fx-background-radius: 8; -fx-cursor: hand;"/>
+
+                <Button fx:id="paymentsBtn" text="💳  Payments"
+                        onAction="#showPayments"
+                        maxWidth="Infinity"
+                        alignment="CENTER_LEFT"
+                        style="-fx-background-color: transparent; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-padding: 12 15; -fx-background-radius: 8; -fx-cursor: hand;"/>
+
+                <Button fx:id="tariffsBtn" text="💰  Tariffs"
+                        onAction="#showTariffs"
+                        maxWidth="Infinity"
+                        alignment="CENTER_LEFT"
+                        style="-fx-background-color: transparent; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-padding: 12 15; -fx-background-radius: 8; -fx-cursor: hand;"/>
+
+                <Separator style="-fx-padding: 10 0;"/>
+
+                <Label text="TOOLS" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #94a3b8; -fx-padding: 5 10 10 10;"/>
+
+                <Button fx:id="billGeneratorBtn" text="🧮  Bill Calculator"
+                        onAction="#showBillGenerator"
+                        maxWidth="Infinity"
+                        alignment="CENTER_LEFT"
+                        style="-fx-background-color: transparent; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-padding: 12 15; -fx-background-radius: 8; -fx-cursor: hand;"/>
+
+                <Region VBox.vgrow="ALWAYS"/>
+
+                <Separator/>
+
+                <Label text="REPORTS" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #94a3b8; -fx-padding: 15 10 10 10;"/>
+
+                <Button text="📈  Analytics"
+                        onAction="#showReports"
+                        maxWidth="Infinity"
+                        alignment="CENTER_LEFT"
+                        style="-fx-background-color: transparent; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-padding: 12 15; -fx-background-radius: 8; -fx-cursor: hand;"/>
+
+            </VBox>
+
+            <!-- Content Area -->
+            <StackPane fx:id="contentArea" HBox.hgrow="ALWAYS" style="-fx-background-color: #f1f5f9;">
+                <!-- Default Dashboard Content -->
+                <VBox spacing="30" alignment="TOP_LEFT">
+                    <padding>
+                        <Insets top="30" right="30" bottom="30" left="30"/>
+                    </padding>
+
+                    <!-- Page Header -->
+                    <VBox spacing="5">
+                        <Label text="Dashboard">
+                            <font>
+                                <Font name="System Bold" size="28"/>
+                            </font>
+                        </Label>
+                        <Label text="Overview of your utility billing system" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                    </VBox>
+
+                    <!-- Stats Cards -->
+                    <HBox spacing="20">
+                        <!-- Total Customers -->
+                        <VBox HBox.hgrow="ALWAYS" spacing="5"
+                              style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-border-color: #e2e8f0; -fx-border-radius: 12;">
+                            <effect>
+                                <DropShadow color="rgba(0,0,0,0.06)" radius="8" offsetY="2"/>
+                            </effect>
+                            <Label text="Total Customers" style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-font-weight: bold;"/>
+                            <Label fx:id="totalCustomersLabel" text="0">
+                                <font>
+                                    <Font name="System Bold" size="32"/>
+                                </font>
+                            </Label>
+                            <Label text="Active accounts" style="-fx-font-size: 12px; -fx-text-fill: #94a3b8;"/>
+                        </VBox>
+
+                        <!-- Unpaid Invoices -->
+                        <VBox HBox.hgrow="ALWAYS" spacing="5"
+                              style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-border-color: #f59e0b; -fx-border-width: 0 0 0 4;">
+                            <effect>
+                                <DropShadow color="rgba(0,0,0,0.06)" radius="8" offsetY="2"/>
+                            </effect>
+                            <Label text="Unpaid Invoices" style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-font-weight: bold;"/>
+                            <Label fx:id="unpaidInvoicesLabel" text="0">
+                                <font>
+                                    <Font name="System Bold" size="32"/>
+                                </font>
+                            </Label>
+                            <Label text="Pending payment" style="-fx-font-size: 12px; -fx-text-fill: #94a3b8;"/>
+                        </VBox>
+
+                        <!-- Total Revenue -->
+                        <VBox HBox.hgrow="ALWAYS" spacing="5"
+                              style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-border-color: #10b981; -fx-border-width: 0 0 0 4;">
+                            <effect>
+                                <DropShadow color="rgba(0,0,0,0.06)" radius="8" offsetY="2"/>
+                            </effect>
+                            <Label text="Total Revenue" style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-font-weight: bold;"/>
+                            <Label fx:id="totalRevenueLabel" text="£0.00">
+                                <font>
+                                    <Font name="System Bold" size="32"/>
+                                </font>
+                            </Label>
+                            <Label text="This month" style="-fx-font-size: 12px; -fx-text-fill: #94a3b8;"/>
+                        </VBox>
+
+                        <!-- Overdue -->
+                        <VBox HBox.hgrow="ALWAYS" spacing="5"
+                              style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-border-color: #ef4444; -fx-border-width: 0 0 0 4;">
+                            <effect>
+                                <DropShadow color="rgba(0,0,0,0.06)" radius="8" offsetY="2"/>
+                            </effect>
+                            <Label text="Overdue" style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-font-weight: bold;"/>
+                            <Label fx:id="overdueLabel" text="0">
+                                <font>
+                                    <Font name="System Bold" size="32"/>
+                                </font>
+                            </Label>
+                            <Label text="Need attention" style="-fx-font-size: 12px; -fx-text-fill: #94a3b8;"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Quick Actions -->
+                    <VBox spacing="15">
+                        <Label text="Quick Actions">
+                            <font>
+                                <Font name="System Bold" size="18"/>
+                            </font>
+                        </Label>
+                        <HBox spacing="15">
+                            <Button text="🧮 Calculate Bill"
+                                    onAction="#showBillGenerator"
+                                    style="-fx-background-color: #0d9488; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 12 20; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                            <Button text="+ Add Customer"
+                                    onAction="#showAddCustomer"
+                                    style="-fx-background-color: white; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-padding: 12 20; -fx-background-radius: 8; -fx-border-color: #cbd5e1; -fx-border-radius: 8; -fx-cursor: hand;"/>
+                            <Button text="📏 New Reading"
+                                    onAction="#showMeterReadings"
+                                    style="-fx-background-color: white; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-padding: 12 20; -fx-background-radius: 8; -fx-border-color: #cbd5e1; -fx-border-radius: 8; -fx-cursor: hand;"/>
+                            <Button text="📄 Generate Invoice"
+                                    onAction="#showInvoices"
+                                    style="-fx-background-color: white; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-padding: 12 20; -fx-background-radius: 8; -fx-border-color: #cbd5e1; -fx-border-radius: 8; -fx-cursor: hand;"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Recent Activity -->
+                    <VBox spacing="15" VBox.vgrow="ALWAYS">
+                        <Label text="Recent Invoices">
+                            <font>
+                                <Font name="System Bold" size="18"/>
+                            </font>
+                        </Label>
+                        <TableView fx:id="recentInvoicesTable" VBox.vgrow="ALWAYS"
+                                   style="-fx-background-color: white; -fx-background-radius: 12;">
+                            <columns>
+                                <TableColumn fx:id="invoiceNumberCol" text="Invoice #" prefWidth="120"/>
+                                <TableColumn fx:id="customerNameCol" text="Customer" prefWidth="200"/>
+                                <TableColumn fx:id="amountCol" text="Amount" prefWidth="100"/>
+                                <TableColumn fx:id="statusCol" text="Status" prefWidth="100"/>
+                                <TableColumn fx:id="dueDateCol" text="Due Date" prefWidth="120"/>
+                            </columns>
+                            <placeholder>
+                                <Label text="No recent invoices"/>
+                            </placeholder>
+                        </TableView>
+                    </VBox>
+
+                </VBox>
+            </StackPane>
+        </HBox>
+    </center>
+
+    <!-- Status Bar -->
+    <bottom>
+        <HBox alignment="CENTER_LEFT" spacing="20"
+              style="-fx-background-color: white; -fx-border-color: #e2e8f0; -fx-border-width: 1 0 0 0;">
+            <padding>
+                <Insets top="10" right="20" bottom="10" left="20"/>
+            </padding>
+            <Label fx:id="statusLabel" text="Ready" style="-fx-font-size: 12px; -fx-text-fill: #64748b;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="dateTimeLabel" text="" style="-fx-font-size: 12px; -fx-text-fill: #64748b;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

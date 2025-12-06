@@ -1,0 +1,84 @@
+[
+  {
+    "customerId": "56325ef6-2ad5-4955-acf2-f2fc1cc06f37",
+    "accountNumber": "ACC-100000",
+    "firstName": "InioluwaA",
+    "lastName": "Alake",
+    "email": "inioluwa.eng@gmail.com",
+    "phone": "+448156574837",
+    "serviceAddress": {
+      "houseNumber": "10c",
+      "street": "South Street",
+      "city": "Northampton",
+      "county": "Uniked Kingdom",
+      "postcode": "NN1 5HS",
+      "country": "United Kingdom"
+    },
+    "billingAddress": {
+      "houseNumber": "10c",
+      "street": "South Street",
+      "city": "Northampton",
+      "county": "Uniked Kingdom",
+      "postcode": "NN1 5HS",
+      "country": "United Kingdom"
+    },
+    "meters": [
+      {
+        "meterId": "ELEC-001000",
+        "meterType": "ELECTRICITY",
+        "serialNumber": "SN1765022307690",
+        "installationDate": "2025-12-06",
+        "currentReading": 0.0,
+        "active": true,
+        "maxReading": 99999.99
+      }
+    ],
+    "tariffId": "473fc394-6e4d-4758-935c-e677b0231a89",
+    "accountBalance": -84.97,
+    "createdAt": "2025-12-06T11:58:27.690204",
+    "updatedAt": "2025-12-06T13:07:30.305507",
+    "active": true,
+    "customerType": "RESIDENTIAL"
+  },
+  {
+    "customerId": "34e87c87-ae3c-447e-a306-dc5775a1222d",
+    "accountNumber": "ACC-100001",
+    "firstName": "Femi",
+    "lastName": "Maki",
+    "email": "femi@gmail.com",
+    "phone": "+448143200912",
+    "serviceAddress": {
+      "houseNumber": "10",
+      "street": "South Street",
+      "city": "Northampton",
+      "county": "United Kingdom",
+      "postcode": "NN1HS",
+      "country": "United Kingdom"
+    },
+    "billingAddress": {
+      "houseNumber": "10",
+      "street": "South Street",
+      "city": "Northampton",
+      "county": "United Kingdom",
+      "postcode": "NN1HS",
+      "country": "United Kingdom"
+    },
+    "meters": [
+      {
+        "meterId": "ELEC-001000",
+        "meterType": "ELECTRICITY",
+        "serialNumber": "SN1765026623978",
+        "installationDate": "2025-12-06",
+        "currentReading": 0.0,
+        "active": true,
+        "maxReading": 99999.99
+      }
+    ],
+    "tariffId": "473fc394-6e4d-4758-935c-e677b0231a89",
+    "accountBalance": 0,
+    "createdAt": "2025-12-06T13:10:23.977298",
+    "updatedAt": "2025-12-06T13:10:23.980026",
+    "active": true,
+    "customerType": "RESIDENTIAL"
+  }
+]
