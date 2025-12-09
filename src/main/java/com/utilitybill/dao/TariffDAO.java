@@ -13,40 +13,20 @@ import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.*;
 
-/**
- * Data Access Object for Tariff entities.
- * Handles persistence of tariff data to JSON files with polymorphic deserialization.
- *
- * <p>Design Pattern: Singleton - Only one instance manages tariff data.</p>
- *
- * @author Utility Bill Management System
- * @version 1.0
- * @since 2024
- */
 public class TariffDAO extends AbstractJsonDAO<Tariff, String> {
 
-    /** Singleton instance */
     private static volatile TariffDAO instance;
 
-    /** Custom Gson with type adapter for Tariff hierarchy */
     private static final Gson TARIFF_GSON = new GsonBuilder()
             .setPrettyPrinting()
             .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
             .registerTypeAdapter(Tariff.class, new TariffTypeAdapter())
             .create();
 
-    /**
-     * Private constructor for singleton pattern.
-     */
     private TariffDAO() {
         super("tariffs.json");
     }
 
-    /**
-     * Gets the singleton instance.
-     *
-     * @return the TariffDAO instance
-     */
     public static TariffDAO getInstance() {
         if (instance == null) {
             synchronized (TariffDAO.class) {
@@ -68,9 +48,6 @@ public class TariffDAO extends AbstractJsonDAO<Tariff, String> {
         return new TypeToken<List<Tariff>>(){}.getType();
     }
 
-    /**
-     * Overrides loadFromFile to use custom Gson for polymorphic deserialization.
-     */
     @Override
     protected void loadFromFile() throws DataPersistenceException {
         File file = new File(filePath);
@@ -93,9 +70,6 @@ public class TariffDAO extends AbstractJsonDAO<Tariff, String> {
         }
     }
 
-    /**
-     * Overrides saveToFile to use custom Gson for polymorphic serialization.
-     */
     @Override
     protected void saveToFile() throws DataPersistenceException {
         try (Writer writer = new FileWriter(filePath)) {
@@ -109,13 +83,6 @@ public class TariffDAO extends AbstractJsonDAO<Tariff, String> {
         }
     }
 
-    /**
-     * Finds all tariffs for a specific meter type.
-     *
-     * @param meterType the meter type
-     * @return list of tariffs for that meter type
-     * @throws DataPersistenceException if the operation fails
-     */
     public List<Tariff> findByMeterType(MeterType meterType) throws DataPersistenceException {
         initializeCache();
         lock.readLock().lock();
@@ -128,12 +95,6 @@ public class TariffDAO extends AbstractJsonDAO<Tariff, String> {
         }
     }
 
-    /**
-     * Finds all active tariffs.
-     *
-     * @return list of active tariffs
-     * @throws DataPersistenceException if the operation fails
-     */
     public List<Tariff> findAllActive() throws DataPersistenceException {
         initializeCache();
         lock.readLock().lock();
@@ -146,13 +107,6 @@ public class TariffDAO extends AbstractJsonDAO<Tariff, String> {
         }
     }
 
-    /**
-     * Finds active tariffs for a specific meter type.
-     *
-     * @param meterType the meter type
-     * @return list of active tariffs for that type
-     * @throws DataPersistenceException if the operation fails
-     */
     public List<Tariff> findActiveByMeterType(MeterType meterType) throws DataPersistenceException {
         initializeCache();
         lock.readLock().lock();
@@ -165,13 +119,6 @@ public class TariffDAO extends AbstractJsonDAO<Tariff, String> {
         }
     }
 
-    /**
-     * Finds a tariff by name.
-     *
-     * @param name the tariff name
-     * @return an Optional containing the tariff if found
-     * @throws DataPersistenceException if the operation fails
-     */
     public Optional<Tariff> findByName(String name) throws DataPersistenceException {
         initializeCache();
         lock.readLock().lock();
@@ -184,9 +131,6 @@ public class TariffDAO extends AbstractJsonDAO<Tariff, String> {
         }
     }
 
-    /**
-     * Custom type adapter for polymorphic Tariff serialization/deserialization.
-     */
     private static class TariffTypeAdapter implements JsonSerializer<Tariff>, JsonDeserializer<Tariff> {
 
         private static final String TYPE_FIELD = "_type";
@@ -195,7 +139,6 @@ public class TariffDAO extends AbstractJsonDAO<Tariff, String> {
         public JsonElement serialize(Tariff src, Type typeOfSrc, JsonSerializationContext context) {
             JsonObject jsonObject = new JsonObject();
 
-            // Add type discriminator
             if (src instanceof ElectricityTariff) {
                 jsonObject.addProperty(TYPE_FIELD, "ElectricityTariff");
                 JsonObject data = (JsonObject) new GsonBuilder()

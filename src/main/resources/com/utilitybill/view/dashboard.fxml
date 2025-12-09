@@ -65,7 +65,7 @@
                         alignment="CENTER_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-padding: 12 15; -fx-background-radius: 8; -fx-cursor: hand;"/>
 
-                <Button fx:id="meterReadingsBtn" text="📏  Meter Readings"
+                <!-- <Button fx:id="meterReadingsBtn" text="📏  Meter Readings"
                         onAction="#showMeterReadings"
                         maxWidth="Infinity"
                         alignment="CENTER_LEFT"
@@ -87,7 +87,7 @@
                         onAction="#showTariffs"
                         maxWidth="Infinity"
                         alignment="CENTER_LEFT"
-                        style="-fx-background-color: transparent; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-padding: 12 15; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                        style="-fx-background-color: transparent; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-padding: 12 15; -fx-background-radius: 8; -fx-cursor: hand;"/> -->
 
                 <Separator style="-fx-padding: 10 0;"/>
 

@@ -8,16 +8,6 @@ import javafx.stage.Stage;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-/**
- * Controller for the bill generation view.
- * Handles calculation of electricity and gas bills based on meter readings.
- *
- * <p>Supports Day/Night (Economy 7) electricity meters and gas meters.</p>
- *
- * @author Utility Bill Management System
- * @version 1.0
- * @since 2024
- */
 public class BillGeneratorController {
 
     // Electricity inputs
@@ -68,19 +58,12 @@ public class BillGeneratorController {
 
     private Stage dialogStage;
 
-    /** Gas calorific value (MJ/m³) - UK average */
     private static final double GAS_CALORIFIC_VALUE = 39.4;
-    
-    /** Gas volume correction factor - UK standard */
     private static final double GAS_CORRECTION_FACTOR = 1.02264;
-    
-    /** Imperial to metric conversion (100s of cubic feet to cubic meters) */
     private static final double IMPERIAL_TO_METRIC = 2.83;
 
     @FXML
     public void initialize() {
-        // Set default values from real UK energy bill statement (ex-VAT rates)
-        // Electricity: 22.63p/day standing, 19.349p/kWh unit rate
         elecStandingChargeField.setText("22.63");
         elecUnitPriceField.setText("19.349");
         elecDayOpeningField.setText("40470.637");
@@ -88,7 +71,6 @@ public class BillGeneratorController {
         elecNightOpeningField.setText("37386.998");
         elecNightClosingField.setText("37623.210");
 
-        // Gas: 24.87p/day standing, 3.797p/kWh unit rate (ex-VAT)
         gasStandingChargeField.setText("24.87");
         gasUnitPriceField.setText("3.797");
         gasOpeningField.setText("10091.5");
@@ -96,13 +78,11 @@ public class BillGeneratorController {
 
         billingDaysField.setText("33");
         vatRateField.setText("5");
-        
-        // Default: VAT is added on top (as shown on actual bill statements)
+
         if (vatInclusiveCheckbox != null) {
             vatInclusiveCheckbox.setSelected(false);
         }
-        
-        // Default: Imperial gas meter (100s of cubic feet)
+
         if (imperialMeterCheckbox != null) {
             imperialMeterCheckbox.setSelected(true);
         }
@@ -123,27 +103,19 @@ public class BillGeneratorController {
         hideError();
 
         try {
-            // Parse billing days and VAT
             int billingDays = parseInteger(billingDaysField.getText(), "Billing Days");
             double vatRate = parseDouble(vatRateField.getText(), "VAT Rate") / 100.0;
             boolean vatInclusive = vatInclusiveCheckbox != null && vatInclusiveCheckbox.isSelected();
 
-            // Calculate Electricity Bill
             BigDecimal electricityTotal = calculateElectricityBill(billingDays, vatRate, vatInclusive);
-
-            // Calculate Gas Bill
             BigDecimal gasTotal = calculateGasBill(billingDays, vatRate, vatInclusive);
-
-            // Calculate combined total
             BigDecimal grandTotal = electricityTotal.add(gasTotal);
 
-            // Update output labels
             elecBillLabel.setText(String.format("£%.2f", electricityTotal));
             gasBillLabel.setText(String.format("£%.2f", gasTotal));
             totalBillLabel.setText(String.format("£%.2f", grandTotal));
             billingPeriodLabel.setText(String.format("FOR %d DAYS", billingDays));
 
-            // Show results
             if (resultsPanel != null) {
                 resultsPanel.setVisible(true);
                 resultsPanel.setManaged(true);
@@ -156,16 +128,7 @@ public class BillGeneratorController {
         }
     }
 
-    /**
-     * Calculates the electricity bill.
-     *
-     * @param billingDays number of billing days
-     * @param vatRate VAT rate as decimal
-     * @param vatInclusive true if prices already include VAT
-     * @return total electricity bill including VAT
-     */
     private BigDecimal calculateElectricityBill(int billingDays, double vatRate, boolean vatInclusive) {
-        // Parse electricity inputs
         double standingChargePence = parseDouble(elecStandingChargeField.getText(), "Electricity Standing Charge");
         double unitPricePence = parseDouble(elecUnitPriceField.getText(), "Electricity Unit Price");
         double dayOpening = parseDouble(elecDayOpeningField.getText(), "Day Opening Reading");
@@ -173,17 +136,14 @@ public class BillGeneratorController {
         double nightOpening = parseDouble(elecNightOpeningField.getText(), "Night Opening Reading");
         double nightClosing = parseDouble(elecNightClosingField.getText(), "Night Closing Reading");
 
-        // Calculate consumption
         double dayUnits = dayClosing - dayOpening;
         double nightUnits = nightClosing - nightOpening;
         double totalUnits = dayUnits + nightUnits;
 
-        // Validate readings
         if (dayUnits < 0 || nightUnits < 0) {
             throw new IllegalArgumentException("Closing readings must be greater than opening readings");
         }
 
-        // Calculate costs
         BigDecimal unitCost = BillCalculator.calculateUnitCost(totalUnits, BigDecimal.valueOf(unitPricePence));
         BigDecimal standingCost = BigDecimal.valueOf(standingChargePence)
                 .multiply(BigDecimal.valueOf(billingDays))
@@ -192,10 +152,8 @@ public class BillGeneratorController {
         BigDecimal subtotal = unitCost.add(standingCost);
         BigDecimal vat;
         BigDecimal total;
-        
+
         if (vatInclusive) {
-            // Prices already include VAT - extract VAT from total
-            // If price includes 5% VAT, the net = price / 1.05, VAT = price - net
             BigDecimal vatMultiplier = BigDecimal.ONE.add(BigDecimal.valueOf(vatRate));
             BigDecimal netAmount = subtotal.divide(vatMultiplier, 2, RoundingMode.HALF_UP);
             vat = subtotal.subtract(netAmount);
@@ -206,7 +164,6 @@ public class BillGeneratorController {
             total = subtotal.add(vat);
         }
 
-        // Update detail labels if they exist
         if (elecDayUnitsLabel != null) {
             elecDayUnitsLabel.setText(String.format("%.3f kWh", dayUnits));
             elecNightUnitsLabel.setText(String.format("%.3f kWh", nightUnits));
@@ -220,39 +177,22 @@ public class BillGeneratorController {
         return total;
     }
 
-    /**
-     * Calculates the gas bill.
-     *
-     * @param billingDays number of billing days
-     * @param vatRate VAT rate as decimal
-     * @param vatInclusive true if prices already include VAT
-     * @return total gas bill including VAT
-     */
     private BigDecimal calculateGasBill(int billingDays, double vatRate, boolean vatInclusive) {
-        // Parse gas inputs
         double standingChargePence = parseDouble(gasStandingChargeField.getText(), "Gas Standing Charge");
         double unitPricePence = parseDouble(gasUnitPriceField.getText(), "Gas Unit Price");
         double gasOpening = parseDouble(gasOpeningField.getText(), "Gas Opening Reading");
         double gasClosing = parseDouble(gasClosingField.getText(), "Gas Closing Reading");
         boolean isImperial = imperialMeterCheckbox != null && imperialMeterCheckbox.isSelected();
 
-        // Calculate consumption - raw meter units
         double meterUnits = gasClosing - gasOpening;
-        
+
         if (meterUnits < 0) {
             throw new IllegalArgumentException("Gas closing reading must be greater than opening reading");
         }
 
-        // Convert to cubic meters
-        // Imperial meters measure in 100s of cubic feet - multiply by 2.83 to get m³
-        // Metric meters already measure in m³
         double cubicMeters = isImperial ? meterUnits * IMPERIAL_TO_METRIC : meterUnits;
-
-        // Convert cubic meters to kWh using UK standard formula:
-        // kWh = Volume (m³) × Correction Factor × Calorific Value ÷ 3.6
         double kWh = cubicMeters * GAS_CORRECTION_FACTOR * GAS_CALORIFIC_VALUE / 3.6;
 
-        // Calculate costs
         BigDecimal unitCost = BillCalculator.calculateUnitCost(kWh, BigDecimal.valueOf(unitPricePence));
         BigDecimal standingCost = BigDecimal.valueOf(standingChargePence)
                 .multiply(BigDecimal.valueOf(billingDays))
@@ -261,20 +201,17 @@ public class BillGeneratorController {
         BigDecimal subtotal = unitCost.add(standingCost);
         BigDecimal vat;
         BigDecimal total;
-        
+
         if (vatInclusive) {
-            // Prices already include VAT - extract VAT from total
             BigDecimal vatMultiplier = BigDecimal.ONE.add(BigDecimal.valueOf(vatRate));
             BigDecimal netAmount = subtotal.divide(vatMultiplier, 2, RoundingMode.HALF_UP);
             vat = subtotal.subtract(netAmount);
-            total = subtotal; // Total is the same as subtotal (VAT already included)
+            total = subtotal;
         } else {
-            // Add VAT on top
             vat = subtotal.multiply(BigDecimal.valueOf(vatRate)).setScale(2, RoundingMode.HALF_UP);
             total = subtotal.add(vat);
         }
 
-        // Update detail labels if they exist
         if (gasUnitsLabel != null) {
             String unitsText = isImperial 
                 ? String.format("%.1f units → %.1f m³", meterUnits, cubicMeters)
@@ -290,9 +227,6 @@ public class BillGeneratorController {
         return total;
     }
 
-    /**
-     * Parses a double from text with validation.
-     */
     private double parseDouble(String text, String fieldName) {
         if (text == null || text.trim().isEmpty()) {
             throw new IllegalArgumentException(fieldName + " is required");
@@ -304,9 +238,6 @@ public class BillGeneratorController {
         }
     }
 
-    /**
-     * Parses an integer from text with validation.
-     */
     private int parseInteger(String text, String fieldName) {
         if (text == null || text.trim().isEmpty()) {
             throw new IllegalArgumentException(fieldName + " is required");
@@ -320,7 +251,6 @@ public class BillGeneratorController {
 
     @FXML
     private void handleClear() {
-        // Clear electricity fields
         elecStandingChargeField.clear();
         elecUnitPriceField.clear();
         elecDayOpeningField.clear();
@@ -328,17 +258,14 @@ public class BillGeneratorController {
         elecNightOpeningField.clear();
         elecNightClosingField.clear();
 
-        // Clear gas fields
         gasStandingChargeField.clear();
         gasUnitPriceField.clear();
         gasOpeningField.clear();
         gasClosingField.clear();
 
-        // Clear common fields
         billingDaysField.clear();
         vatRateField.setText("5");
 
-        // Hide results
         if (resultsPanel != null) {
             resultsPanel.setVisible(false);
             resultsPanel.setManaged(false);

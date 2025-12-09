@@ -20,14 +20,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * Controller for the customer management view.
- * Handles CRUD operations for customers.
- *
- * @author Utility Bill Management System
- * @version 1.0
- * @since 2024
- */
 public class CustomerController {
 
     @FXML private TextField searchField;
@@ -44,44 +36,27 @@ public class CustomerController {
     @FXML private Label summaryLabel;
     @FXML private Pagination pagination;
 
-    /** Customer service instance */
     private final CustomerService customerService;
-
-    /** Observable list for table data */
     private ObservableList<Customer> customerList;
 
-    /**
-     * Constructs a new CustomerController.
-     */
     public CustomerController() {
         this.customerService = CustomerService.getInstance();
     }
 
-    /**
-     * Initializes the controller.
-     */
     @FXML
     public void initialize() {
-        // Setup table columns
         setupTableColumns();
 
-        // Setup filter combo
         filterCombo.setItems(FXCollections.observableArrayList(
                 "All Customers", "Active", "Inactive", "With Debt"
         ));
         filterCombo.setValue("All Customers");
         filterCombo.setOnAction(e -> handleSearch());
 
-        // Load initial data
         refreshData();
-
-        // Setup search on enter
         searchField.setOnAction(e -> handleSearch());
     }
 
-    /**
-     * Sets up the table columns.
-     */
     private void setupTableColumns() {
         accountNumberCol.setCellValueFactory(data ->
                 new SimpleStringProperty(data.getValue().getAccountNumber()));
@@ -108,7 +83,6 @@ public class CustomerController {
             return new SimpleStringProperty(formatted);
         });
 
-        // Style balance column (red for debt)
         balanceCol.setCellFactory(col -> new TableCell<>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -130,7 +104,6 @@ public class CustomerController {
         statusCol.setCellValueFactory(data ->
                 new SimpleStringProperty(data.getValue().isActive() ? "Active" : "Inactive"));
 
-        // Style status column
         statusCol.setCellFactory(col -> new TableCell<>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -149,7 +122,6 @@ public class CustomerController {
             }
         });
 
-        // Setup actions column
         actionsCol.setCellFactory(col -> new TableCell<>() {
             private final Button viewBtn = new Button("View");
             private final Button editBtn = new Button("Edit");
@@ -173,9 +145,6 @@ public class CustomerController {
         });
     }
 
-    /**
-     * Refreshes the customer data.
-     */
     @FXML
     public void refreshData() {
         try {
@@ -188,9 +157,6 @@ public class CustomerController {
         }
     }
 
-    /**
-     * Handles the search action.
-     */
     @FXML
     public void handleSearch() {
         String searchText = searchField.getText().trim().toLowerCase();
@@ -199,7 +165,6 @@ public class CustomerController {
         try {
             List<Customer> customers;
 
-            // Apply filter first
             if ("Active".equals(filter)) {
                 customers = customerService.getActiveCustomers();
             } else if ("Inactive".equals(filter)) {
@@ -212,7 +177,6 @@ public class CustomerController {
                 customers = customerService.getAllCustomers();
             }
 
-            // Then apply search text
             if (!searchText.isEmpty()) {
                 customers = customers.stream()
                         .filter(c ->
@@ -231,9 +195,6 @@ public class CustomerController {
         }
     }
 
-    /**
-     * Shows the add customer dialog.
-     */
     @FXML
     public void showAddCustomerDialog() {
         try {
@@ -259,9 +220,6 @@ public class CustomerController {
         }
     }
 
-    /**
-     * Views customer details.
-     */
     private void viewCustomer(Customer customer) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Customer Details");
@@ -281,9 +239,6 @@ public class CustomerController {
         alert.showAndWait();
     }
 
-    /**
-     * Edits a customer.
-     */
     private void editCustomer(Customer customer) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/utilitybill/view/customer-dialog.fxml"));
@@ -309,16 +264,10 @@ public class CustomerController {
         }
     }
 
-    /**
-     * Updates the summary label.
-     */
     private void updateSummary(int count) {
         summaryLabel.setText(String.format("Showing %d customer%s", count, count == 1 ? "" : "s"));
     }
 
-    /**
-     * Shows an error alert.
-     */
     private void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");

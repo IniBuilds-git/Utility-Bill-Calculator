@@ -17,13 +17,6 @@ import javafx.util.StringConverter;
 import java.time.LocalDate;
 import java.util.List;
 
-/**
- * Controller for the meter reading add dialog.
- *
- * @author Utility Bill Management System
- * @version 1.0
- * @since 2024
- */
 public class MeterReadingDialogController {
 
     @FXML private ComboBox<Customer> customerCombo;
@@ -52,10 +45,7 @@ public class MeterReadingDialogController {
         readingDatePicker.setValue(LocalDate.now());
         hideError();
 
-        // When customer changes, load their meters
         customerCombo.setOnAction(e -> loadMetersForCustomer());
-        
-        // When meter changes, show previous reading
         meterCombo.setOnAction(e -> showPreviousReading());
     }
 
@@ -156,7 +146,6 @@ public class MeterReadingDialogController {
     private void handleSave() {
         hideError();
 
-        // Validate
         if (customerCombo.getValue() == null) {
             showError("Please select a customer");
             return;

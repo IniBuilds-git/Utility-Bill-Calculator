@@ -24,14 +24,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Controller for payment processing view.
- * Handles recording and tracking customer payments.
- *
- * @author Utility Bill Management System
- * @version 1.0
- * @since 2024
- */
 public class PaymentController {
 
     @FXML private TextField searchField;
@@ -107,13 +99,12 @@ public class PaymentController {
         methodCol.setCellValueFactory(data -> 
             new SimpleStringProperty(data.getValue().getPaymentMethod().getDisplayName()));
         
-        dateCol.setCellValueFactory(data -> 
+        dateCol.setCellValueFactory(data ->
             new SimpleStringProperty(DateUtil.formatForDisplay(data.getValue().getPaymentDate())));
-        
-        statusCol.setCellValueFactory(data -> 
+
+        statusCol.setCellValueFactory(data ->
             new SimpleStringProperty(data.getValue().getStatus().getDisplayName()));
 
-        // Style status column
         statusCol.setCellFactory(col -> new TableCell<>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -275,7 +266,6 @@ public class PaymentController {
             return;
         }
 
-        // When customer changes, load their unpaid invoices
         customerCombo.setOnAction(e -> {
             Customer customer = customerCombo.getValue();
             if (customer != null) {
@@ -299,7 +289,6 @@ public class PaymentController {
             }
         });
 
-        // When invoice is selected, populate amount
         invoiceCombo.setOnAction(e -> {
             Invoice invoice = invoiceCombo.getValue();
             if (invoice != null) {

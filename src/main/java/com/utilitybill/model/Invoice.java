@@ -12,129 +12,46 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
-/**
- * Represents an invoice in the Utility Bill Management System.
- * An invoice contains all billing details for a specific period.
- *
- * <p>This class includes:</p>
- * <ul>
- *   <li>Billing period information</li>
- *   <li>Meter readings and consumption data</li>
- *   <li>Itemized charges breakdown</li>
- *   <li>Payment status tracking</li>
- * </ul>
- *
- * @author Utility Bill Management System
- * @version 1.0
- * @since 2024
- */
 public class Invoice implements Serializable {
 
-    /** Unique identifier for serialization */
     private static final long serialVersionUID = 1L;
-
-    /** Counter for generating unique invoice numbers */
     private static final AtomicLong INVOICE_COUNTER = new AtomicLong(1000);
 
-    /** Unique invoice identifier */
     private String invoiceId;
-
-    /** Invoice number for display (INV-XXXXXX) */
     private String invoiceNumber;
-
-    /** Customer ID this invoice belongs to */
     private String customerId;
-
-    /** Customer account number */
     private String accountNumber;
-
-    /** Billing period start date */
     private LocalDate periodStart;
-
-    /** Billing period end date */
     private LocalDate periodEnd;
-
-    /** Issue date of the invoice */
     private LocalDate issueDate;
-
-    /** Due date for payment */
     private LocalDate dueDate;
-
-    /** Meter type for this invoice */
     private MeterType meterType;
-
-    /** Opening meter reading */
     private double openingReading;
-
-    /** Closing meter reading */
     private double closingReading;
-
-    /** Units consumed */
     private double unitsConsumed;
-
-    /** Unit rate applied (pence per kWh) */
     private BigDecimal unitRate;
-
-    /** Cost of units consumed */
     private BigDecimal unitCost;
-
-    /** Standing charge total for the period */
     private BigDecimal standingChargeTotal;
-
-    /** Subtotal before VAT */
     private BigDecimal subtotal;
-
-    /** VAT amount */
     private BigDecimal vatAmount;
-
-    /** VAT rate applied */
     private BigDecimal vatRate;
-
-    /** Total amount due */
     private BigDecimal totalAmount;
-
-    /** Amount already paid */
     private BigDecimal amountPaid;
-
-    /** Balance remaining */
     private BigDecimal balanceDue;
-
-    /** Invoice status */
     private InvoiceStatus status;
-
-    /** List of line items on the invoice */
     private List<InvoiceLineItem> lineItems;
-
-    /** Tariff ID used for this invoice */
     private String tariffId;
-
-    /** Tariff name */
     private String tariffName;
-
-    /** Creation timestamp */
     private LocalDateTime createdAt;
-
-    /** Last update timestamp */
     private LocalDateTime updatedAt;
-
-    /** Notes on the invoice */
     private String notes;
 
-    /**
-     * Enum representing invoice status.
-     */
     public enum InvoiceStatus {
-        /** Invoice generated, awaiting payment */
         PENDING("Pending"),
-        /** Partially paid */
         PARTIAL("Partially Paid"),
-        /** Fully paid */
         PAID("Paid"),
-        /** Payment overdue */
         OVERDUE("Overdue"),
-        /** Invoice cancelled */
         CANCELLED("Cancelled"),
-        /** Invoice disputed */
         DISPUTED("Disputed");
 
         private final String displayName;
@@ -148,9 +65,6 @@ public class Invoice implements Serializable {
         }
     }
 
-    /**
-     * Represents a line item on an invoice.
-     */
     public static class InvoiceLineItem implements Serializable {
         private static final long serialVersionUID = 1L;
 
@@ -171,7 +85,6 @@ public class Invoice implements Serializable {
             this.amount = amount;
         }
 
-        // Getters and setters
         public String getDescription() { return description; }
         public void setDescription(String description) { this.description = description; }
         public double getQuantity() { return quantity; }
@@ -190,9 +103,6 @@ public class Invoice implements Serializable {
         }
     }
 
-    /**
-     * Default constructor required for JSON deserialization.
-     */
     public Invoice() {
         this.invoiceId = UUID.randomUUID().toString();
         this.invoiceNumber = generateInvoiceNumber();
@@ -204,14 +114,6 @@ public class Invoice implements Serializable {
         this.vatRate = Tariff.STANDARD_VAT_RATE;
     }
 
-    /**
-     * Constructs a new Invoice for a customer and billing period.
-     *
-     * @param customerId    the customer ID
-     * @param accountNumber the account number
-     * @param periodStart   the billing period start
-     * @param periodEnd     the billing period end
-     */
     public Invoice(String customerId, String accountNumber, LocalDate periodStart, LocalDate periodEnd) {
         this();
         this.customerId = customerId;
@@ -219,19 +121,12 @@ public class Invoice implements Serializable {
         this.periodStart = periodStart;
         this.periodEnd = periodEnd;
         this.issueDate = LocalDate.now();
-        this.dueDate = issueDate.plusDays(14); // 14 days to pay
+        this.dueDate = issueDate.plusDays(14);
     }
 
-    /**
-     * Generates a unique invoice number.
-     *
-     * @return the invoice number
-     */
     private static String generateInvoiceNumber() {
         return String.format("INV-%06d", INVOICE_COUNTER.getAndIncrement());
     }
-
-    // ==================== Getters and Setters ====================
 
     public String getInvoiceId() { return invoiceId; }
     public void setInvoiceId(String invoiceId) { this.invoiceId = invoiceId; }
@@ -321,33 +216,16 @@ public class Invoice implements Serializable {
     public String getNotes() { return notes; }
     public void setNotes(String notes) { this.notes = notes; }
 
-    // ==================== Business Methods ====================
-
-    /**
-     * Adds a line item to the invoice.
-     *
-     * @param item the line item to add
-     */
     public void addLineItem(InvoiceLineItem item) {
         lineItems.add(item);
         this.updatedAt = LocalDateTime.now();
     }
 
-    /**
-     * Gets the number of days in the billing period.
-     *
-     * @return the number of days
-     */
     public int getBillingDays() {
         if (periodStart == null || periodEnd == null) return 0;
         return (int) ChronoUnit.DAYS.between(periodStart, periodEnd) + 1;
     }
 
-    /**
-     * Applies a payment to this invoice.
-     *
-     * @param amount the payment amount
-     */
     public void applyPayment(BigDecimal amount) {
         this.amountPaid = this.amountPaid.add(amount);
         this.balanceDue = this.totalAmount.subtract(this.amountPaid);
@@ -362,11 +240,6 @@ public class Invoice implements Serializable {
         this.updatedAt = LocalDateTime.now();
     }
 
-    /**
-     * Checks if the invoice is overdue.
-     *
-     * @return true if overdue
-     */
     public boolean isOverdue() {
         if (status == InvoiceStatus.PAID || status == InvoiceStatus.CANCELLED) {
             return false;
@@ -374,53 +247,35 @@ public class Invoice implements Serializable {
         return dueDate != null && LocalDate.now().isAfter(dueDate);
     }
 
-    /**
-     * Gets the number of days until due (negative if overdue).
-     *
-     * @return days until due
-     */
     public long getDaysUntilDue() {
         if (dueDate == null) return 0;
         return ChronoUnit.DAYS.between(LocalDate.now(), dueDate);
     }
 
-    /**
-     * Calculates the totals for this invoice.
-     * Call this after setting consumption and rates.
-     */
     public void calculateTotals() {
-        // Calculate unit cost
         if (unitRate != null && unitsConsumed > 0) {
-            // Unit rate is in pence, convert to pounds
             this.unitCost = unitRate.multiply(BigDecimal.valueOf(unitsConsumed))
                     .divide(BigDecimal.valueOf(100), 2, java.math.RoundingMode.HALF_UP);
         } else {
             this.unitCost = BigDecimal.ZERO;
         }
 
-        // Calculate subtotal
         this.subtotal = unitCost;
         if (standingChargeTotal != null) {
             this.subtotal = this.subtotal.add(standingChargeTotal);
         }
 
-        // Calculate VAT
         this.vatAmount = subtotal.multiply(vatRate)
                 .setScale(2, java.math.RoundingMode.HALF_UP);
 
-        // Calculate total
         this.totalAmount = subtotal.add(vatAmount)
                 .setScale(2, java.math.RoundingMode.HALF_UP);
 
-        // Calculate balance due
         this.balanceDue = totalAmount.subtract(amountPaid);
 
         this.updatedAt = LocalDateTime.now();
     }
 
-    /**
-     * Updates the invoice status based on due date and payment.
-     */
     public void updateStatus() {
         if (status == InvoiceStatus.CANCELLED) return;
 
@@ -434,8 +289,6 @@ public class Invoice implements Serializable {
             status = InvoiceStatus.PENDING;
         }
     }
-
-    // ==================== Object Methods ====================
 
     @Override
     public boolean equals(Object o) {
@@ -456,4 +309,3 @@ public class Invoice implements Serializable {
                 invoiceNumber, accountNumber, totalAmount, status);
     }
 }
-

@@ -23,14 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Controller for invoice management view.
- * Handles invoice generation, display, and management.
- *
- * @author Utility Bill Management System
- * @version 1.0
- * @since 2024
- */
 public class InvoiceController {
 
     @FXML private TextField searchField;
@@ -106,10 +98,9 @@ public class InvoiceController {
         statusCol.setCellValueFactory(data -> 
             new SimpleStringProperty(data.getValue().getStatus().getDisplayName()));
 
-        dueDateCol.setCellValueFactory(data -> 
+        dueDateCol.setCellValueFactory(data ->
             new SimpleStringProperty(DateUtil.formatForDisplay(data.getValue().getDueDate())));
 
-        // Style status column
         statusCol.setCellFactory(col -> new TableCell<>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -130,7 +121,6 @@ public class InvoiceController {
             }
         });
 
-        // Actions column with View button
         actionsCol.setCellFactory(col -> new TableCell<>() {
             private final Button viewBtn = new Button("View");
             {

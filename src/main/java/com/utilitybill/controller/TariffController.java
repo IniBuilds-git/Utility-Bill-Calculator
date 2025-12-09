@@ -18,14 +18,6 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Controller for tariff management view.
- * Handles CRUD operations for electricity and gas tariffs.
- *
- * @author Utility Bill Management System
- * @version 1.0
- * @since 2024
- */
 public class TariffController {
 
     // Electricity table
@@ -97,10 +89,9 @@ public class TariffController {
             return new SimpleStringProperty("-");
         });
         
-        elecStatusCol.setCellValueFactory(data -> 
+        elecStatusCol.setCellValueFactory(data ->
             new SimpleStringProperty(data.getValue().isActive() ? "Active" : "Inactive"));
 
-        // Style status
         elecStatusCol.setCellFactory(col -> new TableCell<>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -117,7 +108,6 @@ public class TariffController {
             }
         });
 
-        // Actions column
         elecActionsCol.setCellFactory(col -> new TableCell<>() {
             private final Button editBtn = new Button("Edit");
             private final Button deleteBtn = new Button("Delete");

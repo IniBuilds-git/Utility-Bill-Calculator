@@ -22,13 +22,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Controller for the meter readings management view.
- *
- * @author Utility Bill Management System
- * @version 1.0
- * @since 2024
- */
 public class MeterReadingController {
 
     @FXML private TextField searchField;
@@ -127,8 +120,7 @@ public class MeterReadingController {
     public void refreshData() {
         try {
             List<MeterReading> allReadings = new ArrayList<>();
-            
-            // Get readings for all customers
+
             for (Customer customer : customerService.getAllCustomers()) {
                 allReadings.addAll(billingService.getCustomerReadings(customer.getCustomerId()));
             }
@@ -155,7 +147,6 @@ public class MeterReadingController {
 
             List<MeterReading> filtered = allReadings.stream()
                 .filter(r -> {
-                    // Search filter
                     if (!searchText.isEmpty()) {
                         try {
                             Customer c = customerService.getCustomerById(r.getCustomerId());
@@ -167,16 +158,14 @@ public class MeterReadingController {
                             return false;
                         }
                     }
-                    
-                    // Type filter
+
                     if (typeFilter != null && !"All Types".equals(typeFilter)) {
                         String type = r.getReadingType().getDisplayName();
                         if (!type.toLowerCase().contains(typeFilter.toLowerCase())) {
                             return false;
                         }
                     }
-                    
-                    // Date filters
+
                     if (fromDate != null && r.getReadingDate().isBefore(fromDate)) {
                         return false;
                     }

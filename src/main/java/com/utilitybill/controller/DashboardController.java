@@ -25,14 +25,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-/**
- * Controller for the main dashboard view.
- * Manages navigation and displays summary statistics.
- *
- * @author Utility Bill Management System
- * @version 1.0
- * @since 2024
- */
 public class DashboardController {
 
     // Navigation buttons
@@ -66,24 +58,16 @@ public class DashboardController {
     @FXML private TableColumn<Invoice, String> statusCol;
     @FXML private TableColumn<Invoice, String> dueDateCol;
 
-    /** Services */
     private final AuthenticationService authService;
     private final CustomerService customerService;
     private final BillingService billingService;
     private final PaymentService paymentService;
 
-    /** DateTime formatter */
     private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy  HH:mm:ss");
 
-    /** Current active button */
     private Button currentActiveButton;
-
-    /** Original dashboard content - stored to restore when navigating back */
     private Node dashboardHomeContent;
 
-    /**
-     * Constructs a new DashboardController.
-     */
     public DashboardController() {
         this.authService = AuthenticationService.getInstance();
         this.customerService = CustomerService.getInstance();
@@ -91,41 +75,25 @@ public class DashboardController {
         this.paymentService = PaymentService.getInstance();
     }
 
-    /**
-     * Initializes the controller.
-     */
     @FXML
     public void initialize() {
-        // Set user info
         User currentUser = authService.getCurrentUser();
         if (currentUser != null) {
             userLabel.setText("Welcome, " + currentUser.getFullName());
         }
 
-        // Set current active button
         currentActiveButton = dashboardBtn;
 
-        // Store the original dashboard content for later restoration
         if (!contentArea.getChildren().isEmpty()) {
             dashboardHomeContent = contentArea.getChildren().get(0);
         }
 
-        // Setup table columns
         setupTableColumns();
-
-        // Load dashboard data
         refreshDashboardStats();
-
-        // Start clock
         startClock();
-
-        // Set initial status
         statusLabel.setText("Dashboard loaded successfully");
     }
 
-    /**
-     * Sets up the table columns for the recent invoices table.
-     */
     private void setupTableColumns() {
         invoiceNumberCol.setCellValueFactory(data ->
                 new SimpleStringProperty(data.getValue().getInvoiceNumber()));
@@ -144,7 +112,6 @@ public class DashboardController {
         dueDateCol.setCellValueFactory(data ->
                 new SimpleStringProperty(DateUtil.formatForDisplay(data.getValue().getDueDate())));
 
-        // Style status column
         statusCol.setCellFactory(col -> new TableCell<>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -165,30 +132,22 @@ public class DashboardController {
         });
     }
 
-    /**
-     * Refreshes the dashboard statistics.
-     */
     private void refreshDashboardStats() {
         try {
-            // Total customers
             long customerCount = customerService.getCustomerCount();
             totalCustomersLabel.setText(String.valueOf(customerCount));
 
-            // Unpaid invoices
             List<Invoice> unpaidInvoices = billingService.getUnpaidInvoices();
             unpaidInvoicesLabel.setText(String.valueOf(unpaidInvoices.size()));
 
-            // Total revenue this month
             LocalDate startOfMonth = LocalDate.now().withDayOfMonth(1);
             LocalDate today = LocalDate.now();
             BigDecimal revenue = paymentService.getTotalPaymentsByDateRange(startOfMonth, today);
             totalRevenueLabel.setText(String.format("£%.2f", revenue));
 
-            // Overdue invoices
             List<Invoice> overdueInvoices = billingService.getOverdueInvoices();
             overdueLabel.setText(String.valueOf(overdueInvoices.size()));
 
-            // Load recent invoices to table
             List<Invoice> allInvoices = billingService.getUnpaidInvoices();
             recentInvoicesTable.setItems(FXCollections.observableArrayList(
                     allInvoices.stream().limit(10).toList()
@@ -200,9 +159,6 @@ public class DashboardController {
         }
     }
 
-    /**
-     * Starts the clock display.
-     */
     private void startClock() {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             dateTimeLabel.setText(LocalDateTime.now().format(DATE_TIME_FORMAT));
@@ -211,35 +167,23 @@ public class DashboardController {
         clock.play();
     }
 
-    /** Style for active sidebar button */
     private static final String ACTIVE_BUTTON_STYLE = "-fx-background-color: #e0f2f1; -fx-text-fill: #0d9488; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 12 15; -fx-background-radius: 8; -fx-cursor: hand;";
-
-    /** Style for inactive sidebar button */
     private static final String INACTIVE_BUTTON_STYLE = "-fx-background-color: transparent; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-padding: 12 15; -fx-background-radius: 8; -fx-cursor: hand;";
 
-    /**
-     * Updates the active navigation button.
-     */
     private void setActiveButton(Button button) {
-        // Reset all buttons to inactive style
         if (currentActiveButton != null) {
             currentActiveButton.setStyle(INACTIVE_BUTTON_STYLE);
         }
-        // Set new active button style
         button.setStyle(ACTIVE_BUTTON_STYLE);
         currentActiveButton = button;
     }
 
-    // ==================== Navigation Handlers ====================
-
     @FXML
     private void showDashboard() {
         setActiveButton(dashboardBtn);
-        // Restore the original dashboard content
         if (dashboardHomeContent != null) {
             contentArea.getChildren().setAll(dashboardHomeContent);
         }
-        // Refresh the dashboard data
         refreshDashboardStats();
         statusLabel.setText("Dashboard");
     }
@@ -295,7 +239,6 @@ public class DashboardController {
     @FXML
     private void showAddCustomer() {
         showCustomers();
-        // TODO: Open add customer dialog
     }
 
     @FXML
@@ -304,9 +247,6 @@ public class DashboardController {
         Main.showLogin();
     }
 
-    /**
-     * Loads content into the main content area.
-     */
     private void loadContent(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
@@ -318,9 +258,6 @@ public class DashboardController {
         }
     }
 
-    /**
-     * Shows a placeholder for unimplemented features.
-     */
     private void showPlaceholder(String title, String description) {
         javafx.scene.layout.VBox placeholder = new javafx.scene.layout.VBox(20);
         placeholder.setAlignment(javafx.geometry.Pos.CENTER);

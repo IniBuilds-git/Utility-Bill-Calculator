@@ -13,13 +13,6 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
-/**
- * Controller for the customer add/edit dialog.
- *
- * @author Utility Bill Management System
- * @version 1.0
- * @since 2024
- */
 public class CustomerDialogController {
 
     @FXML private Label dialogTitle;
@@ -37,57 +30,33 @@ public class CustomerDialogController {
     @FXML private ComboBox<Customer.CustomerType> customerTypeCombo;
     @FXML private Label errorLabel;
 
-    /** Services */
     private final CustomerService customerService;
     private final TariffService tariffService;
-
-    /** Current mode */
     private Mode mode = Mode.ADD;
-
-    /** Customer being edited (null for add mode) */
     private Customer customer;
-
-    /** Dialog stage reference */
     private Stage dialogStage;
-
-    /** Dialog result */
     private boolean saved = false;
 
-    /**
-     * Mode enum for the dialog.
-     */
     public enum Mode {
         ADD, EDIT
     }
 
-    /**
-     * Constructs a new CustomerDialogController.
-     */
     public CustomerDialogController() {
         this.customerService = CustomerService.getInstance();
         this.tariffService = TariffService.getInstance();
     }
 
-    /**
-     * Initializes the controller.
-     */
     @FXML
     public void initialize() {
-        // Setup meter type combo
         meterTypeCombo.setItems(FXCollections.observableArrayList(MeterType.values()));
         meterTypeCombo.setValue(MeterType.ELECTRICITY);
 
-        // Setup customer type combo
         customerTypeCombo.setItems(FXCollections.observableArrayList(Customer.CustomerType.values()));
         customerTypeCombo.setValue(Customer.CustomerType.RESIDENTIAL);
 
-        // Load tariffs
         loadTariffs();
-
-        // Update tariffs when meter type changes
         meterTypeCombo.setOnAction(e -> loadTariffs());
 
-        // Setup combo box display
         tariffCombo.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(Tariff item, boolean empty) {
@@ -103,13 +72,9 @@ public class CustomerDialogController {
             }
         });
 
-        // Hide error initially
         hideError();
     }
 
-    /**
-     * Loads tariffs based on selected meter type.
-     */
     private void loadTariffs() {
         try {
             MeterType meterType = meterTypeCombo.getValue();
@@ -123,17 +88,11 @@ public class CustomerDialogController {
         }
     }
 
-    /**
-     * Sets the dialog mode.
-     */
     public void setMode(Mode mode) {
         this.mode = mode;
         dialogTitle.setText(mode == Mode.ADD ? "Add New Customer" : "Edit Customer");
     }
 
-    /**
-     * Sets the customer to edit.
-     */
     public void setCustomer(Customer customer) {
         this.customer = customer;
         if (customer != null) {
@@ -141,9 +100,6 @@ public class CustomerDialogController {
         }
     }
 
-    /**
-     * Populates fields with customer data.
-     */
     private void populateFields(Customer customer) {
         firstNameField.setText(customer.getFirstName());
         lastNameField.setText(customer.getLastName());
@@ -161,30 +117,20 @@ public class CustomerDialogController {
 
         customerTypeCombo.setValue(customer.getCustomerType());
 
-        // Disable meter type for edit mode
         if (!customer.getMeters().isEmpty()) {
             meterTypeCombo.setValue(customer.getMeters().get(0).getMeterType());
             meterTypeCombo.setDisable(true);
         }
     }
 
-    /**
-     * Sets the dialog stage reference.
-     *
-     * @param dialogStage the stage for this dialog
-     */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
-    /**
-     * Handles the save button action.
-     */
     @FXML
     private void handleSave() {
         hideError();
 
-        // Validate fields
         if (!validateFields()) {
             return;
         }
@@ -197,7 +143,6 @@ public class CustomerDialogController {
             }
             saved = true;
 
-            // Close the dialog
             if (dialogStage != null) {
                 dialogStage.close();
             }
@@ -213,9 +158,6 @@ public class CustomerDialogController {
         }
     }
 
-    /**
-     * Validates the form fields.
-     */
     private boolean validateFields() {
         StringBuilder errors = new StringBuilder();
 
@@ -254,9 +196,6 @@ public class CustomerDialogController {
         return true;
     }
 
-    /**
-     * Creates a new customer.
-     */
     private void createCustomer() throws ValidationException, DuplicateAccountException, DataPersistenceException {
         Address address = new Address(
                 houseNumberField.getText().trim(),
@@ -280,15 +219,11 @@ public class CustomerDialogController {
         try {
             customerService.updateCustomer(newCustomer);
         } catch (com.utilitybill.exception.CustomerNotFoundException e) {
-            // This shouldn't happen for newly created customer, but handle gracefully
-            throw new DataPersistenceException("Failed to update new customer", "", 
+            throw new DataPersistenceException("Failed to update new customer", "",
                     com.utilitybill.exception.DataPersistenceException.Operation.WRITE, e);
         }
     }
 
-    /**
-     * Updates an existing customer.
-     */
     private void updateCustomer() throws ValidationException, DataPersistenceException {
         customer.setFirstName(firstNameField.getText().trim());
         customer.setLastName(lastNameField.getText().trim());
@@ -320,9 +255,6 @@ public class CustomerDialogController {
         }
     }
 
-    /**
-     * Handles the cancel button action.
-     */
     @FXML
     private void handleCancel() {
         saved = false;
@@ -331,26 +263,17 @@ public class CustomerDialogController {
         }
     }
 
-    /**
-     * Shows an error message.
-     */
     private void showError(String message) {
         errorLabel.setText(message);
         errorLabel.setVisible(true);
         errorLabel.setManaged(true);
     }
 
-    /**
-     * Hides the error message.
-     */
     private void hideError() {
         errorLabel.setVisible(false);
         errorLabel.setManaged(false);
     }
 
-    /**
-     * Returns whether the dialog was saved.
-     */
     public boolean isSaved() {
         return saved;
     }

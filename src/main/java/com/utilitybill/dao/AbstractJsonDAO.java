@@ -15,78 +15,30 @@ import java.util.*;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-/**
- * Abstract base class for JSON-based data persistence.
- * Provides common functionality for reading/writing JSON files with caching.
- *
- * <p>Design Patterns used:</p>
- * <ul>
- *   <li>Template Method - Subclasses implement getId() and getEntityType()</li>
- *   <li>Caching - In-memory cache to reduce file I/O</li>
- *   <li>Thread Safety - Uses ReadWriteLock for concurrent access</li>
- * </ul>
- *
- * @param <T>  the entity type
- * @param <ID> the identifier type
- * @author Utility Bill Management System
- * @version 1.0
- * @since 2024
- */
 public abstract class AbstractJsonDAO<T, ID> implements DataPersistence<T, ID> {
 
-    /** Shared Gson instance with custom adapters for LocalDate/LocalDateTime */
     protected static final Gson GSON = new GsonBuilder()
             .setPrettyPrinting()
             .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
             .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
             .create();
 
-    /** Base directory for data files */
     protected static final String DATA_DIR = "data";
-
-    /** Path to the JSON file */
     protected final String filePath;
-
-    /** In-memory cache of entities */
     protected Map<ID, T> cache;
-
-    /** Lock for thread-safe access */
     protected final ReadWriteLock lock = new ReentrantReadWriteLock();
-
-    /** Whether the cache is initialized */
     protected boolean cacheInitialized = false;
 
-    /**
-     * Constructs a new AbstractJsonDAO with the specified file name.
-     *
-     * @param fileName the name of the JSON file (without path)
-     */
     protected AbstractJsonDAO(String fileName) {
         this.filePath = DATA_DIR + File.separator + fileName;
         this.cache = new LinkedHashMap<>();
         ensureDataDirectoryExists();
     }
 
-    /**
-     * Gets the unique identifier from an entity.
-     * Must be implemented by subclasses.
-     *
-     * @param entity the entity
-     * @return the entity's unique identifier
-     */
     protected abstract ID getId(T entity);
 
-    /**
-     * Gets the Type for JSON deserialization.
-     * Must be implemented by subclasses using TypeToken.
-     *
-     * @return the Type for the List of entities
-     */
     protected abstract Type getEntityListType();
 
-    /**
-     * Ensures the data directory exists.
-     */
     private void ensureDataDirectoryExists() {
         try {
             Path dataPath = Paths.get(DATA_DIR);
@@ -98,11 +50,6 @@ public abstract class AbstractJsonDAO<T, ID> implements DataPersistence<T, ID> {
         }
     }
 
-    /**
-     * Initializes the cache from the file if not already done.
-     *
-     * @throws DataPersistenceException if reading fails
-     */
     protected void initializeCache() throws DataPersistenceException {
         if (!cacheInitialized) {
             lock.writeLock().lock();
@@ -117,11 +64,6 @@ public abstract class AbstractJsonDAO<T, ID> implements DataPersistence<T, ID> {
         }
     }
 
-    /**
-     * Loads all entities from the JSON file into the cache.
-     *
-     * @throws DataPersistenceException if reading fails
-     */
     protected void loadFromFile() throws DataPersistenceException {
         File file = new File(filePath);
         if (!file.exists()) {
@@ -144,11 +86,6 @@ public abstract class AbstractJsonDAO<T, ID> implements DataPersistence<T, ID> {
         }
     }
 
-    /**
-     * Writes all cached entities to the JSON file.
-     *
-     * @throws DataPersistenceException if writing fails
-     */
     protected void saveToFile() throws DataPersistenceException {
         try (Writer writer = new FileWriter(filePath)) {
             GSON.toJson(new ArrayList<>(cache.values()), writer);
@@ -280,11 +217,6 @@ public abstract class AbstractJsonDAO<T, ID> implements DataPersistence<T, ID> {
         }
     }
 
-    /**
-     * Gets the file path for this DAO.
-     *
-     * @return the file path
-     */
     public String getFilePath() {
         return filePath;
     }

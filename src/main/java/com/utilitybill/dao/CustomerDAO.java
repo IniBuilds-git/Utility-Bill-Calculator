@@ -8,36 +8,15 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Data Access Object for Customer entities.
- * Handles persistence of customer data to JSON files.
- *
- * <p>Design Pattern: Singleton - Only one instance manages customer data.</p>
- *
- * @author Utility Bill Management System
- * @version 1.0
- * @since 2024
- */
 public class CustomerDAO extends AbstractJsonDAO<Customer, String> {
 
-    /** Singleton instance */
     private static volatile CustomerDAO instance;
-
-    /** Type token for JSON deserialization */
     private static final Type CUSTOMER_LIST_TYPE = new TypeToken<List<Customer>>(){}.getType();
 
-    /**
-     * Private constructor for singleton pattern.
-     */
     private CustomerDAO() {
         super("customers.json");
     }
 
-    /**
-     * Gets the singleton instance.
-     *
-     * @return the CustomerDAO instance
-     */
     public static CustomerDAO getInstance() {
         if (instance == null) {
             synchronized (CustomerDAO.class) {
@@ -59,13 +38,6 @@ public class CustomerDAO extends AbstractJsonDAO<Customer, String> {
         return CUSTOMER_LIST_TYPE;
     }
 
-    /**
-     * Finds a customer by account number.
-     *
-     * @param accountNumber the account number to search
-     * @return an Optional containing the customer if found
-     * @throws DataPersistenceException if the operation fails
-     */
     public Optional<Customer> findByAccountNumber(String accountNumber) throws DataPersistenceException {
         initializeCache();
         lock.readLock().lock();
@@ -78,13 +50,6 @@ public class CustomerDAO extends AbstractJsonDAO<Customer, String> {
         }
     }
 
-    /**
-     * Finds a customer by email.
-     *
-     * @param email the email to search
-     * @return an Optional containing the customer if found
-     * @throws DataPersistenceException if the operation fails
-     */
     public Optional<Customer> findByEmail(String email) throws DataPersistenceException {
         initializeCache();
         lock.readLock().lock();
@@ -97,12 +62,6 @@ public class CustomerDAO extends AbstractJsonDAO<Customer, String> {
         }
     }
 
-    /**
-     * Finds all active customers.
-     *
-     * @return list of active customers
-     * @throws DataPersistenceException if the operation fails
-     */
     public List<Customer> findAllActive() throws DataPersistenceException {
         initializeCache();
         lock.readLock().lock();
@@ -115,13 +74,6 @@ public class CustomerDAO extends AbstractJsonDAO<Customer, String> {
         }
     }
 
-    /**
-     * Searches customers by name (partial match).
-     *
-     * @param name the name to search (case-insensitive)
-     * @return list of matching customers
-     * @throws DataPersistenceException if the operation fails
-     */
     public List<Customer> searchByName(String name) throws DataPersistenceException {
         initializeCache();
         lock.readLock().lock();
@@ -135,13 +87,6 @@ public class CustomerDAO extends AbstractJsonDAO<Customer, String> {
         }
     }
 
-    /**
-     * Finds customers by postcode.
-     *
-     * @param postcode the postcode to search
-     * @return list of customers at that postcode
-     * @throws DataPersistenceException if the operation fails
-     */
     public List<Customer> findByPostcode(String postcode) throws DataPersistenceException {
         initializeCache();
         lock.readLock().lock();
@@ -158,12 +103,6 @@ public class CustomerDAO extends AbstractJsonDAO<Customer, String> {
         }
     }
 
-    /**
-     * Finds customers with outstanding debt.
-     *
-     * @return list of customers with negative balance
-     * @throws DataPersistenceException if the operation fails
-     */
     public List<Customer> findCustomersWithDebt() throws DataPersistenceException {
         initializeCache();
         lock.readLock().lock();
@@ -176,13 +115,6 @@ public class CustomerDAO extends AbstractJsonDAO<Customer, String> {
         }
     }
 
-    /**
-     * Finds customers by type.
-     *
-     * @param type the customer type
-     * @return list of customers of that type
-     * @throws DataPersistenceException if the operation fails
-     */
     public List<Customer> findByType(Customer.CustomerType type) throws DataPersistenceException {
         initializeCache();
         lock.readLock().lock();
@@ -195,24 +127,10 @@ public class CustomerDAO extends AbstractJsonDAO<Customer, String> {
         }
     }
 
-    /**
-     * Checks if an email already exists.
-     *
-     * @param email the email to check
-     * @return true if the email exists
-     * @throws DataPersistenceException if the operation fails
-     */
     public boolean emailExists(String email) throws DataPersistenceException {
         return findByEmail(email).isPresent();
     }
 
-    /**
-     * Checks if an account number already exists.
-     *
-     * @param accountNumber the account number to check
-     * @return true if the account number exists
-     * @throws DataPersistenceException if the operation fails
-     */
     public boolean accountNumberExists(String accountNumber) throws DataPersistenceException {
         return findByAccountNumber(accountNumber).isPresent();
     }
