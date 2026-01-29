@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class Meter implements Serializable {
+public abstract class Meter implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private static final AtomicLong ID_COUNTER = new AtomicLong(1000);
@@ -18,6 +18,8 @@ public class Meter implements Serializable {
     private double currentReading;
     private boolean active;
     private double maxReading;
+
+    public abstract double updateReading(double newReading);
 
     public Meter() {
         this.active = true;
@@ -34,15 +36,11 @@ public class Meter implements Serializable {
     }
 
     public static Meter createElectricityMeter(String serialNumber) {
-        return new Meter(MeterType.ELECTRICITY, serialNumber);
+        return new ElectricityMeter(serialNumber);
     }
 
     public static Meter createGasMeter(String serialNumber) {
-        return new Meter(MeterType.GAS, serialNumber);
-    }
-
-    public static Meter createDualFuelMeter(String serialNumber) {
-        return new Meter(MeterType.DUAL_FUEL, serialNumber);
+        return new GasMeter(serialNumber);
     }
 
     private static String generateMeterId(MeterType type) {
@@ -113,23 +111,6 @@ public class Meter implements Serializable {
         this.maxReading = maxReading;
     }
 
-    public double updateReading(double newReading) {
-        if (newReading < 0) {
-            throw new IllegalArgumentException("Meter reading cannot be negative");
-        }
-
-        double unitsConsumed;
-        if (newReading < currentReading) {
-            // Handle meter rollover
-            unitsConsumed = (maxReading - currentReading) + newReading;
-        } else {
-            unitsConsumed = newReading - currentReading;
-        }
-
-        this.currentReading = newReading;
-        return unitsConsumed;
-    }
-
     public boolean isInspectionDue() {
         if (lastInspectionDate == null) {
             return true;
@@ -147,6 +128,8 @@ public class Meter implements Serializable {
         }
         return (int) java.time.temporal.ChronoUnit.YEARS.between(installationDate, LocalDate.now());
     }
+
+
 
     @Override
     public boolean equals(Object o) {

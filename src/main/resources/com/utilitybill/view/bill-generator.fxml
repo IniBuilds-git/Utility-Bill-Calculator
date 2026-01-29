@@ -39,7 +39,6 @@
                   style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20;">
                 
                 <HBox alignment="CENTER_LEFT" spacing="10">
-                    <Label text="⚡" style="-fx-font-size: 24px;"/>
                     <Label text="Electricity" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
                 </HBox>
 
@@ -105,7 +104,6 @@
                   style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20;">
                 
                 <HBox alignment="CENTER_LEFT" spacing="10">
-                    <Label text="🔥" style="-fx-font-size: 24px;"/>
                     <Label text="Gas" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
                 </HBox>
 
@@ -206,7 +204,7 @@
                 <!-- Electricity Result -->
                 <VBox spacing="8" alignment="CENTER" 
                       style="-fx-background-color: rgba(255,255,255,0.15); -fx-background-radius: 10; -fx-padding: 20 40;">
-                    <Label text="⚡ Electricity Bill" style="-fx-text-fill: rgba(255,255,255,0.9); -fx-font-size: 14px;"/>
+                    <Label text="Electricity Bill" style="-fx-text-fill: rgba(255,255,255,0.9); -fx-font-size: 14px;"/>
                     <Label fx:id="elecBillLabel" text="£0.00" 
                            style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;"/>
                 </VBox>
@@ -214,7 +212,7 @@
                 <!-- Gas Result -->
                 <VBox spacing="8" alignment="CENTER"
                       style="-fx-background-color: rgba(255,255,255,0.15); -fx-background-radius: 10; -fx-padding: 20 40;">
-                    <Label text="🔥 Gas Bill" style="-fx-text-fill: rgba(255,255,255,0.9); -fx-font-size: 14px;"/>
+                    <Label text="Gas Bill" style="-fx-text-fill: rgba(255,255,255,0.9); -fx-font-size: 14px;"/>
                     <Label fx:id="gasBillLabel" text="£0.00" 
                            style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;"/>
                 </VBox>
@@ -222,7 +220,7 @@
                 <!-- Total -->
                 <VBox spacing="8" alignment="CENTER"
                       style="-fx-background-color: rgba(255,255,255,0.25); -fx-background-radius: 10; -fx-padding: 20 40;">
-                    <Label text="💰 Total" style="-fx-text-fill: rgba(255,255,255,0.9); -fx-font-size: 14px;"/>
+                    <Label text="Total" style="-fx-text-fill: rgba(255,255,255,0.9); -fx-font-size: 14px;"/>
                     <Label fx:id="totalBillLabel" text="£0.00" 
                            style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;"/>
                 </VBox>

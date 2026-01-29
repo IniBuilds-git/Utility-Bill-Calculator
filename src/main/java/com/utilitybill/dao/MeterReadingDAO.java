@@ -1,22 +1,19 @@
 package com.utilitybill.dao;
 
-import com.google.gson.reflect.TypeToken;
 import com.utilitybill.exception.DataPersistenceException;
 import com.utilitybill.model.MeterReading;
 
-import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-public class MeterReadingDAO extends AbstractJsonDAO<MeterReading, String> {
+public class MeterReadingDAO extends AbstractBinaryDAO<MeterReading, String> {
 
     private static volatile MeterReadingDAO instance;
-    private static final Type READING_LIST_TYPE = new TypeToken<List<MeterReading>>(){}.getType();
 
     private MeterReadingDAO() {
-        super("meter_readings.json");
+        super("meter_readings.dat");
     }
 
     public static MeterReadingDAO getInstance() {
@@ -33,11 +30,6 @@ public class MeterReadingDAO extends AbstractJsonDAO<MeterReading, String> {
     @Override
     protected String getId(MeterReading entity) {
         return entity.getReadingId();
-    }
-
-    @Override
-    protected Type getEntityListType() {
-        return READING_LIST_TYPE;
     }
 
     public List<MeterReading> findByMeterId(String meterId) throws DataPersistenceException {
@@ -132,4 +124,3 @@ public class MeterReadingDAO extends AbstractJsonDAO<MeterReading, String> {
                 .sum();
     }
 }
-

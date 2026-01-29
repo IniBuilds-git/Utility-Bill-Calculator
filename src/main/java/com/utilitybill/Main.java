@@ -1,5 +1,6 @@
 package com.utilitybill;
 
+import com.utilitybill.util.AppLogger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,6 +19,8 @@ public class Main extends Application {
     private static final double LOGIN_HEIGHT = 650;
     private static final double DASHBOARD_WIDTH = 1400;
     private static final double DASHBOARD_HEIGHT = 850;
+    private static final String CLASS_NAME = Main.class.getName();
+
     @Override
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
@@ -25,10 +28,9 @@ public class Main extends Application {
 
         try {
             primaryStage.getIcons().add(new Image(
-                    Objects.requireNonNull(getClass().getResourceAsStream("/com/utilitybill/images/icon.png"))
-            ));
+                    Objects.requireNonNull(getClass().getResourceAsStream("/com/utilitybill/images/icon.png"))));
         } catch (Exception e) {
-            System.out.println("Application icon not found, using default");
+            AppLogger.info(CLASS_NAME, "Application icon not found, using default");
         }
 
         showLogin();
@@ -42,10 +44,11 @@ public class Main extends Application {
             Scene scene = new Scene(root, LOGIN_WIDTH, LOGIN_HEIGHT);
 
             try {
-                String style = Objects.requireNonNull(Main.class.getResource("/com/utilitybill/css/styles.css")).toExternalForm();
+                String style = Objects.requireNonNull(Main.class.getResource("/com/utilitybill/css/styles.css"))
+                        .toExternalForm();
                 scene.getStylesheets().add(style);
             } catch (Exception e) {
-                System.out.println("CSS not loaded - using inline styles");
+                AppLogger.info(CLASS_NAME, "CSS not loaded - using inline styles");
             }
 
             primaryStage.setScene(scene);
@@ -56,7 +59,7 @@ public class Main extends Application {
             primaryStage.show();
 
         } catch (IOException e) {
-            System.err.println("Failed to load login screen: " + e.getMessage());
+            AppLogger.error(CLASS_NAME, "Failed to load login screen: " + e.getMessage(), e);
             e.printStackTrace();
         }
     }
@@ -69,10 +72,11 @@ public class Main extends Application {
             Scene scene = new Scene(root, DASHBOARD_WIDTH, DASHBOARD_HEIGHT);
 
             try {
-                String css = Objects.requireNonNull(Main.class.getResource("/com/utilitybill/css/styles.css")).toExternalForm();
+                String css = Objects.requireNonNull(Main.class.getResource("/com/utilitybill/css/styles.css"))
+                        .toExternalForm();
                 scene.getStylesheets().add(css);
             } catch (Exception e) {
-                System.out.println("CSS not loaded - using inline styles");
+                AppLogger.info(CLASS_NAME, "CSS not loaded - using inline styles");
             }
 
             primaryStage.setScene(scene);
@@ -83,7 +87,7 @@ public class Main extends Application {
             primaryStage.show();
 
         } catch (IOException e) {
-            System.err.println("Failed to load dashboard: " + e.getMessage());
+            AppLogger.error(CLASS_NAME, "Failed to load dashboard: " + e.getMessage(), e);
             e.printStackTrace();
         }
     }
@@ -93,13 +97,12 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        System.out.println("=".repeat(50));
-        System.out.println("  Utility Bill Management System");
-        System.out.println("  Version 1.0");
-        System.out.println("=".repeat(50));
-        System.out.println();
+        AppLogger.info(CLASS_NAME, "=".repeat(50));
+        AppLogger.info(CLASS_NAME, "  Utility Bill Management System");
+        AppLogger.info(CLASS_NAME, "  Version 1.0");
+        AppLogger.info(CLASS_NAME, "=".repeat(50));
+        AppLogger.info(CLASS_NAME, ""); // Added to preserve the empty line effect
 
         launch(args);
     }
 }
-

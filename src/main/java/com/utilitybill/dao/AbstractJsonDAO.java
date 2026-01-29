@@ -3,6 +3,7 @@ package com.utilitybill.dao;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.utilitybill.exception.DataPersistenceException;
+import com.utilitybill.util.AppLogger;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -16,6 +17,8 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public abstract class AbstractJsonDAO<T, ID> implements DataPersistence<T, ID> {
+
+    private static final String CLASS_NAME = AbstractJsonDAO.class.getName();
 
     protected static final Gson GSON = new GsonBuilder()
             .setPrettyPrinting()
@@ -46,7 +49,7 @@ public abstract class AbstractJsonDAO<T, ID> implements DataPersistence<T, ID> {
                 Files.createDirectories(dataPath);
             }
         } catch (IOException e) {
-            System.err.println("Warning: Could not create data directory: " + e.getMessage());
+            AppLogger.error(CLASS_NAME, "Warning: Could not create data directory: " + e.getMessage(), e);
         }
     }
 
@@ -89,6 +92,7 @@ public abstract class AbstractJsonDAO<T, ID> implements DataPersistence<T, ID> {
     protected void saveToFile() throws DataPersistenceException {
         try (Writer writer = new FileWriter(filePath)) {
             GSON.toJson(new ArrayList<>(cache.values()), writer);
+            writer.flush(); // Explicit flush to ensure data is written immediately
         } catch (IOException e) {
             throw DataPersistenceException.writeError(filePath, e);
         }
@@ -221,4 +225,3 @@ public abstract class AbstractJsonDAO<T, ID> implements DataPersistence<T, ID> {
         return filePath;
     }
 }
-

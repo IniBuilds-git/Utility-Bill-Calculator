@@ -5,12 +5,15 @@ import com.utilitybill.exception.DataPersistenceException;
 import com.utilitybill.exception.InvalidCredentialsException;
 import com.utilitybill.model.User;
 import com.utilitybill.service.AuthenticationService;
+import com.utilitybill.util.AppLogger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class LoginController {
+
+    private static final String CLASS_NAME = LoginController.class.getName();
 
     @FXML
     private TextField usernameField;
@@ -52,7 +55,7 @@ public class LoginController {
 
         try {
             User user = authService.login(username, password);
-            System.out.println("Login successful for user: " + user.getUsername());
+            AppLogger.info(CLASS_NAME, "Login successful for user: " + user.getUsername());
             Main.showDashboard();
 
         } catch (InvalidCredentialsException e) {
@@ -66,7 +69,7 @@ public class LoginController {
 
         } catch (DataPersistenceException e) {
             showError("System error. Please try again later.");
-            System.err.println("Login error: " + e.getMessage());
+            AppLogger.error(CLASS_NAME, "Login error: " + e.getMessage(), e);
         }
     }
 
@@ -81,4 +84,3 @@ public class LoginController {
         errorLabel.setManaged(false);
     }
 }
-

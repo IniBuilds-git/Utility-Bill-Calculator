@@ -19,14 +19,21 @@ import java.util.List;
 
 public class MeterReadingDialogController {
 
-    @FXML private ComboBox<Customer> customerCombo;
-    @FXML private ComboBox<Meter> meterCombo;
-    @FXML private TextField readingField;
-    @FXML private Label previousReadingLabel;
-    @FXML private ComboBox<MeterReading.ReadingType> readingTypeCombo;
-    @FXML private DatePicker readingDatePicker;
-    @FXML private TextArea notesArea;
-    @FXML private Label errorLabel;
+    @FXML
+    private ComboBox<Customer> customerCombo;
+    @FXML
+    private ComboBox<Meter> meterCombo;
+    @FXML
+    private TextField readingField;
+    @FXML
+    private Label previousReadingLabel;
+    @FXML
+    private ComboBox<MeterReading.ReadingType> readingTypeCombo;
+    @FXML
+    private DatePicker readingDatePicker;
+
+    @FXML
+    private Label errorLabel;
 
     private final CustomerService customerService;
     private final BillingService billingService;
@@ -53,7 +60,7 @@ public class MeterReadingDialogController {
         try {
             List<Customer> customers = customerService.getActiveCustomers();
             customerCombo.setItems(FXCollections.observableArrayList(customers));
-            
+
             customerCombo.setConverter(new StringConverter<>() {
                 @Override
                 public String toString(Customer customer) {
@@ -72,12 +79,11 @@ public class MeterReadingDialogController {
 
     private void setupReadingTypeCombo() {
         readingTypeCombo.setItems(FXCollections.observableArrayList(
-            MeterReading.ReadingType.ACTUAL,
-            MeterReading.ReadingType.ESTIMATED,
-            MeterReading.ReadingType.SMART
-        ));
+                MeterReading.ReadingType.ACTUAL,
+                MeterReading.ReadingType.ESTIMATED,
+                MeterReading.ReadingType.SMART));
         readingTypeCombo.setValue(MeterReading.ReadingType.ACTUAL);
-        
+
         readingTypeCombo.setConverter(new StringConverter<>() {
             @Override
             public String toString(MeterReading.ReadingType type) {
@@ -100,7 +106,7 @@ public class MeterReadingDialogController {
 
         List<Meter> meters = customer.getMeters();
         meterCombo.setItems(FXCollections.observableArrayList(meters));
-        
+
         meterCombo.setConverter(new StringConverter<>() {
             @Override
             public String toString(Meter meter) {
@@ -178,19 +184,13 @@ public class MeterReadingDialogController {
         try {
             Customer customer = customerCombo.getValue();
             Meter meter = meterCombo.getValue();
-            
-            MeterReading reading = billingService.recordMeterReading(
-                customer.getCustomerId(),
-                meter.getMeterId(),
-                readingValue,
-                readingDatePicker.getValue(),
-                readingTypeCombo.getValue()
-            );
 
-            if (notesArea.getText() != null && !notesArea.getText().trim().isEmpty()) {
-                reading.setNotes(notesArea.getText().trim());
-            }
-
+            billingService.recordMeterReading(
+                    customer.getCustomerId(),
+                    meter.getMeterId(),
+                    readingValue,
+                    readingDatePicker.getValue(),
+                    readingTypeCombo.getValue());
             saved = true;
             if (dialogStage != null) {
                 dialogStage.close();
@@ -228,4 +228,3 @@ public class MeterReadingDialogController {
         return saved;
     }
 }
-

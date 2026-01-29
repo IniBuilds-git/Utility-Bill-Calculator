@@ -10,6 +10,7 @@ import com.utilitybill.model.Payment;
 import com.utilitybill.service.BillingService;
 import com.utilitybill.service.CustomerService;
 import com.utilitybill.service.PaymentService;
+import com.utilitybill.util.AppLogger;
 import com.utilitybill.util.DateUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -26,25 +27,44 @@ import java.util.Optional;
 
 public class PaymentController {
 
-    @FXML private TextField searchField;
-    @FXML private ComboBox<String> methodCombo;
-    @FXML private ComboBox<String> statusCombo;
-    @FXML private DatePicker fromDatePicker;
-    @FXML private DatePicker toDatePicker;
-    @FXML private TableView<Payment> paymentsTable;
-    @FXML private TableColumn<Payment, String> referenceCol;
-    @FXML private TableColumn<Payment, String> customerCol;
-    @FXML private TableColumn<Payment, String> invoiceCol;
-    @FXML private TableColumn<Payment, String> amountCol;
-    @FXML private TableColumn<Payment, String> methodCol;
-    @FXML private TableColumn<Payment, String> dateCol;
-    @FXML private TableColumn<Payment, String> statusCol;
-    @FXML private TableColumn<Payment, Void> actionsCol;
+    private static final String CLASS_NAME = PaymentController.class.getName();
+
+    @FXML
+    private TextField searchField;
+    @FXML
+    private ComboBox<String> methodCombo;
+    @FXML
+    private ComboBox<String> statusCombo;
+    @FXML
+    private DatePicker fromDatePicker;
+    @FXML
+    private DatePicker toDatePicker;
+    @FXML
+    private TableView<Payment> paymentsTable;
+    @FXML
+    private TableColumn<Payment, String> referenceCol;
+    @FXML
+    private TableColumn<Payment, String> customerCol;
+    @FXML
+    private TableColumn<Payment, String> invoiceCol;
+    @FXML
+    private TableColumn<Payment, String> amountCol;
+    @FXML
+    private TableColumn<Payment, String> methodCol;
+    @FXML
+    private TableColumn<Payment, String> dateCol;
+    @FXML
+    private TableColumn<Payment, String> statusCol;
+    @FXML
+    private TableColumn<Payment, Void> actionsCol;
 
     // Summary labels
-    @FXML private Label todayPaymentsLabel;
-    @FXML private Label weekPaymentsLabel;
-    @FXML private Label monthPaymentsLabel;
+    @FXML
+    private Label todayPaymentsLabel;
+    @FXML
+    private Label weekPaymentsLabel;
+    @FXML
+    private Label monthPaymentsLabel;
 
     private final PaymentService paymentService;
     private final CustomerService customerService;
@@ -66,9 +86,8 @@ public class PaymentController {
     }
 
     private void setupTableColumns() {
-        referenceCol.setCellValueFactory(data -> 
-            new SimpleStringProperty(data.getValue().getReferenceNumber()));
-        
+        referenceCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getReferenceNumber()));
+
         customerCol.setCellValueFactory(data -> {
             try {
                 Customer customer = customerService.getCustomerById(data.getValue().getCustomerId());
@@ -77,7 +96,7 @@ public class PaymentController {
                 return new SimpleStringProperty("Unknown");
             }
         });
-        
+
         invoiceCol.setCellValueFactory(data -> {
             String invoiceId = data.getValue().getInvoiceId();
             if (invoiceId == null || invoiceId.isEmpty()) {
@@ -90,20 +109,19 @@ public class PaymentController {
                 return new SimpleStringProperty("N/A");
             }
         });
-        
+
         amountCol.setCellValueFactory(data -> {
             BigDecimal amount = data.getValue().getAmount();
             return new SimpleStringProperty(amount != null ? String.format("£%.2f", amount) : "£0.00");
         });
-        
-        methodCol.setCellValueFactory(data -> 
-            new SimpleStringProperty(data.getValue().getPaymentMethod().getDisplayName()));
-        
-        dateCol.setCellValueFactory(data ->
-            new SimpleStringProperty(DateUtil.formatForDisplay(data.getValue().getPaymentDate())));
 
-        statusCol.setCellValueFactory(data ->
-            new SimpleStringProperty(data.getValue().getStatus().getDisplayName()));
+        methodCol.setCellValueFactory(
+                data -> new SimpleStringProperty(data.getValue().getPaymentMethod().getDisplayName()));
+
+        dateCol.setCellValueFactory(
+                data -> new SimpleStringProperty(DateUtil.formatForDisplay(data.getValue().getPaymentDate())));
+
+        statusCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getStatus().getDisplayName()));
 
         statusCol.setCellFactory(col -> new TableCell<>() {
             @Override
@@ -128,13 +146,11 @@ public class PaymentController {
 
     private void setupFilters() {
         methodCombo.setItems(FXCollections.observableArrayList(
-            "All Methods", "Cash", "Card", "Bank Transfer", "Direct Debit", "Cheque"
-        ));
+                "All Methods", "Cash", "Card", "Bank Transfer", "Direct Debit", "Cheque"));
         methodCombo.setValue("All Methods");
 
         statusCombo.setItems(FXCollections.observableArrayList(
-            "All Status", "Completed", "Pending", "Failed", "Refunded"
-        ));
+                "All Status", "Completed", "Pending", "Failed", "Refunded"));
         statusCombo.setValue("All Status");
     }
 
@@ -169,7 +185,7 @@ public class PaymentController {
                 monthPaymentsLabel.setText(String.format("£%.2f", monthTotal));
             }
         } catch (DataPersistenceException e) {
-            System.err.println("Error updating summary: " + e.getMessage());
+            AppLogger.error(CLASS_NAME, "Error updating summary: " + e.getMessage(), e);
         }
     }
 
@@ -185,42 +201,43 @@ public class PaymentController {
             List<Payment> allPayments = paymentService.getAllPayments();
 
             List<Payment> filtered = allPayments.stream()
-                .filter(payment -> {
-                    if (!searchText.isEmpty()) {
-                        boolean matches = payment.getReferenceNumber().toLowerCase().contains(searchText);
-                        if (!matches) {
-                            try {
-                                Customer c = customerService.getCustomerById(payment.getCustomerId());
-                                matches = c.getFullName().toLowerCase().contains(searchText);
-                            } catch (Exception e) {
-                                // Ignore
+                    .filter(payment -> {
+                        if (!searchText.isEmpty()) {
+                            boolean matches = payment.getReferenceNumber().toLowerCase().contains(searchText);
+                            if (!matches) {
+                                try {
+                                    Customer c = customerService.getCustomerById(payment.getCustomerId());
+                                    matches = c.getFullName().toLowerCase().contains(searchText);
+                                } catch (Exception e) {
+                                    // Ignore
+                                }
+                            }
+                            if (!matches)
+                                return false;
+                        }
+
+                        if (methodFilter != null && !"All Methods".equals(methodFilter)) {
+                            if (!payment.getPaymentMethod().getDisplayName().equals(methodFilter)) {
+                                return false;
                             }
                         }
-                        if (!matches) return false;
-                    }
-                    
-                    if (methodFilter != null && !"All Methods".equals(methodFilter)) {
-                        if (!payment.getPaymentMethod().getDisplayName().equals(methodFilter)) {
+
+                        if (statusFilter != null && !"All Status".equals(statusFilter)) {
+                            if (!payment.getStatus().getDisplayName().equals(statusFilter)) {
+                                return false;
+                            }
+                        }
+
+                        if (fromDate != null && payment.getPaymentDate().isBefore(fromDate)) {
                             return false;
                         }
-                    }
-                    
-                    if (statusFilter != null && !"All Status".equals(statusFilter)) {
-                        if (!payment.getStatus().getDisplayName().equals(statusFilter)) {
+                        if (toDate != null && payment.getPaymentDate().isAfter(toDate)) {
                             return false;
                         }
-                    }
-                    
-                    if (fromDate != null && payment.getPaymentDate().isBefore(fromDate)) {
-                        return false;
-                    }
-                    if (toDate != null && payment.getPaymentDate().isAfter(toDate)) {
-                        return false;
-                    }
-                    
-                    return true;
-                })
-                .toList();
+
+                        return true;
+                    })
+                    .toList();
 
             paymentsList = FXCollections.observableArrayList(filtered);
             paymentsTable.setItems(paymentsList);
@@ -248,8 +265,6 @@ public class PaymentController {
         TextField amountField = new TextField();
         ComboBox<Payment.PaymentMethod> methodCombo = new ComboBox<>();
         TextField referenceField = new TextField();
-        TextArea notesArea = new TextArea();
-        notesArea.setPrefRowCount(2);
 
         try {
             customerCombo.setItems(FXCollections.observableArrayList(customerService.getActiveCustomers()));
@@ -258,8 +273,11 @@ public class PaymentController {
                 public String toString(Customer c) {
                     return c == null ? "" : c.getAccountNumber() + " - " + c.getFullName();
                 }
+
                 @Override
-                public Customer fromString(String s) { return null; }
+                public Customer fromString(String s) {
+                    return null;
+                }
             });
         } catch (DataPersistenceException e) {
             showError("Failed to load customers");
@@ -271,17 +289,20 @@ public class PaymentController {
             if (customer != null) {
                 try {
                     List<Invoice> unpaid = billingService.getCustomerInvoices(customer.getCustomerId())
-                        .stream()
-                        .filter(inv -> inv.getBalanceDue().compareTo(BigDecimal.ZERO) > 0)
-                        .toList();
+                            .stream()
+                            .filter(inv -> inv.getBalanceDue().compareTo(BigDecimal.ZERO) > 0)
+                            .toList();
                     invoiceCombo.setItems(FXCollections.observableArrayList(unpaid));
                     invoiceCombo.setConverter(new javafx.util.StringConverter<>() {
                         @Override
                         public String toString(Invoice inv) {
                             return inv == null ? "" : inv.getInvoiceNumber() + " - £" + inv.getBalanceDue();
                         }
+
                         @Override
-                        public Invoice fromString(String s) { return null; }
+                        public Invoice fromString(String s) {
+                            return null;
+                        }
                     });
                 } catch (DataPersistenceException ex) {
                     showError("Failed to load invoices");
@@ -303,8 +324,11 @@ public class PaymentController {
             public String toString(Payment.PaymentMethod m) {
                 return m == null ? "" : m.getDisplayName();
             }
+
             @Override
-            public Payment.PaymentMethod fromString(String s) { return null; }
+            public Payment.PaymentMethod fromString(String s) {
+                return null;
+            }
         });
 
         grid.add(new Label("Customer:"), 0, 0);
@@ -317,8 +341,6 @@ public class PaymentController {
         grid.add(methodCombo, 1, 3);
         grid.add(new Label("Reference:"), 0, 4);
         grid.add(referenceField, 1, 4);
-        grid.add(new Label("Notes:"), 0, 5);
-        grid.add(notesArea, 1, 5);
 
         dialog.getDialogPane().setContent(grid);
 
@@ -329,7 +351,7 @@ public class PaymentController {
                     showError("Please select a customer");
                     return null;
                 }
-                
+
                 BigDecimal amount;
                 try {
                     amount = new BigDecimal(amountField.getText().trim());
@@ -345,32 +367,27 @@ public class PaymentController {
                 try {
                     Invoice invoice = invoiceCombo.getValue();
                     Payment payment;
-                    
+
                     if (invoice != null) {
                         payment = paymentService.recordPayment(
-                            customer.getCustomerId(),
-                            invoice.getInvoiceId(),
-                            amount,
-                            methodCombo.getValue()
-                        );
+                                customer.getCustomerId(),
+                                invoice.getInvoiceId(),
+                                amount,
+                                methodCombo.getValue());
                     } else {
                         payment = paymentService.recordAccountPayment(
-                            customer.getCustomerId(),
-                            amount,
-                            methodCombo.getValue()
-                        );
+                                customer.getCustomerId(),
+                                amount,
+                                methodCombo.getValue());
                     }
-                    
+
                     if (!referenceField.getText().trim().isEmpty()) {
                         payment.setReferenceNumber(referenceField.getText().trim());
                     }
-                    if (!notesArea.getText().trim().isEmpty()) {
-                        payment.setNotes(notesArea.getText().trim());
-                    }
-                    
+
                     return payment;
-                } catch (CustomerNotFoundException | ValidationException | 
-                         InsufficientPaymentException | DataPersistenceException e) {
+                } catch (CustomerNotFoundException | ValidationException | InsufficientPaymentException
+                        | DataPersistenceException e) {
                     showError("Failed to record payment: " + e.getMessage());
                     return null;
                 }
@@ -402,4 +419,3 @@ public class PaymentController {
         alert.showAndWait();
     }
 }
-

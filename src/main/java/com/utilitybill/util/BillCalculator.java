@@ -28,7 +28,7 @@ public final class BillCalculator {
 
     public static BigDecimal calculateStandingCharge(BigDecimal dailyCharge, int days) {
         return dailyCharge.multiply(BigDecimal.valueOf(days))
-                .setScale(MONETARY_SCALE, ROUNDING_MODE);
+                .divide(BigDecimal.valueOf(100), MONETARY_SCALE, ROUNDING_MODE);
     }
 
     public static BigDecimal calculateVAT(BigDecimal subtotal, BigDecimal vatRate) {
@@ -89,7 +89,7 @@ public final class BillCalculator {
         if (startDate == null || endDate == null) {
             return 0;
         }
-        return (int) ChronoUnit.DAYS.between(startDate, endDate) + 1;
+        return (int) ChronoUnit.DAYS.between(startDate, endDate);
     }
 
     public static double estimateConsumption(double averageDailyUsage, int days) {
@@ -114,32 +114,77 @@ public final class BillCalculator {
         private BigDecimal vatAmount;
         private BigDecimal total;
 
-        public double getUnitsConsumed() { return unitsConsumed; }
-        public void setUnitsConsumed(double unitsConsumed) { this.unitsConsumed = unitsConsumed; }
+        public double getUnitsConsumed() {
+            return unitsConsumed;
+        }
 
-        public int getBillingDays() { return billingDays; }
-        public void setBillingDays(int billingDays) { this.billingDays = billingDays; }
+        public void setUnitsConsumed(double unitsConsumed) {
+            this.unitsConsumed = unitsConsumed;
+        }
 
-        public BigDecimal getUnitRate() { return unitRate; }
-        public void setUnitRate(BigDecimal unitRate) { this.unitRate = unitRate; }
+        public int getBillingDays() {
+            return billingDays;
+        }
 
-        public BigDecimal getUnitCost() { return unitCost; }
-        public void setUnitCost(BigDecimal unitCost) { this.unitCost = unitCost; }
+        public void setBillingDays(int billingDays) {
+            this.billingDays = billingDays;
+        }
 
-        public BigDecimal getStandingCharge() { return standingCharge; }
-        public void setStandingCharge(BigDecimal standingCharge) { this.standingCharge = standingCharge; }
+        public BigDecimal getUnitRate() {
+            return unitRate;
+        }
 
-        public BigDecimal getSubtotal() { return subtotal; }
-        public void setSubtotal(BigDecimal subtotal) { this.subtotal = subtotal; }
+        public void setUnitRate(BigDecimal unitRate) {
+            this.unitRate = unitRate;
+        }
 
-        public BigDecimal getVatRate() { return vatRate; }
-        public void setVatRate(BigDecimal vatRate) { this.vatRate = vatRate; }
+        public BigDecimal getUnitCost() {
+            return unitCost;
+        }
 
-        public BigDecimal getVatAmount() { return vatAmount; }
-        public void setVatAmount(BigDecimal vatAmount) { this.vatAmount = vatAmount; }
+        public void setUnitCost(BigDecimal unitCost) {
+            this.unitCost = unitCost;
+        }
 
-        public BigDecimal getTotal() { return total; }
-        public void setTotal(BigDecimal total) { this.total = total; }
+        public BigDecimal getStandingCharge() {
+            return standingCharge;
+        }
+
+        public void setStandingCharge(BigDecimal standingCharge) {
+            this.standingCharge = standingCharge;
+        }
+
+        public BigDecimal getSubtotal() {
+            return subtotal;
+        }
+
+        public void setSubtotal(BigDecimal subtotal) {
+            this.subtotal = subtotal;
+        }
+
+        public BigDecimal getVatRate() {
+            return vatRate;
+        }
+
+        public void setVatRate(BigDecimal vatRate) {
+            this.vatRate = vatRate;
+        }
+
+        public BigDecimal getVatAmount() {
+            return vatAmount;
+        }
+
+        public void setVatAmount(BigDecimal vatAmount) {
+            this.vatAmount = vatAmount;
+        }
+
+        public BigDecimal getTotal() {
+            return total;
+        }
+
+        public void setTotal(BigDecimal total) {
+            this.total = total;
+        }
 
         public double getVatPercentage() {
             return vatRate.multiply(BigDecimal.valueOf(100)).doubleValue();
@@ -162,4 +207,3 @@ public final class BillCalculator {
         }
     }
 }
-

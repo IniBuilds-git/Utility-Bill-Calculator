@@ -1,21 +1,18 @@
 package com.utilitybill.dao;
 
-import com.google.gson.reflect.TypeToken;
 import com.utilitybill.exception.DataPersistenceException;
 import com.utilitybill.model.Invoice;
 
-import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public class InvoiceDAO extends AbstractJsonDAO<Invoice, String> {
+public class InvoiceDAO extends AbstractBinaryDAO<Invoice, String> {
 
     private static volatile InvoiceDAO instance;
-    private static final Type INVOICE_LIST_TYPE = new TypeToken<List<Invoice>>(){}.getType();
 
     private InvoiceDAO() {
-        super("invoices.json");
+        super("invoices.dat");
     }
 
     public static InvoiceDAO getInstance() {
@@ -32,11 +29,6 @@ public class InvoiceDAO extends AbstractJsonDAO<Invoice, String> {
     @Override
     protected String getId(Invoice entity) {
         return entity.getInvoiceId();
-    }
-
-    @Override
-    protected Type getEntityListType() {
-        return INVOICE_LIST_TYPE;
     }
 
     public Optional<Invoice> findByInvoiceNumber(String invoiceNumber) throws DataPersistenceException {
@@ -139,4 +131,3 @@ public class InvoiceDAO extends AbstractJsonDAO<Invoice, String> {
         }
     }
 }
-

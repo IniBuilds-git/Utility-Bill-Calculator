@@ -1,0 +1,1756 @@
+2026-01-13 11:13:18.806 INFO    Logging initialized successfully
+2026-01-13 11:13:18.806 INFO    [CustomerService] Account debited: ACC-GAS-001 amount=£13676.94
+2026-01-13 11:13:18.806 INFO    [BillingService] Invoice generated: INV-001000 for customer ACC-GAS-001 total=£13676.94
+2026-01-13 11:13:18.817 INFO    [CustomerService] Account debited: ACC-DAYNIGHT-001 amount=£16683.15
+2026-01-13 11:13:18.818 INFO    [BillingService] Invoice generated: INV-001001 for customer ACC-DAYNIGHT-001 total=£16683.15
+2026-01-13 11:15:08.360 INFO    Logging initialized successfully
+2026-01-13 11:15:08.360 INFO    [CustomerService] Account debited: ACC-GAS-001 amount=£13676.94
+2026-01-13 11:15:08.361 INFO    [BillingService] Invoice generated: INV-001000 for customer ACC-GAS-001 total=£13676.94
+2026-01-13 11:15:08.376 INFO    [CustomerService] Account debited: ACC-DAYNIGHT-001 amount=£865.23
+2026-01-13 11:15:08.376 INFO    [BillingService] Invoice generated: INV-001001 for customer ACC-DAYNIGHT-001 total=£865.23
+2026-01-13 11:16:14.529 INFO    Logging initialized successfully
+2026-01-13 11:16:14.529 INFO    [CustomerService] Account debited: ACC-GAS-001 amount=£12797.97
+2026-01-13 11:16:14.529 INFO    [BillingService] Invoice generated: INV-001016 for customer ACC-GAS-001 total=£12797.97
+2026-01-13 11:16:14.544 INFO    [CustomerService] Account debited: ACC-DAYNIGHT-001 amount=£122.77
+2026-01-13 11:16:14.544 INFO    [BillingService] Invoice generated: INV-001017 for customer ACC-DAYNIGHT-001 total=£122.77
+2026-01-13 11:18:13.670 INFO    Logging initialized successfully
+2026-01-13 11:18:13.671 INFO    [CustomerService] Account debited: ACC-GAS-001 amount=£54.47
+2026-01-13 11:18:13.671 INFO    [BillingService] Invoice generated: INV-001016 for customer ACC-GAS-001 total=£54.47
+2026-01-13 11:18:13.684 INFO    [CustomerService] Account debited: ACC-DAYNIGHT-001 amount=£65.42
+2026-01-13 11:18:13.685 INFO    [BillingService] Invoice generated: INV-001017 for customer ACC-DAYNIGHT-001 total=£65.42
+2026-01-13 11:18:47.209 INFO    Logging initialized successfully
+2026-01-13 11:18:47.209 INFO    [CustomerService] Account debited: ACC-GAS-001 amount=£54.47
+2026-01-13 11:18:47.209 INFO    [BillingService] Invoice generated: INV-001016 for customer ACC-GAS-001 total=£54.47
+2026-01-13 11:18:47.221 INFO    [CustomerService] Account debited: ACC-DAYNIGHT-001 amount=£122.77
+2026-01-13 11:18:47.221 INFO    [BillingService] Invoice generated: INV-001017 for customer ACC-DAYNIGHT-001 total=£122.77
+2026-01-13 11:19:55.619 INFO    Logging initialized successfully
+2026-01-13 11:19:55.619 INFO    [CustomerService] Account debited: ACC-GAS-001 amount=£54.47
+2026-01-13 11:19:55.620 INFO    [BillingService] Invoice generated: INV-001016 for customer ACC-GAS-001 total=£54.47
+2026-01-13 11:19:55.643 INFO    [CustomerService] Account debited: ACC-DAYNIGHT-001 amount=£180.11
+2026-01-13 11:19:55.643 INFO    [BillingService] Invoice generated: INV-001017 for customer ACC-DAYNIGHT-001 total=£180.11
+2026-01-13 11:20:24.782 INFO    Logging initialized successfully
+2026-01-13 11:20:24.783 INFO    [CustomerService] Account debited: ACC-GAS-001 amount=£54.47
+2026-01-13 11:20:24.783 INFO    [BillingService] Invoice generated: INV-001016 for customer ACC-GAS-001 total=£54.47
+2026-01-13 11:20:24.792 INFO    [CustomerService] Account debited: ACC-DAYNIGHT-001 amount=£65.42
+2026-01-13 11:20:24.792 INFO    [BillingService] Invoice generated: INV-001017 for customer ACC-DAYNIGHT-001 total=£65.42
+2026-01-13 11:37:28.234 INFO    Logging initialized successfully
+2026-01-13 11:37:28.234 INFO    [CustomerService] Account debited: ACC-GAS-001 amount=£54.47
+2026-01-13 11:37:28.235 INFO    [BillingService] Invoice generated: INV-001000 for customer ACC-GAS-001 total=£54.47
+2026-01-13 11:37:28.248 INFO    [CustomerService] Account debited: ACC-DAYNIGHT-001 amount=£65.42
+2026-01-13 11:37:28.248 INFO    [BillingService] Invoice generated: INV-001001 for customer ACC-DAYNIGHT-001 total=£65.42
+2026-01-13 11:45:43.867 INFO    Logging initialized successfully
+2026-01-13 11:45:43.868 INFO    [com.utilitybill.Main] ==================================================
+2026-01-13 11:45:43.868 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-13 11:45:43.868 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-13 11:45:43.868 INFO    [com.utilitybill.Main] ==================================================
+2026-01-13 11:45:43.868 INFO    [com.utilitybill.Main] 
+2026-01-13 11:45:43.877 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-13 11:45:43.909 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/users.dat
+2026-01-13 11:45:52.897 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-13 11:45:52.898 INFO    [com.utilitybill.controller.LoginController] Login successful for user: admin
+2026-01-13 11:45:52.952 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 0 entities from data/customers.dat
+2026-01-13 11:45:52.952 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 0 entities from data/invoices.dat
+2026-01-13 11:45:52.957 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/payments.dat
+2026-01-13 11:45:55.794 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/tariffs.dat
+2026-01-13 11:46:46.949 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/customers.dat
+2026-01-13 11:46:46.950 INFO    [CustomerService] Customer created: ACC-100000 (Inioluwa Alake)
+2026-01-13 11:46:46.952 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/customers.dat
+2026-01-13 11:46:46.952 INFO    [CustomerService] Customer updated: ACC-100000
+2026-01-13 11:46:50.623 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 0 entities from data/meter_readings.dat
+2026-01-13 11:55:33.729 INFO    Logging initialized successfully
+2026-01-13 11:55:33.729 INFO    [com.utilitybill.Main] ==================================================
+2026-01-13 11:55:33.730 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-13 11:55:33.730 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-13 11:55:33.730 INFO    [com.utilitybill.Main] ==================================================
+2026-01-13 11:55:33.730 INFO    [com.utilitybill.Main] 
+2026-01-13 11:55:33.738 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-13 11:55:33.768 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/users.dat
+2026-01-13 11:55:40.725 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-13 11:55:40.725 INFO    [com.utilitybill.controller.LoginController] Login successful for user: admin
+2026-01-13 11:55:40.764 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/customers.dat
+2026-01-13 11:55:40.764 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 0 entities from data/invoices.dat
+2026-01-13 11:55:40.767 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/payments.dat
+2026-01-13 11:55:45.742 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/tariffs.dat
+2026-01-13 11:55:48.790 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 0 entities from data/meter_readings.dat
+2026-01-13 11:56:02.242 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/meter_readings.dat
+2026-01-13 11:56:02.245 INFO    [BillingService] Meter reading recorded: meterId=ELEC-001000 value=30.0 consumption=30.0
+2026-01-13 11:56:15.288 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/meter_readings.dat
+2026-01-13 11:56:15.291 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/invoices.dat
+2026-01-13 11:56:15.293 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/customers.dat
+2026-01-13 11:56:15.293 INFO    [CustomerService] Account debited: ACC-100000 amount=£7.67
+2026-01-13 11:56:15.294 INFO    [BillingService] Invoice generated: INV-001000 for customer ACC-100000 total=£7.67
+2026-01-13 11:57:58.863 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 2 entities to data/payments.dat
+2026-01-13 11:57:58.864 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/invoices.dat
+2026-01-13 11:57:58.867 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/customers.dat
+2026-01-13 11:57:58.867 INFO    [CustomerService] Customer updated: ACC-100000
+2026-01-13 12:09:35.636 INFO    Logging initialized successfully
+2026-01-13 12:09:35.636 INFO    [com.utilitybill.Main] ==================================================
+2026-01-13 12:09:35.637 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-13 12:09:35.637 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-13 12:09:35.637 INFO    [com.utilitybill.Main] ==================================================
+2026-01-13 12:09:35.637 INFO    [com.utilitybill.Main] 
+2026-01-13 12:09:35.649 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-13 12:09:35.683 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/users.dat
+2026-01-13 12:09:43.357 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-13 12:09:43.358 INFO    [com.utilitybill.controller.LoginController] Login successful for user: admin
+2026-01-13 12:09:43.418 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/customers.dat
+2026-01-13 12:09:43.421 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/invoices.dat
+2026-01-13 12:09:43.422 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/payments.dat
+2026-01-13 12:10:05.443 SEVERE  [com.utilitybill.controller.DashboardController] Error loading content: 
+/Users/inioluwaalake/Documents/MSc/Java/UtilityBillCalculatorAssignment/target/classes/com/utilitybill/view/meter-readings.fxml:27
+
+  Exception: javafx.fxml.LoadException: 
+/Users/inioluwaalake/Documents/MSc/Java/UtilityBillCalculatorAssignment/target/classes/com/utilitybill/view/meter-readings.fxml:27
+
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2722)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2665)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
+    at com.utilitybill/com.utilitybill.controller.DashboardController.loadContent(DashboardController.java:289)
+    at com.utilitybill/com.utilitybill.controller.DashboardController.showMeterReadings(DashboardController.java:237)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at javafx.base@21.0.6/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+    at javafx.fxml@21.0.6/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1855)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1726)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Node.fireEvent(Node.java:8875)
+    at javafx.controls@21.0.6/javafx.scene.control.Button.fire(Button.java:203)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+    at javafx.graphics@21.0.6/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+    at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.notifyMouse(View.java:937)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-01-13 12:10:11.424 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/tariffs.dat
+2026-01-13 12:10:15.319 SEVERE  [com.utilitybill.controller.DashboardController] Error loading content: 
+/Users/inioluwaalake/Documents/MSc/Java/UtilityBillCalculatorAssignment/target/classes/com/utilitybill/view/meter-readings.fxml:27
+
+  Exception: javafx.fxml.LoadException: 
+/Users/inioluwaalake/Documents/MSc/Java/UtilityBillCalculatorAssignment/target/classes/com/utilitybill/view/meter-readings.fxml:27
+
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2722)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2665)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
+    at com.utilitybill/com.utilitybill.controller.DashboardController.loadContent(DashboardController.java:289)
+    at com.utilitybill/com.utilitybill.controller.DashboardController.showMeterReadings(DashboardController.java:237)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at javafx.base@21.0.6/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+    at javafx.fxml@21.0.6/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1855)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1726)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Node.fireEvent(Node.java:8875)
+    at javafx.controls@21.0.6/javafx.scene.control.Button.fire(Button.java:203)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+    at javafx.graphics@21.0.6/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+    at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.notifyMouse(View.java:937)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-01-13 12:10:50.595 SEVERE  [com.utilitybill.controller.DashboardController] Error loading content: 
+/Users/inioluwaalake/Documents/MSc/Java/UtilityBillCalculatorAssignment/target/classes/com/utilitybill/view/meter-readings.fxml:27
+
+  Exception: javafx.fxml.LoadException: 
+/Users/inioluwaalake/Documents/MSc/Java/UtilityBillCalculatorAssignment/target/classes/com/utilitybill/view/meter-readings.fxml:27
+
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2722)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2665)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
+    at com.utilitybill/com.utilitybill.controller.DashboardController.loadContent(DashboardController.java:289)
+    at com.utilitybill/com.utilitybill.controller.DashboardController.showMeterReadings(DashboardController.java:237)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at javafx.base@21.0.6/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+    at javafx.fxml@21.0.6/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1855)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1726)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Node.fireEvent(Node.java:8875)
+    at javafx.controls@21.0.6/javafx.scene.control.Button.fire(Button.java:203)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+    at javafx.graphics@21.0.6/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+    at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.notifyMouse(View.java:937)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-01-13 12:13:57.245 INFO    Logging initialized successfully
+2026-01-13 12:13:57.246 INFO    [com.utilitybill.Main] ==================================================
+2026-01-13 12:13:57.246 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-13 12:13:57.246 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-13 12:13:57.246 INFO    [com.utilitybill.Main] ==================================================
+2026-01-13 12:13:57.246 INFO    [com.utilitybill.Main] 
+2026-01-13 12:13:57.255 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-13 12:13:57.284 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/users.dat
+2026-01-13 12:14:04.932 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-13 12:14:04.933 INFO    [com.utilitybill.controller.LoginController] Login successful for user: admin
+2026-01-13 12:14:05.001 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/customers.dat
+2026-01-13 12:14:05.004 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/invoices.dat
+2026-01-13 12:14:05.006 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/payments.dat
+2026-01-13 12:14:11.166 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 4 entities from data/meter_readings.dat
+2026-01-13 12:14:16.603 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/tariffs.dat
+2026-01-13 12:14:46.035 INFO    Logging initialized successfully
+2026-01-13 12:14:46.036 INFO    [com.utilitybill.Main] ==================================================
+2026-01-13 12:14:46.036 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-13 12:14:46.036 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-13 12:14:46.036 INFO    [com.utilitybill.Main] ==================================================
+2026-01-13 12:14:46.036 INFO    [com.utilitybill.Main] 
+2026-01-13 12:14:46.046 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-13 12:14:46.075 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/users.dat
+2026-01-13 12:14:53.694 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-13 12:14:53.694 INFO    [com.utilitybill.controller.LoginController] Login successful for user: admin
+2026-01-13 12:14:53.765 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/customers.dat
+2026-01-13 12:14:53.768 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/invoices.dat
+2026-01-13 12:14:53.770 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/payments.dat
+2026-01-13 12:15:05.421 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/tariffs.dat
+2026-01-13 12:18:38.338 INFO    Logging initialized successfully
+2026-01-13 12:18:38.338 INFO    [com.utilitybill.dao.AbstractBinaryDAO] File does not exist, starting with empty cache: data/tariffs.dat
+2026-01-13 12:18:38.343 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/tariffs.dat
+2026-01-13 12:18:38.351 INFO    [com.utilitybill.dao.AbstractBinaryDAO] File does not exist, starting with empty cache: data/customers.dat
+2026-01-13 12:18:38.353 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/customers.dat
+2026-01-13 12:18:38.354 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/customers.dat
+2026-01-13 12:18:38.354 INFO    [com.utilitybill.dao.AbstractBinaryDAO] File does not exist, starting with empty cache: data/meter_readings.dat
+2026-01-13 12:18:38.355 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/meter_readings.dat
+2026-01-13 12:18:38.356 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 2 entities to data/meter_readings.dat
+2026-01-13 12:18:38.358 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 2 entities to data/meter_readings.dat
+2026-01-13 12:18:38.358 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 2 entities to data/meter_readings.dat
+2026-01-13 12:18:38.359 INFO    [com.utilitybill.dao.AbstractBinaryDAO] File does not exist, starting with empty cache: data/invoices.dat
+2026-01-13 12:18:38.361 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/invoices.dat
+2026-01-13 12:18:38.361 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/customers.dat
+2026-01-13 12:18:38.361 INFO    [CustomerService] Account debited: ACC-100000 amount=£54.10
+2026-01-13 12:18:38.362 INFO    [BillingService] Invoice generated: INV-001000 for customer ACC-100000 total=£54.10
+2026-01-13 12:18:38.369 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 2 entities to data/tariffs.dat
+2026-01-13 12:18:38.370 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 2 entities to data/customers.dat
+2026-01-13 12:18:38.371 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 2 entities to data/customers.dat
+2026-01-13 12:18:38.371 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 3 entities to data/meter_readings.dat
+2026-01-13 12:18:38.372 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 4 entities to data/meter_readings.dat
+2026-01-13 12:18:38.372 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 4 entities to data/meter_readings.dat
+2026-01-13 12:18:38.373 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 4 entities to data/meter_readings.dat
+2026-01-13 12:18:38.374 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 2 entities to data/invoices.dat
+2026-01-13 12:18:38.374 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 2 entities to data/customers.dat
+2026-01-13 12:18:38.374 INFO    [CustomerService] Account debited: ACC-100001 amount=£65.18
+2026-01-13 12:18:38.375 INFO    [BillingService] Invoice generated: INV-001001 for customer ACC-100001 total=£65.18
+2026-01-13 12:19:59.023 INFO    Logging initialized successfully
+2026-01-13 12:19:59.023 INFO    [com.utilitybill.Main] ==================================================
+2026-01-13 12:19:59.024 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-13 12:19:59.024 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-13 12:19:59.024 INFO    [com.utilitybill.Main] ==================================================
+2026-01-13 12:19:59.024 INFO    [com.utilitybill.Main] 
+2026-01-13 12:19:59.032 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-13 12:19:59.061 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/users.dat
+2026-01-13 12:20:09.423 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-13 12:20:09.423 INFO    [com.utilitybill.controller.LoginController] Login successful for user: admin
+2026-01-13 12:20:09.482 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/customers.dat
+2026-01-13 12:20:09.486 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/invoices.dat
+2026-01-13 12:20:09.488 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/payments.dat
+2026-01-13 12:20:14.049 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/tariffs.dat
+2026-01-13 12:22:13.807 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 4 entities from data/meter_readings.dat
+2026-01-13 12:22:29.893 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 5 entities to data/meter_readings.dat
+2026-01-13 12:22:29.894 INFO    [BillingService] Meter reading recorded: meterId=ELEC-001001 value=67.0 consumption=67.0
+2026-01-13 12:22:35.752 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 5 entities to data/meter_readings.dat
+2026-01-13 12:22:35.758 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 3 entities to data/invoices.dat
+2026-01-13 12:22:35.760 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 2 entities to data/customers.dat
+2026-01-13 12:22:35.760 INFO    [CustomerService] Account debited: ACC-100001 amount=£20.98
+2026-01-13 12:22:35.760 INFO    [BillingService] Invoice generated: INV-001000 for customer ACC-100001 total=£20.98
+2026-01-13 12:24:04.008 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 2 entities to data/customers.dat
+2026-01-13 12:24:04.008 INFO    [CustomerService] Customer updated: ACC-100001
+2026-01-13 12:24:10.471 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 2 entities to data/customers.dat
+2026-01-13 12:24:10.471 INFO    [CustomerService] Customer updated: ACC-100001
+2026-01-13 12:24:41.809 INFO    Logging initialized successfully
+2026-01-13 12:24:41.810 INFO    [com.utilitybill.Main] ==================================================
+2026-01-13 12:24:41.810 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-13 12:24:41.810 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-13 12:24:41.810 INFO    [com.utilitybill.Main] ==================================================
+2026-01-13 12:24:41.810 INFO    [com.utilitybill.Main] 
+2026-01-13 12:24:41.825 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-13 12:24:41.895 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/users.dat
+2026-01-13 12:24:51.047 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-13 12:24:51.048 INFO    [com.utilitybill.controller.LoginController] Login successful for user: admin
+2026-01-13 12:24:51.150 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/customers.dat
+2026-01-13 12:24:51.155 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 3 entities from data/invoices.dat
+2026-01-13 12:24:51.157 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/payments.dat
+2026-01-13 12:24:53.992 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/tariffs.dat
+2026-01-13 12:27:17.258 INFO    Logging initialized successfully
+2026-01-13 12:27:17.259 INFO    [com.utilitybill.Main] ==================================================
+2026-01-13 12:27:17.259 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-13 12:27:17.259 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-13 12:27:17.259 INFO    [com.utilitybill.Main] ==================================================
+2026-01-13 12:27:17.259 INFO    [com.utilitybill.Main] 
+2026-01-13 12:27:17.269 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-13 12:27:17.308 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/users.dat
+2026-01-13 12:27:24.324 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-13 12:27:24.324 INFO    [com.utilitybill.controller.LoginController] Login successful for user: admin
+2026-01-13 12:27:24.391 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/customers.dat
+2026-01-13 12:27:24.395 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 3 entities from data/invoices.dat
+2026-01-13 12:27:24.396 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/payments.dat
+2026-01-13 12:27:27.175 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/tariffs.dat
+2026-01-13 12:29:46.690 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 3 entities to data/customers.dat
+2026-01-13 12:29:46.690 INFO    [CustomerService] Customer created: ACC-100000 (Aduma Fun)
+2026-01-13 12:29:46.694 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 3 entities to data/customers.dat
+2026-01-13 12:29:46.694 INFO    [CustomerService] Customer updated: ACC-100000
+2026-01-13 12:31:13.754 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-13 12:31:13.754 INFO    [com.utilitybill.controller.LoginController] Login successful for user: admin
+2026-01-13 12:32:29.760 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 4 entities to data/customers.dat
+2026-01-13 12:32:29.760 INFO    [CustomerService] Customer created: ACC-100001 (Inioluwa Alake)
+2026-01-13 12:32:29.762 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 4 entities to data/customers.dat
+2026-01-13 12:32:29.762 INFO    [CustomerService] Customer updated: ACC-100001
+2026-01-13 12:32:53.495 INFO    Logging initialized successfully
+2026-01-13 12:32:53.495 INFO    [com.utilitybill.Main] ==================================================
+2026-01-13 12:32:53.496 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-13 12:32:53.496 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-13 12:32:53.496 INFO    [com.utilitybill.Main] ==================================================
+2026-01-13 12:32:53.496 INFO    [com.utilitybill.Main] 
+2026-01-13 12:32:53.505 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-13 12:32:53.532 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/users.dat
+2026-01-13 12:33:02.763 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-13 12:33:02.763 INFO    [com.utilitybill.controller.LoginController] Login successful for user: admin
+2026-01-13 12:33:02.833 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 4 entities from data/customers.dat
+2026-01-13 12:33:02.837 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 3 entities from data/invoices.dat
+2026-01-13 12:33:02.839 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/payments.dat
+2026-01-13 12:33:47.534 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/tariffs.dat
+2026-01-13 12:33:47.540 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 5 entities from data/meter_readings.dat
+2026-01-13 12:33:47.547 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 5 entities to data/meter_readings.dat
+2026-01-13 12:33:47.553 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 4 entities to data/invoices.dat
+2026-01-13 12:33:47.554 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 4 entities to data/customers.dat
+2026-01-13 12:33:47.555 INFO    [CustomerService] Account debited: ACC-100001 amount=£20.98
+2026-01-13 12:33:47.555 INFO    [BillingService] Invoice generated: INV-001000 for customer ACC-100001 total=£20.98
+2026-01-13 12:35:11.429 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 6 entities to data/meter_readings.dat
+2026-01-13 12:35:11.432 INFO    [BillingService] Meter reading recorded: meterId=ELEC-001001 value=89.0 consumption=22.0
+2026-01-24 13:46:22.124 INFO    Logging initialized successfully
+2026-01-24 13:46:22.126 INFO    [com.utilitybill.Main] ==================================================
+2026-01-24 13:46:22.126 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-24 13:46:22.126 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-24 13:46:22.126 INFO    [com.utilitybill.Main] ==================================================
+2026-01-24 13:46:22.126 INFO    [com.utilitybill.Main] 
+2026-01-24 13:46:22.136 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-24 13:46:22.183 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/users.dat
+2026-01-24 13:46:35.024 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-24 13:46:35.025 INFO    [com.utilitybill.controller.LoginController] Login successful for user: admin
+2026-01-24 13:46:35.114 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 4 entities from data/customers.dat
+2026-01-24 13:46:35.120 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 4 entities from data/invoices.dat
+2026-01-24 13:46:35.124 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/payments.dat
+2026-01-24 13:46:50.618 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 6 entities from data/meter_readings.dat
+2026-01-24 13:46:58.787 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/tariffs.dat
+2026-01-24 14:01:54.376 INFO    Logging initialized successfully
+2026-01-24 14:01:54.377 INFO    [com.utilitybill.Main] ==================================================
+2026-01-24 14:01:54.377 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-24 14:01:54.377 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-24 14:01:54.377 INFO    [com.utilitybill.Main] ==================================================
+2026-01-24 14:01:54.377 INFO    [com.utilitybill.Main] 
+2026-01-24 14:01:54.387 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-24 14:01:54.423 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/users.dat
+2026-01-24 14:02:03.661 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-24 14:02:03.661 INFO    [com.utilitybill.controller.LoginController] Login successful for user: admin
+2026-01-24 14:02:03.746 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 4 entities from data/customers.dat
+2026-01-24 14:02:03.750 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 4 entities from data/invoices.dat
+2026-01-24 14:02:03.751 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/payments.dat
+2026-01-24 14:02:05.513 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/tariffs.dat
+2026-01-24 14:02:05.523 SEVERE  [com.utilitybill.controller.DashboardController] Error loading content: 
+/Users/inioluwaalake/Documents/MSc/Java/UtilityBillCalculatorAssignment/target/classes/com/utilitybill/view/tariffs.fxml
+
+  Exception: javafx.fxml.LoadException: 
+/Users/inioluwaalake/Documents/MSc/Java/UtilityBillCalculatorAssignment/target/classes/com/utilitybill/view/tariffs.fxml
+
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2722)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2692)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.DashboardController.loadContent(DashboardController.java:289)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.DashboardController.showTariffs(DashboardController.java:258)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at javafx.base@21.0.6/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+    at javafx.fxml@21.0.6/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1855)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1726)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Node.fireEvent(Node.java:8875)
+    at javafx.controls@21.0.6/javafx.scene.control.Button.fire(Button.java:203)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+    at javafx.graphics@21.0.6/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+    at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.notifyMouse(View.java:937)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-01-24 14:04:35.962 INFO    Logging initialized successfully
+2026-01-24 14:04:35.963 INFO    [com.utilitybill.Main] ==================================================
+2026-01-24 14:04:35.963 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-24 14:04:35.963 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-24 14:04:35.963 INFO    [com.utilitybill.Main] ==================================================
+2026-01-24 14:04:35.963 INFO    [com.utilitybill.Main] 
+2026-01-24 14:04:35.975 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-24 14:04:36.029 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/users.dat
+2026-01-24 14:04:48.530 INFO    Logging initialized successfully
+2026-01-24 14:04:48.531 INFO    [com.utilitybill.Main] ==================================================
+2026-01-24 14:04:48.531 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-24 14:04:48.531 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-24 14:04:48.531 INFO    [com.utilitybill.Main] ==================================================
+2026-01-24 14:04:48.531 INFO    [com.utilitybill.Main] 
+2026-01-24 14:04:48.540 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-24 14:04:48.569 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/users.dat
+2026-01-24 14:05:04.059 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-24 14:05:04.059 INFO    [com.utilitybill.controller.LoginController] Login successful for user: admin
+2026-01-24 14:05:04.144 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 4 entities from data/customers.dat
+2026-01-24 14:05:04.150 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 4 entities from data/invoices.dat
+2026-01-24 14:05:04.152 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/payments.dat
+2026-01-24 14:05:05.978 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 2 entities from data/tariffs.dat
+2026-01-24 14:05:33.950 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 3 entities to data/tariffs.dat
+2026-01-24 14:31:26.746 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 6 entities from data/meter_readings.dat
+2026-01-24 14:55:12.018 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 6 entities to data/meter_readings.dat
+2026-01-24 14:55:12.021 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 6 entities to data/meter_readings.dat
+2026-01-24 14:55:12.029 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 5 entities to data/invoices.dat
+2026-01-24 14:55:12.031 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 4 entities to data/customers.dat
+2026-01-24 14:55:12.031 INFO    [CustomerService] Account debited: ACC-100001 amount=£25.45
+2026-01-24 14:55:12.031 INFO    [BillingService] Invoice generated: INV-001000 for customer ACC-100001 total=£25.45
+2026-01-24 15:00:41.640 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 3 entities to data/payments.dat
+2026-01-24 15:00:41.651 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 4 entities to data/customers.dat
+2026-01-24 15:00:41.651 INFO    [CustomerService] Customer updated: ACC-100001
+2026-01-24 15:01:13.573 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 4 entities to data/payments.dat
+2026-01-24 15:01:13.577 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 5 entities to data/invoices.dat
+2026-01-24 15:01:13.578 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 4 entities to data/customers.dat
+2026-01-24 15:01:13.578 INFO    [CustomerService] Customer updated: ACC-100001
+2026-01-24 15:02:55.194 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 5 entities to data/payments.dat
+2026-01-24 15:02:55.202 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 5 entities to data/invoices.dat
+2026-01-24 15:02:55.205 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 4 entities to data/customers.dat
+2026-01-24 15:02:55.205 INFO    [CustomerService] Customer updated: ACC-100001
+2026-01-24 15:03:58.934 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 6 entities to data/payments.dat
+2026-01-24 15:03:58.944 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 5 entities to data/invoices.dat
+2026-01-24 15:03:58.946 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 4 entities to data/customers.dat
+2026-01-24 15:03:58.946 INFO    [CustomerService] Customer updated: ACC-100001
+2026-01-24 21:14:39.486 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 4 entities to data/customers.dat
+2026-01-24 21:14:39.488 INFO    [CustomerService] Customer updated: ACC-100001
+2026-01-24 21:16:19.505 INFO    Logging initialized successfully
+2026-01-24 21:16:19.506 INFO    [com.utilitybill.Main] ==================================================
+2026-01-24 21:16:19.506 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-24 21:16:19.506 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-24 21:16:19.506 INFO    [com.utilitybill.Main] ==================================================
+2026-01-24 21:16:19.506 INFO    [com.utilitybill.Main] 
+2026-01-24 21:16:19.515 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-24 21:16:19.551 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/users.dat
+2026-01-24 21:16:33.542 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-24 21:16:38.588 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-24 21:16:44.012 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-28 22:35:28.799 INFO    Logging initialized successfully
+2026-01-28 22:35:28.799 INFO    [com.utilitybill.Main] ==================================================
+2026-01-28 22:35:28.799 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-28 22:35:28.799 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-28 22:35:28.800 INFO    [com.utilitybill.Main] ==================================================
+2026-01-28 22:35:28.800 INFO    [com.utilitybill.Main] 
+2026-01-28 22:35:28.810 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-28 22:35:28.843 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/users.dat
+2026-01-28 22:36:59.924 INFO    Logging initialized successfully
+2026-01-28 22:36:59.926 INFO    [com.utilitybill.Main] ==================================================
+2026-01-28 22:36:59.926 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-28 22:36:59.926 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-28 22:36:59.926 INFO    [com.utilitybill.Main] ==================================================
+2026-01-28 22:36:59.926 INFO    [com.utilitybill.Main] 
+2026-01-28 22:36:59.936 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-28 22:36:59.962 INFO    [com.utilitybill.dao.AbstractBinaryDAO] File does not exist, starting with empty cache: data/users.dat
+2026-01-28 22:36:59.972 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-28 22:36:59.972 INFO    [com.utilitybill.service.AuthenticationService] Default admin user created. Username: admin, Password: Admin123
+2026-01-28 22:37:07.208 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-28 22:37:07.209 INFO    [com.utilitybill.controller.LoginController] Login successful for user: admin
+2026-01-28 22:37:07.285 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 4 entities from data/customers.dat
+2026-01-28 22:37:07.290 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 5 entities from data/invoices.dat
+2026-01-28 22:37:07.293 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 6 entities from data/payments.dat
+2026-01-28 22:37:11.844 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 3 entities from data/tariffs.dat
+2026-01-28 22:53:18.446 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 6 entities from data/meter_readings.dat
+2026-01-28 23:04:05.787 INFO    Logging initialized successfully
+2026-01-28 23:04:05.787 INFO    [com.utilitybill.Main] ==================================================
+2026-01-28 23:04:05.787 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-28 23:04:05.788 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-28 23:04:05.788 INFO    [com.utilitybill.Main] ==================================================
+2026-01-28 23:04:05.789 INFO    [com.utilitybill.Main] 
+2026-01-28 23:04:05.799 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-28 23:04:05.839 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/users.dat
+2026-01-28 23:04:11.840 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-28 23:04:11.841 INFO    [com.utilitybill.controller.LoginController] Login successful for user: admin
+2026-01-28 23:04:11.915 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 4 entities from data/customers.dat
+2026-01-28 23:04:11.919 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 5 entities from data/invoices.dat
+2026-01-28 23:04:11.921 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 6 entities from data/payments.dat
+2026-01-28 23:07:01.283 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 3 entities from data/tariffs.dat
+2026-01-28 23:07:01.289 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 6 entities from data/meter_readings.dat
+2026-01-28 23:07:01.296 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 6 entities to data/meter_readings.dat
+2026-01-28 23:07:01.297 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 6 entities to data/meter_readings.dat
+2026-01-28 23:07:01.304 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 6 entities to data/invoices.dat
+2026-01-28 23:07:01.305 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 4 entities to data/customers.dat
+2026-01-28 23:07:01.306 INFO    [CustomerService] Account debited: ACC-100001 amount=£25.45
+2026-01-28 23:07:01.306 INFO    [BillingService] Invoice generated: INV-001000 for customer ACC-100001 total=£25.45
+2026-01-28 23:41:10.964 INFO    Logging initialized successfully
+2026-01-28 23:41:10.966 INFO    [com.utilitybill.Main] ==================================================
+2026-01-28 23:41:10.966 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-28 23:41:10.966 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-28 23:41:10.966 INFO    [com.utilitybill.Main] ==================================================
+2026-01-28 23:41:10.966 INFO    [com.utilitybill.Main] 
+2026-01-28 23:41:10.975 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-28 23:41:11.005 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/users.dat
+2026-01-28 23:41:24.480 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-28 23:41:24.480 INFO    [com.utilitybill.controller.LoginController] Login successful for user: admin
+2026-01-28 23:41:24.553 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 4 entities from data/customers.dat
+2026-01-28 23:41:24.558 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 6 entities from data/invoices.dat
+2026-01-28 23:41:24.560 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 6 entities from data/payments.dat
+2026-01-28 23:41:43.258 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 3 entities from data/tariffs.dat
+2026-01-28 23:41:43.264 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 6 entities from data/meter_readings.dat
+2026-01-28 23:41:43.271 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 6 entities to data/meter_readings.dat
+2026-01-28 23:41:43.273 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 6 entities to data/meter_readings.dat
+2026-01-28 23:41:43.280 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 7 entities to data/invoices.dat
+2026-01-28 23:41:43.281 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 4 entities to data/customers.dat
+2026-01-28 23:41:43.281 INFO    [CustomerService] Account debited: ACC-100001 amount=£25.45
+2026-01-28 23:41:43.282 INFO    [BillingService] Invoice generated: INV-001000 for customer ACC-100001 total=£25.45
+2026-01-29 01:36:01.453 INFO    Logging initialized successfully
+2026-01-29 01:36:01.454 INFO    [com.utilitybill.Main] ==================================================
+2026-01-29 01:36:01.454 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-29 01:36:01.454 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-29 01:36:01.454 INFO    [com.utilitybill.Main] ==================================================
+2026-01-29 01:36:01.455 INFO    [com.utilitybill.Main] 
+2026-01-29 01:36:01.463 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-29 01:36:01.498 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/users.dat
+2026-01-29 01:36:13.999 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-29 01:36:14.000 INFO    [com.utilitybill.controller.LoginController] Login successful for user: admin
+2026-01-29 01:36:14.072 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 4 entities from data/customers.dat
+2026-01-29 01:36:14.076 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 7 entities from data/invoices.dat
+2026-01-29 01:36:14.078 SEVERE  [com.utilitybill.controller.DashboardController] Dashboard refresh error: Failed to read data from file: data/payments.dat
+  Exception: com.utilitybill.exception.DataPersistenceException: Failed to read data from file: data/payments.dat
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.exception.DataPersistenceException.readError(DataPersistenceException.java:96)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.load(AbstractBinaryDAO.java:81)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.initializeCache(AbstractBinaryDAO.java:57)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.PaymentDAO.findByDateRange(PaymentDAO.java:108)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.PaymentDAO.getTotalPaymentsByDateRange(PaymentDAO.java:129)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.service.PaymentService.getTotalPaymentsByDateRange(PaymentService.java:143)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.DashboardController.refreshDashboardStats(DashboardController.java:179)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.DashboardController.initialize(DashboardController.java:129)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at javafx.base@21.0.6/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+    at javafx.fxml@21.0.6/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2688)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.Main.showDashboard(Main.java:70)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.LoginController.handleLogin(LoginController.java:59)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at javafx.base@21.0.6/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+    at javafx.fxml@21.0.6/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1855)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1726)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Node.fireEvent(Node.java:8875)
+    at javafx.controls@21.0.6/javafx.scene.control.Button.fire(Button.java:203)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+    at javafx.graphics@21.0.6/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+    at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.notifyMouse(View.java:937)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-01-29 01:36:17.870 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 3 entities from data/tariffs.dat
+2026-01-29 01:36:17.882 SEVERE  [com.utilitybill.controller.CustomerDetailsController] Error loading stats
+  Exception: com.utilitybill.exception.DataPersistenceException: Failed to read data from file: data/payments.dat
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.exception.DataPersistenceException.readError(DataPersistenceException.java:96)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.load(AbstractBinaryDAO.java:81)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.initializeCache(AbstractBinaryDAO.java:57)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.PaymentDAO.findByCustomerId(PaymentDAO.java:48)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.service.PaymentService.getCustomerPayments(PaymentService.java:125)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.loadOverviewStats(CustomerDetailsController.java:132)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.refreshData(CustomerDetailsController.java:112)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.setCustomer(CustomerDetailsController.java:91)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController.viewCustomer(CustomerController.java:240)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController$3.lambda$new$0(CustomerController.java:148)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Node.fireEvent(Node.java:8875)
+    at javafx.controls@21.0.6/javafx.scene.control.Button.fire(Button.java:203)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+    at javafx.graphics@21.0.6/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+    at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.notifyMouse(View.java:937)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-01-29 01:36:17.884 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 6 entities from data/meter_readings.dat
+2026-01-29 01:36:18.215 SEVERE  [com.utilitybill.controller.CustomerDetailsController] Error loading stats
+  Exception: com.utilitybill.exception.DataPersistenceException: Failed to read data from file: data/payments.dat
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.exception.DataPersistenceException.readError(DataPersistenceException.java:96)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.load(AbstractBinaryDAO.java:81)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.initializeCache(AbstractBinaryDAO.java:57)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.PaymentDAO.findByCustomerId(PaymentDAO.java:48)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.service.PaymentService.getCustomerPayments(PaymentService.java:125)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.loadOverviewStats(CustomerDetailsController.java:132)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.refreshData(CustomerDetailsController.java:112)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.setCustomer(CustomerDetailsController.java:91)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController.viewCustomer(CustomerController.java:240)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController$3.lambda$new$0(CustomerController.java:148)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Node.fireEvent(Node.java:8875)
+    at javafx.controls@21.0.6/javafx.scene.control.Button.fire(Button.java:203)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+    at javafx.graphics@21.0.6/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+    at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.notifyMouse(View.java:937)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-01-29 01:36:18.462 SEVERE  [com.utilitybill.controller.CustomerDetailsController] Error loading stats
+  Exception: com.utilitybill.exception.DataPersistenceException: Failed to read data from file: data/payments.dat
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.exception.DataPersistenceException.readError(DataPersistenceException.java:96)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.load(AbstractBinaryDAO.java:81)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.initializeCache(AbstractBinaryDAO.java:57)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.PaymentDAO.findByCustomerId(PaymentDAO.java:48)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.service.PaymentService.getCustomerPayments(PaymentService.java:125)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.loadOverviewStats(CustomerDetailsController.java:132)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.refreshData(CustomerDetailsController.java:112)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.setCustomer(CustomerDetailsController.java:91)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController.viewCustomer(CustomerController.java:240)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController$3.lambda$new$0(CustomerController.java:148)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Node.fireEvent(Node.java:8875)
+    at javafx.controls@21.0.6/javafx.scene.control.Button.fire(Button.java:203)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+    at javafx.graphics@21.0.6/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+    at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.notifyMouse(View.java:937)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-01-29 01:36:19.165 SEVERE  [com.utilitybill.controller.CustomerDetailsController] Error loading stats
+  Exception: com.utilitybill.exception.DataPersistenceException: Failed to read data from file: data/payments.dat
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.exception.DataPersistenceException.readError(DataPersistenceException.java:96)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.load(AbstractBinaryDAO.java:81)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.initializeCache(AbstractBinaryDAO.java:57)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.PaymentDAO.findByCustomerId(PaymentDAO.java:48)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.service.PaymentService.getCustomerPayments(PaymentService.java:125)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.loadOverviewStats(CustomerDetailsController.java:132)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.refreshData(CustomerDetailsController.java:112)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.setCustomer(CustomerDetailsController.java:91)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController.viewCustomer(CustomerController.java:240)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController$3.lambda$new$0(CustomerController.java:148)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Node.fireEvent(Node.java:8875)
+    at javafx.controls@21.0.6/javafx.scene.control.Button.fire(Button.java:203)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+    at javafx.graphics@21.0.6/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+    at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.notifyMouse(View.java:937)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-01-29 01:36:19.437 SEVERE  [com.utilitybill.controller.CustomerDetailsController] Error loading stats
+  Exception: com.utilitybill.exception.DataPersistenceException: Failed to read data from file: data/payments.dat
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.exception.DataPersistenceException.readError(DataPersistenceException.java:96)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.load(AbstractBinaryDAO.java:81)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.initializeCache(AbstractBinaryDAO.java:57)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.PaymentDAO.findByCustomerId(PaymentDAO.java:48)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.service.PaymentService.getCustomerPayments(PaymentService.java:125)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.loadOverviewStats(CustomerDetailsController.java:132)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.refreshData(CustomerDetailsController.java:112)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.setCustomer(CustomerDetailsController.java:91)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController.viewCustomer(CustomerController.java:240)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController$3.lambda$new$0(CustomerController.java:148)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Node.fireEvent(Node.java:8875)
+    at javafx.controls@21.0.6/javafx.scene.control.Button.fire(Button.java:203)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+    at javafx.graphics@21.0.6/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+    at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.notifyMouse(View.java:937)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-01-29 01:36:28.439 SEVERE  [com.utilitybill.controller.CustomerDetailsController] Error loading stats
+  Exception: com.utilitybill.exception.DataPersistenceException: Failed to read data from file: data/payments.dat
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.exception.DataPersistenceException.readError(DataPersistenceException.java:96)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.load(AbstractBinaryDAO.java:81)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.initializeCache(AbstractBinaryDAO.java:57)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.PaymentDAO.findByCustomerId(PaymentDAO.java:48)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.service.PaymentService.getCustomerPayments(PaymentService.java:125)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.loadOverviewStats(CustomerDetailsController.java:132)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.refreshData(CustomerDetailsController.java:112)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.setCustomer(CustomerDetailsController.java:91)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController.viewCustomer(CustomerController.java:240)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController$3.lambda$new$0(CustomerController.java:148)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Node.fireEvent(Node.java:8875)
+    at javafx.controls@21.0.6/javafx.scene.control.Button.fire(Button.java:203)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+    at javafx.graphics@21.0.6/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+    at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.notifyMouse(View.java:937)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-01-29 01:53:03.105 SEVERE  [com.utilitybill.controller.CustomerDetailsController] Error loading stats
+  Exception: com.utilitybill.exception.DataPersistenceException: Failed to read data from file: data/payments.dat
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.exception.DataPersistenceException.readError(DataPersistenceException.java:96)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.load(AbstractBinaryDAO.java:81)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.initializeCache(AbstractBinaryDAO.java:57)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.PaymentDAO.findByCustomerId(PaymentDAO.java:48)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.service.PaymentService.getCustomerPayments(PaymentService.java:125)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.loadOverviewStats(CustomerDetailsController.java:132)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.refreshData(CustomerDetailsController.java:112)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.setCustomer(CustomerDetailsController.java:91)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController.viewCustomer(CustomerController.java:240)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController$3.lambda$new$0(CustomerController.java:148)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Node.fireEvent(Node.java:8875)
+    at javafx.controls@21.0.6/javafx.scene.control.Button.fire(Button.java:203)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+    at javafx.graphics@21.0.6/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+    at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.notifyMouse(View.java:937)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-01-29 01:53:03.654 SEVERE  [com.utilitybill.controller.CustomerDetailsController] Error loading stats
+  Exception: com.utilitybill.exception.DataPersistenceException: Failed to read data from file: data/payments.dat
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.exception.DataPersistenceException.readError(DataPersistenceException.java:96)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.load(AbstractBinaryDAO.java:81)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.initializeCache(AbstractBinaryDAO.java:57)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.PaymentDAO.findByCustomerId(PaymentDAO.java:48)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.service.PaymentService.getCustomerPayments(PaymentService.java:125)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.loadOverviewStats(CustomerDetailsController.java:132)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.refreshData(CustomerDetailsController.java:112)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.setCustomer(CustomerDetailsController.java:91)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController.viewCustomer(CustomerController.java:240)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController$3.lambda$new$0(CustomerController.java:148)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Node.fireEvent(Node.java:8875)
+    at javafx.controls@21.0.6/javafx.scene.control.Button.fire(Button.java:203)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+    at javafx.graphics@21.0.6/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+    at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.notifyMouse(View.java:937)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-01-29 01:53:03.837 SEVERE  [com.utilitybill.controller.CustomerDetailsController] Error loading stats
+  Exception: com.utilitybill.exception.DataPersistenceException: Failed to read data from file: data/payments.dat
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.exception.DataPersistenceException.readError(DataPersistenceException.java:96)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.load(AbstractBinaryDAO.java:81)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.initializeCache(AbstractBinaryDAO.java:57)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.PaymentDAO.findByCustomerId(PaymentDAO.java:48)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.service.PaymentService.getCustomerPayments(PaymentService.java:125)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.loadOverviewStats(CustomerDetailsController.java:132)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.refreshData(CustomerDetailsController.java:112)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.setCustomer(CustomerDetailsController.java:91)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController.viewCustomer(CustomerController.java:240)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController$3.lambda$new$0(CustomerController.java:148)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Node.fireEvent(Node.java:8875)
+    at javafx.controls@21.0.6/javafx.scene.control.Button.fire(Button.java:203)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+    at javafx.graphics@21.0.6/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+    at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.notifyMouse(View.java:937)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-01-29 01:53:17.999 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-29 01:53:22.238 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-29 01:53:22.238 INFO    [com.utilitybill.controller.LoginController] Login successful for user: admin
+2026-01-29 01:53:22.253 SEVERE  [com.utilitybill.controller.DashboardController] Dashboard refresh error: Failed to read data from file: data/payments.dat
+  Exception: com.utilitybill.exception.DataPersistenceException: Failed to read data from file: data/payments.dat
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.exception.DataPersistenceException.readError(DataPersistenceException.java:96)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.load(AbstractBinaryDAO.java:81)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.initializeCache(AbstractBinaryDAO.java:57)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.PaymentDAO.findByDateRange(PaymentDAO.java:108)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.PaymentDAO.getTotalPaymentsByDateRange(PaymentDAO.java:129)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.service.PaymentService.getTotalPaymentsByDateRange(PaymentService.java:143)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.DashboardController.refreshDashboardStats(DashboardController.java:179)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.DashboardController.initialize(DashboardController.java:129)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at javafx.base@21.0.6/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+    at javafx.fxml@21.0.6/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2688)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.Main.showDashboard(Main.java:70)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.LoginController.handleLogin(LoginController.java:59)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at javafx.base@21.0.6/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+    at javafx.fxml@21.0.6/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1855)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1726)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Node.fireEvent(Node.java:8875)
+    at javafx.controls@21.0.6/javafx.scene.control.Button.fire(Button.java:203)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+    at javafx.graphics@21.0.6/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+    at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.notifyMouse(View.java:937)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-01-29 01:53:34.690 SEVERE  [com.utilitybill.controller.CustomerDetailsController] Error loading stats
+  Exception: com.utilitybill.exception.DataPersistenceException: Failed to read data from file: data/payments.dat
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.exception.DataPersistenceException.readError(DataPersistenceException.java:96)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.load(AbstractBinaryDAO.java:81)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.initializeCache(AbstractBinaryDAO.java:57)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.PaymentDAO.findByCustomerId(PaymentDAO.java:48)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.service.PaymentService.getCustomerPayments(PaymentService.java:125)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.loadOverviewStats(CustomerDetailsController.java:132)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.refreshData(CustomerDetailsController.java:112)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.setCustomer(CustomerDetailsController.java:91)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController.viewCustomer(CustomerController.java:240)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController$3.lambda$new$0(CustomerController.java:148)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Node.fireEvent(Node.java:8875)
+    at javafx.controls@21.0.6/javafx.scene.control.Button.fire(Button.java:203)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+    at javafx.graphics@21.0.6/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+    at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.notifyMouse(View.java:937)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-01-29 02:03:13.913 INFO    Logging initialized successfully
+2026-01-29 02:03:13.915 INFO    [com.utilitybill.Main] ==================================================
+2026-01-29 02:03:13.915 INFO    [com.utilitybill.Main]   Utility Bill Management System
+2026-01-29 02:03:13.915 INFO    [com.utilitybill.Main]   Version 1.0
+2026-01-29 02:03:13.915 INFO    [com.utilitybill.Main] ==================================================
+2026-01-29 02:03:13.915 INFO    [com.utilitybill.Main] 
+2026-01-29 02:03:13.924 INFO    [com.utilitybill.Main] Application icon not found, using default
+2026-01-29 02:03:13.950 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 1 entities from data/users.dat
+2026-01-29 02:03:21.656 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Saved 1 entities to data/users.dat
+2026-01-29 02:03:21.657 INFO    [com.utilitybill.controller.LoginController] Login successful for user: admin
+2026-01-29 02:03:21.737 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 4 entities from data/customers.dat
+2026-01-29 02:03:21.742 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 7 entities from data/invoices.dat
+2026-01-29 02:03:21.744 SEVERE  [com.utilitybill.controller.DashboardController] Dashboard refresh error: Failed to read data from file: data/payments.dat
+  Exception: com.utilitybill.exception.DataPersistenceException: Failed to read data from file: data/payments.dat
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.exception.DataPersistenceException.readError(DataPersistenceException.java:96)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.load(AbstractBinaryDAO.java:81)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.initializeCache(AbstractBinaryDAO.java:57)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.PaymentDAO.findByDateRange(PaymentDAO.java:108)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.PaymentDAO.getTotalPaymentsByDateRange(PaymentDAO.java:129)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.service.PaymentService.getTotalPaymentsByDateRange(PaymentService.java:143)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.DashboardController.refreshDashboardStats(DashboardController.java:179)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.DashboardController.initialize(DashboardController.java:129)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at javafx.base@21.0.6/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+    at javafx.fxml@21.0.6/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2688)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.Main.showDashboard(Main.java:70)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.LoginController.handleLogin(LoginController.java:59)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+    at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+    at javafx.base@21.0.6/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+    at javafx.fxml@21.0.6/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1855)
+    at javafx.fxml@21.0.6/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1726)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Node.fireEvent(Node.java:8875)
+    at javafx.controls@21.0.6/javafx.scene.control.Button.fire(Button.java:203)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+    at javafx.graphics@21.0.6/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+    at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.notifyMouse(View.java:937)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-01-29 02:03:25.527 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 3 entities from data/tariffs.dat
+2026-01-29 02:03:25.539 SEVERE  [com.utilitybill.controller.CustomerDetailsController] Error loading stats
+  Exception: com.utilitybill.exception.DataPersistenceException: Failed to read data from file: data/payments.dat
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.exception.DataPersistenceException.readError(DataPersistenceException.java:96)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.load(AbstractBinaryDAO.java:81)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.initializeCache(AbstractBinaryDAO.java:57)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.PaymentDAO.findByCustomerId(PaymentDAO.java:48)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.service.PaymentService.getCustomerPayments(PaymentService.java:125)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.loadOverviewStats(CustomerDetailsController.java:132)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.refreshData(CustomerDetailsController.java:112)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.setCustomer(CustomerDetailsController.java:91)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController.viewCustomer(CustomerController.java:240)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController$3.lambda$new$0(CustomerController.java:148)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Node.fireEvent(Node.java:8875)
+    at javafx.controls@21.0.6/javafx.scene.control.Button.fire(Button.java:203)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+    at javafx.graphics@21.0.6/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+    at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.notifyMouse(View.java:937)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-01-29 02:03:25.540 INFO    [com.utilitybill.dao.AbstractBinaryDAO] Loaded 6 entities from data/meter_readings.dat
+2026-01-29 02:03:25.545 SEVERE  [com.utilitybill.controller.CustomerDetailsController] Error loading payments
+  Exception: com.utilitybill.exception.DataPersistenceException: Failed to read data from file: data/payments.dat
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.exception.DataPersistenceException.readError(DataPersistenceException.java:96)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.load(AbstractBinaryDAO.java:81)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.AbstractBinaryDAO.initializeCache(AbstractBinaryDAO.java:57)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.dao.PaymentDAO.findByCustomerId(PaymentDAO.java:48)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.service.PaymentService.getCustomerPayments(PaymentService.java:125)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.loadPayments(CustomerDetailsController.java:249)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.refreshData(CustomerDetailsController.java:115)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerDetailsController.setCustomer(CustomerDetailsController.java:91)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController.viewCustomer(CustomerController.java:240)
+    at com.utilitybill@1.0-SNAPSHOT/com.utilitybill.controller.CustomerController$3.lambda$new$0(CustomerController.java:148)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Node.fireEvent(Node.java:8875)
+    at javafx.controls@21.0.6/javafx.scene.control.Button.fire(Button.java:203)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+    at javafx.controls@21.0.6/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+    at javafx.base@21.0.6/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+    at javafx.base@21.0.6/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+    at javafx.base@21.0.6/javafx.event.Event.fireEvent(Event.java:198)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+    at javafx.graphics@21.0.6/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+    at javafx.graphics@21.0.6/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+    at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+    at javafx.graphics@21.0.6/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.View.notifyMouse(View.java:937)
+    at javafx.graphics@21.0.6/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)

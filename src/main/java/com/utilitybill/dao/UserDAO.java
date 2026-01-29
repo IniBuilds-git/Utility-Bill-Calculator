@@ -1,20 +1,17 @@
 package com.utilitybill.dao;
 
-import com.google.gson.reflect.TypeToken;
 import com.utilitybill.exception.DataPersistenceException;
 import com.utilitybill.model.User;
 
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
 
-public class UserDAO extends AbstractJsonDAO<User, String> {
+public class UserDAO extends AbstractBinaryDAO<User, String> {
 
     private static volatile UserDAO instance;
-    private static final Type USER_LIST_TYPE = new TypeToken<List<User>>(){}.getType();
 
     private UserDAO() {
-        super("users.json");
+        super("users.dat");
     }
 
     public static UserDAO getInstance() {
@@ -31,11 +28,6 @@ public class UserDAO extends AbstractJsonDAO<User, String> {
     @Override
     protected String getId(User entity) {
         return entity.getUserId();
-    }
-
-    @Override
-    protected Type getEntityListType() {
-        return USER_LIST_TYPE;
     }
 
     public Optional<User> findByUsername(String username) throws DataPersistenceException {
@@ -94,4 +86,3 @@ public class UserDAO extends AbstractJsonDAO<User, String> {
         return findByEmail(email).isPresent();
     }
 }
-

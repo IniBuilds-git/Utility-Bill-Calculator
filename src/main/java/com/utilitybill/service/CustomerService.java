@@ -9,13 +9,53 @@ import com.utilitybill.model.Address;
 import com.utilitybill.model.Customer;
 import com.utilitybill.model.Meter;
 import com.utilitybill.model.MeterType;
+import com.utilitybill.util.AppLogger;
 import com.utilitybill.util.ValidationUtil;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service class for customer management operations.
+ * 
+ * <p>
+ * This service provides comprehensive customer management functionality
+ * including
+ * customer creation, updates, deactivation, meter management, and account
+ * balance
+ * operations (credit/debit).
+ * </p>
+ * 
+ * <p>
+ * The service uses the Singleton pattern and can be obtained via
+ * {@link #getInstance()}.
+ * </p>
+ * 
+ * <h2>Usage Example:</h2>
+ * 
+ * <pre>{@code
+ * CustomerService customerService = CustomerService.getInstance();
+ * 
+ * // Create a new customer
+ * Address address = new Address("1 High Street", "London", "SW1A 1AA");
+ * Customer customer = customerService.createCustomer(
+ *         "John", "Doe", "john@example.com", "07123456789",
+ *         address, MeterType.ELECTRICITY, tariffId);
+ * 
+ * // Credit customer account
+ * customerService.creditAccount(customer.getCustomerId(), new BigDecimal("100.00"));
+ * }</pre>
+ * 
+ * @author Utility Bill Management System
+ * @version 1.0
+ * @since 2024
+ * @see Customer
+ * @see BillingService
+ */
 public class CustomerService {
+
+    private static final String CLASS_NAME = CustomerService.class.getSimpleName();
 
     private static volatile CustomerService instance;
     private final CustomerDAO customerDAO;
@@ -36,7 +76,7 @@ public class CustomerService {
     }
 
     public Customer createCustomer(String firstName, String lastName, String email, String phone,
-                                    Address address, MeterType meterType, String tariffId)
+            Address address, MeterType meterType, String tariffId)
             throws ValidationException, DuplicateAccountException, DataPersistenceException {
 
         ValidationUtil.requireNonEmpty(firstName, "firstName");
@@ -57,8 +97,7 @@ public class CustomerService {
                 lastName.trim(),
                 email.trim().toLowerCase(),
                 ValidationUtil.formatPhone(phone),
-                address
-        );
+                address);
 
         if (tariffId != null && !tariffId.isEmpty()) {
             customer.setTariffId(tariffId);
@@ -67,11 +106,13 @@ public class CustomerService {
         Meter meter = switch (meterType) {
             case ELECTRICITY -> Meter.createElectricityMeter(generateSerialNumber());
             case GAS -> Meter.createGasMeter(generateSerialNumber());
-            case DUAL_FUEL -> Meter.createDualFuelMeter(generateSerialNumber());
         };
         customer.addMeter(meter);
 
         customerDAO.save(customer);
+
+        AppLogger.info(CLASS_NAME, "Customer created: " + customer.getAccountNumber() +
+                " (" + customer.getFullName() + ")");
 
         return customer;
     }
@@ -126,12 +167,14 @@ public class CustomerService {
         }
 
         customerDAO.update(customer);
+        AppLogger.info(CLASS_NAME, "Customer updated: " + customer.getAccountNumber());
     }
 
     public void deactivateCustomer(String customerId) throws CustomerNotFoundException, DataPersistenceException {
         Customer customer = getCustomerById(customerId);
         customer.setActive(false);
         customerDAO.update(customer);
+        AppLogger.info(CLASS_NAME, "Customer deactivated: " + customer.getAccountNumber());
     }
 
     public void reactivateCustomer(String customerId) throws CustomerNotFoundException, DataPersistenceException {
@@ -147,7 +190,6 @@ public class CustomerService {
         Meter meter = switch (meterType) {
             case ELECTRICITY -> Meter.createElectricityMeter(generateSerialNumber());
             case GAS -> Meter.createGasMeter(generateSerialNumber());
-            case DUAL_FUEL -> Meter.createDualFuelMeter(generateSerialNumber());
         };
 
         customer.addMeter(meter);
@@ -172,6 +214,8 @@ public class CustomerService {
         Customer customer = getCustomerById(customerId);
         customer.creditAccount(amount);
         customerDAO.update(customer);
+        AppLogger.info(CLASS_NAME, "Account credited: " + customer.getAccountNumber() +
+                " amount=£" + amount);
     }
 
     public void debitAccount(String customerId, BigDecimal amount)
@@ -183,6 +227,8 @@ public class CustomerService {
         Customer customer = getCustomerById(customerId);
         customer.debitAccount(amount);
         customerDAO.update(customer);
+        AppLogger.info(CLASS_NAME, "Account debited: " + customer.getAccountNumber() +
+                " amount=£" + amount);
     }
 
     public List<Customer> getCustomersWithDebt() throws DataPersistenceException {
@@ -201,4 +247,3 @@ public class CustomerService {
         return String.format("SN%d", System.currentTimeMillis());
     }
 }
-

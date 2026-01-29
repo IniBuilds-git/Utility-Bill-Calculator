@@ -15,28 +15,28 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Optional;
 
 public class TariffController {
 
-    // Electricity table
+    // ---------- Electricity table ----------
     @FXML private TableView<Tariff> electricityTable;
     @FXML private TableColumn<Tariff, String> elecNameCol;
-    @FXML private TableColumn<Tariff, String> elecTypeCol;
     @FXML private TableColumn<Tariff, String> elecStandingCol;
-    @FXML private TableColumn<Tariff, String> elecUnitCol;
-    @FXML private TableColumn<Tariff, String> elecTier1Col;
-    @FXML private TableColumn<Tariff, String> elecTier2Col;
+    @FXML private TableColumn<Tariff, String> elecDayRateCol;
+    @FXML private TableColumn<Tariff, String> elecNightRateCol;
     @FXML private TableColumn<Tariff, String> elecStatusCol;
     @FXML private TableColumn<Tariff, Void> elecActionsCol;
 
-    // Gas table
+    // ---------- Gas table ----------
     @FXML private TableView<Tariff> gasTable;
     @FXML private TableColumn<Tariff, String> gasNameCol;
     @FXML private TableColumn<Tariff, String> gasStandingCol;
     @FXML private TableColumn<Tariff, String> gasUnitCol;
-    @FXML private TableColumn<Tariff, String> gasCalorificCol;
+    @FXML private TableColumn<Tariff, String> gasCvCol;
+    @FXML private TableColumn<Tariff, String> gasCorrectCol;
     @FXML private TableColumn<Tariff, String> gasStatusCol;
     @FXML private TableColumn<Tariff, Void> gasActionsCol;
 
@@ -53,104 +53,88 @@ public class TariffController {
         refreshData();
     }
 
+    // --------------------------
+    // Table setups
+    // --------------------------
+
     private void setupElectricityTable() {
-        elecNameCol.setCellValueFactory(data -> 
-            new SimpleStringProperty(data.getValue().getName()));
-        
-        elecTypeCol.setCellValueFactory(data -> {
+        elecNameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getName()));
+
+        elecStandingCol.setCellValueFactory(data ->
+                new SimpleStringProperty(formatPencePerDay(data.getValue().getStandingCharge()))
+        );
+
+        // Matches bill: Unit rate per kWh -> Day and Night
+        elecDayRateCol.setCellValueFactory(data -> {
             Tariff t = data.getValue();
-            if (t instanceof ElectricityTariff et) {
-                return new SimpleStringProperty(et.isTieredPricing() ? "Tiered" : "Flat");
+            if (t instanceof ElectricityTariff et && et.getDayRate() != null) {
+                return new SimpleStringProperty(formatPencePerKwh(et.getDayRate()));
             }
-            return new SimpleStringProperty("Flat");
-        });
-        
-        elecStandingCol.setCellValueFactory(data -> {
-            BigDecimal sc = data.getValue().getStandingCharge();
-            return new SimpleStringProperty(sc != null ? sc + "p/day" : "N/A");
-        });
-        
-        elecUnitCol.setCellValueFactory(data -> {
-            BigDecimal ur = data.getValue().getUnitRate();
-            return new SimpleStringProperty(ur != null ? ur + "p/kWh" : "N/A");
-        });
-        
-        elecTier1Col.setCellValueFactory(data -> {
-            if (data.getValue() instanceof ElectricityTariff et && et.isTieredPricing()) {
-                return new SimpleStringProperty(et.getTier1Rate() + "p");
+            if (t.getUnitRate() != null) {
+                return new SimpleStringProperty(formatPencePerKwh(t.getUnitRate()));
             }
             return new SimpleStringProperty("-");
         });
-        
-        elecTier2Col.setCellValueFactory(data -> {
-            if (data.getValue() instanceof ElectricityTariff et && et.isTieredPricing()) {
-                return new SimpleStringProperty(et.getTier2Rate() + "p");
+
+        elecNightRateCol.setCellValueFactory(data -> {
+            Tariff t = data.getValue();
+            if (t instanceof ElectricityTariff et && et.getNightRate() != null) {
+                return new SimpleStringProperty(formatPencePerKwh(et.getNightRate()));
             }
             return new SimpleStringProperty("-");
         });
-        
-        elecStatusCol.setCellValueFactory(data ->
-            new SimpleStringProperty(data.getValue().isActive() ? "Active" : "Inactive"));
 
-        elecStatusCol.setCellFactory(col -> new TableCell<>() {
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                    setStyle("");
-                } else {
-                    setText(item);
-                    setStyle("Active".equals(item) ? 
-                        "-fx-text-fill: #10b981; -fx-font-weight: bold;" : 
-                        "-fx-text-fill: #94a3b8;");
-                }
-            }
-        });
+        elecStatusCol.setCellValueFactory(
+                data -> new SimpleStringProperty(data.getValue().isActive() ? "Active" : "Inactive")
+        );
+        styleStatusColumn(elecStatusCol);
 
-        elecActionsCol.setCellFactory(col -> new TableCell<>() {
-            private final Button editBtn = new Button("Edit");
-            private final Button deleteBtn = new Button("Delete");
-            private final HBox box = new HBox(5, editBtn, deleteBtn);
-            {
-                editBtn.setStyle("-fx-background-color: #0d9488; -fx-text-fill: white; -fx-font-size: 10px; -fx-padding: 4 8;");
-                deleteBtn.setStyle("-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-size: 10px; -fx-padding: 4 8;");
-                editBtn.setOnAction(e -> editTariff(getTableView().getItems().get(getIndex())));
-                deleteBtn.setOnAction(e -> deleteTariff(getTableView().getItems().get(getIndex())));
-            }
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                setGraphic(empty ? null : box);
-            }
-        });
+        elecActionsCol.setCellFactory(col -> actionButtonsCell(
+                this::editTariff,
+                this::deleteTariff
+        ));
     }
 
     private void setupGasTable() {
-        gasNameCol.setCellValueFactory(data -> 
-            new SimpleStringProperty(data.getValue().getName()));
-        
-        gasStandingCol.setCellValueFactory(data -> {
-            BigDecimal sc = data.getValue().getStandingCharge();
-            return new SimpleStringProperty(sc != null ? sc + "p/day" : "N/A");
-        });
-        
+        gasNameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getName()));
+
+        gasStandingCol.setCellValueFactory(data ->
+                new SimpleStringProperty(formatPencePerDay(data.getValue().getStandingCharge()))
+        );
+
+        // Matches bill: Unit rate per kWh (single)
         gasUnitCol.setCellValueFactory(data -> {
             BigDecimal ur = data.getValue().getUnitRate();
-            return new SimpleStringProperty(ur != null ? ur + "p/kWh" : "N/A");
+            return new SimpleStringProperty(ur != null ? formatPencePerKwh(ur) : "N/A");
         });
-        
-        gasCalorificCol.setCellValueFactory(data -> {
-            if (data.getValue() instanceof GasTariff gt) {
-                return new SimpleStringProperty(String.valueOf(gt.getCalorificValue()));
-            }
-            return new SimpleStringProperty("39.4");
-        });
-        
-        gasStatusCol.setCellValueFactory(data -> 
-            new SimpleStringProperty(data.getValue().isActive() ? "Active" : "Inactive"));
 
-        gasStatusCol.setCellFactory(col -> new TableCell<>() {
+        gasCvCol.setCellValueFactory(data -> {
+            if (data.getValue() instanceof GasTariff gt) {
+                return new SimpleStringProperty(String.format("%.1f", gt.getCalorificValue()));
+            }
+            return new SimpleStringProperty("-");
+        });
+
+        gasCorrectCol.setCellValueFactory(data -> {
+            if (data.getValue() instanceof GasTariff gt) {
+                return new SimpleStringProperty(String.format("%.5f", gt.getCorrectionFactor()));
+            }
+            return new SimpleStringProperty("-");
+        });
+
+        gasStatusCol.setCellValueFactory(
+                data -> new SimpleStringProperty(data.getValue().isActive() ? "Active" : "Inactive")
+        );
+        styleStatusColumn(gasStatusCol);
+
+        gasActionsCol.setCellFactory(col -> actionButtonsCell(
+                this::editTariff,
+                this::deleteTariff
+        ));
+    }
+
+    private void styleStatusColumn(TableColumn<Tariff, String> statusCol) {
+        statusCol.setCellFactory(col -> new TableCell<>() {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -159,30 +143,40 @@ public class TariffController {
                     setStyle("");
                 } else {
                     setText(item);
-                    setStyle("Active".equals(item) ? 
-                        "-fx-text-fill: #10b981; -fx-font-weight: bold;" : 
-                        "-fx-text-fill: #94a3b8;");
+                    setStyle("Active".equals(item)
+                            ? "-fx-text-fill: #10b981; -fx-font-weight: bold;"
+                            : "-fx-text-fill: #94a3b8;");
                 }
             }
         });
+    }
 
-        gasActionsCol.setCellFactory(col -> new TableCell<>() {
+    private TableCell<Tariff, Void> actionButtonsCell(java.util.function.Consumer<Tariff> onEdit,
+                                                      java.util.function.Consumer<Tariff> onDelete) {
+        return new TableCell<>() {
             private final Button editBtn = new Button("Edit");
             private final Button deleteBtn = new Button("Delete");
             private final HBox box = new HBox(5, editBtn, deleteBtn);
+
             {
                 editBtn.setStyle("-fx-background-color: #0d9488; -fx-text-fill: white; -fx-font-size: 10px; -fx-padding: 4 8;");
                 deleteBtn.setStyle("-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-size: 10px; -fx-padding: 4 8;");
-                editBtn.setOnAction(e -> editTariff(getTableView().getItems().get(getIndex())));
-                deleteBtn.setOnAction(e -> deleteTariff(getTableView().getItems().get(getIndex())));
+
+                editBtn.setOnAction(e -> onEdit.accept(getTableView().getItems().get(getIndex())));
+                deleteBtn.setOnAction(e -> onDelete.accept(getTableView().getItems().get(getIndex())));
             }
+
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
                 setGraphic(empty ? null : box);
             }
-        });
+        };
     }
+
+    // --------------------------
+    // Data
+    // --------------------------
 
     @FXML
     public void refreshData() {
@@ -197,6 +191,10 @@ public class TariffController {
         }
     }
 
+    // --------------------------
+    // Add
+    // --------------------------
+
     @FXML
     public void showAddTariffDialog() {
         Dialog<Tariff> dialog = new Dialog<>();
@@ -209,103 +207,147 @@ public class TariffController {
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
-        grid.setPadding(new Insets(20, 150, 10, 10));
+        grid.setPadding(new Insets(20));
 
         ComboBox<String> typeCombo = new ComboBox<>();
         typeCombo.setItems(FXCollections.observableArrayList("Electricity", "Gas"));
         typeCombo.setValue("Electricity");
 
         TextField nameField = new TextField();
-        nameField.setPromptText("e.g., Standard Variable");
+        nameField.setPromptText("Tariff name");
+
         TextField standingField = new TextField();
-        standingField.setPromptText("e.g., 22.63");
+        standingField.setPromptText("Standing charge (p/day)");
+
+        // Electricity fields (match bill: day + night)
+        TextField dayRateField = new TextField();
+        dayRateField.setPromptText("Day rate (p/kWh)");
+
+        TextField nightRateField = new TextField();
+        nightRateField.setPromptText("Night rate (p/kWh)");
+
+        // Gas fields (match bill: unit + cv + correction)
         TextField unitRateField = new TextField();
-        unitRateField.setPromptText("e.g., 19.349");
-        CheckBox tieredCheck = new CheckBox("Tiered Pricing");
-        TextField tier1Field = new TextField();
-        tier1Field.setPromptText("Tier 1 rate");
-        tier1Field.setDisable(true);
-        TextField tier2Field = new TextField();
-        tier2Field.setPromptText("Tier 2 rate");
-        tier2Field.setDisable(true);
-        TextField thresholdField = new TextField();
-        thresholdField.setPromptText("Tier 1 threshold (kWh)");
-        thresholdField.setDisable(true);
-        TextField calorificField = new TextField("39.4");
-        calorificField.setPromptText("Calorific value");
+        unitRateField.setPromptText("Unit rate (p/kWh)");
 
-        tieredCheck.setOnAction(e -> {
-            tier1Field.setDisable(!tieredCheck.isSelected());
-            tier2Field.setDisable(!tieredCheck.isSelected());
-            thresholdField.setDisable(!tieredCheck.isSelected());
-        });
+        TextField cvField = new TextField("39.4");
+        cvField.setPromptText("Calorific value");
 
-        grid.add(new Label("Type:"), 0, 0);
-        grid.add(typeCombo, 1, 0);
-        grid.add(new Label("Name:"), 0, 1);
-        grid.add(nameField, 1, 1);
-        grid.add(new Label("Standing Charge (p/day):"), 0, 2);
-        grid.add(standingField, 1, 2);
-        grid.add(new Label("Unit Rate (p/kWh):"), 0, 3);
-        grid.add(unitRateField, 1, 3);
-        grid.add(tieredCheck, 1, 4);
-        grid.add(new Label("Tier 1 Rate (p):"), 0, 5);
-        grid.add(tier1Field, 1, 5);
-        grid.add(new Label("Tier 2 Rate (p):"), 0, 6);
-        grid.add(tier2Field, 1, 6);
-        grid.add(new Label("Tier 1 Threshold:"), 0, 7);
-        grid.add(thresholdField, 1, 7);
-        grid.add(new Label("Calorific Value:"), 0, 8);
-        grid.add(calorificField, 1, 8);
+        TextField cfField = new TextField("1.02264");
+        cfField.setPromptText("Correction factor");
+
+        // Switch visible inputs based on type
+        Runnable applyTypeVisibility = () -> {
+            boolean isElectric = "Electricity".equals(typeCombo.getValue());
+
+            dayRateField.setDisable(!isElectric);
+            nightRateField.setDisable(!isElectric);
+
+            unitRateField.setDisable(isElectric);
+            cvField.setDisable(isElectric);
+            cfField.setDisable(isElectric);
+        };
+
+        typeCombo.setOnAction(e -> applyTypeVisibility.run());
+        applyTypeVisibility.run();
+
+        int row = 0;
+        grid.add(new Label("Type:"), 0, row);
+        grid.add(typeCombo, 1, row++);
+
+        grid.add(new Label("Tariff name:"), 0, row);
+        grid.add(nameField, 1, row++);
+
+        grid.add(new Label("Standing charge (p/day):"), 0, row);
+        grid.add(standingField, 1, row++);
+
+        // Electricity
+        grid.add(new Label("Day rate (p/kWh):"), 0, row);
+        grid.add(dayRateField, 1, row++);
+
+        grid.add(new Label("Night rate (p/kWh):"), 0, row);
+        grid.add(nightRateField, 1, row++);
+
+        // Gas
+        grid.add(new Label("Unit rate (p/kWh):"), 0, row);
+        grid.add(unitRateField, 1, row++);
+
+        grid.add(new Label("Calorific value:"), 0, row);
+        grid.add(cvField, 1, row++);
+
+        grid.add(new Label("Correction factor:"), 0, row);
+        grid.add(cfField, 1, row++);
 
         dialog.getDialogPane().setContent(grid);
 
-        dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == addType) {
-                try {
-                    String name = nameField.getText().trim();
-                    if (name.isEmpty()) {
-                        showError("Tariff name is required");
+        dialog.setResultConverter(btn -> {
+            if (btn != addType) return null;
+
+            try {
+                String type = typeCombo.getValue();
+                String name = nameField.getText().trim();
+
+                if (name.isEmpty()) {
+                    showError("Tariff name is required.");
+                    return null;
+                }
+                if (standingField.getText().trim().isEmpty()) {
+                    showError("Standing charge is required.");
+                    return null;
+                }
+
+                BigDecimal standing = new BigDecimal(standingField.getText().trim());
+
+                Tariff tariff;
+
+                if ("Electricity".equals(type)) {
+                    if (dayRateField.getText().trim().isEmpty() || nightRateField.getText().trim().isEmpty()) {
+                        showError("Day rate and Night rate are required for electricity tariffs.");
                         return null;
                     }
 
-                    BigDecimal standing = new BigDecimal(standingField.getText().trim());
-                    BigDecimal unitRate = new BigDecimal(unitRateField.getText().trim());
+                    BigDecimal day = new BigDecimal(dayRateField.getText().trim());
+                    BigDecimal night = new BigDecimal(nightRateField.getText().trim());
 
-                    Tariff tariff;
-                    if ("Electricity".equals(typeCombo.getValue())) {
-                        if (tieredCheck.isSelected()) {
-                            double threshold = Double.parseDouble(thresholdField.getText().trim());
-                            BigDecimal tier1 = new BigDecimal(tier1Field.getText().trim());
-                            BigDecimal tier2 = new BigDecimal(tier2Field.getText().trim());
-                            tariff = new ElectricityTariff(name, standing, threshold, tier1, tier2);
-                        } else {
-                            tariff = new ElectricityTariff(name, standing, unitRate);
-                        }
-                    } else {
-                        BigDecimal calorific = new BigDecimal(calorificField.getText().trim());
-                        tariff = new GasTariff(name, standing, unitRate, calorific);
+                    tariff = new ElectricityTariff(name, standing, day, night);
+
+                } else {
+                    if (unitRateField.getText().trim().isEmpty()) {
+                        showError("Unit rate is required for gas tariffs.");
+                        return null;
                     }
 
-                    tariffService.createTariff(tariff);
-                    return tariff;
-                } catch (NumberFormatException e) {
-                    showError("Invalid number format");
-                    return null;
-                } catch (DataPersistenceException e) {
-                    showError("Failed to create tariff: " + e.getMessage());
-                    return null;
+                    BigDecimal unit = new BigDecimal(unitRateField.getText().trim());
+                    double cv = Double.parseDouble(cvField.getText().trim());
+                    double cf = Double.parseDouble(cfField.getText().trim());
+
+                    GasTariff gt = new GasTariff(name, standing, unit);
+                    gt.setCalorificValue(cv);
+                    gt.setCorrectionFactor(cf);
+                    tariff = gt;
                 }
+
+                tariffService.createTariff(tariff);
+                return tariff;
+
+            } catch (NumberFormatException ex) {
+                showError("Invalid number format: " + ex.getMessage());
+                return null;
+            } catch (Exception ex) {
+                showError("Error creating tariff: " + ex.getMessage());
+                return null;
             }
-            return null;
         });
 
-        Optional<Tariff> result = dialog.showAndWait();
-        result.ifPresent(tariff -> {
+        dialog.showAndWait().ifPresent(tariff -> {
             showSuccess("Tariff '" + tariff.getName() + "' created successfully!");
             refreshData();
         });
     }
+
+    // --------------------------
+    // Edit
+    // --------------------------
 
     private void editTariff(Tariff tariff) {
         Dialog<Tariff> dialog = new Dialog<>();
@@ -321,44 +363,99 @@ public class TariffController {
         grid.setPadding(new Insets(20, 150, 10, 10));
 
         TextField nameField = new TextField(tariff.getName());
-        TextField standingField = new TextField(tariff.getStandingCharge().toString());
-        TextField unitRateField = new TextField(tariff.getUnitRate().toString());
+        TextField standingField = new TextField(tariff.getStandingCharge() == null ? "" : tariff.getStandingCharge().toString());
+
+        // Electricity fields
+        TextField dayRateField = new TextField();
+        TextField nightRateField = new TextField();
+
+        // Gas fields
+        TextField unitRateField = new TextField();
+        TextField cvField = new TextField();
+        TextField cfField = new TextField();
+
+        boolean isElectric = tariff instanceof ElectricityTariff;
+        boolean isGas = tariff instanceof GasTariff;
+
+        if (isElectric) {
+            ElectricityTariff et = (ElectricityTariff) tariff;
+            dayRateField.setText(et.getDayRate() == null ? "" : et.getDayRate().toString());
+            nightRateField.setText(et.getNightRate() == null ? "" : et.getNightRate().toString());
+        }
+
+        if (isGas) {
+            GasTariff gt = (GasTariff) tariff;
+            unitRateField.setText(tariff.getUnitRate() == null ? "" : tariff.getUnitRate().toString());
+            cvField.setText(String.valueOf(gt.getCalorificValue()));
+            cfField.setText(String.valueOf(gt.getCorrectionFactor()));
+        }
+
+        // Disable irrelevant fields
+        dayRateField.setDisable(!isElectric);
+        nightRateField.setDisable(!isElectric);
+
+        unitRateField.setDisable(!isGas);
+        cvField.setDisable(!isGas);
+        cfField.setDisable(!isGas);
+
         CheckBox activeCheck = new CheckBox("Active");
         activeCheck.setSelected(tariff.isActive());
 
-        grid.add(new Label("Name:"), 0, 0);
-        grid.add(nameField, 1, 0);
-        grid.add(new Label("Standing Charge (p/day):"), 0, 1);
-        grid.add(standingField, 1, 1);
-        grid.add(new Label("Unit Rate (p/kWh):"), 0, 2);
-        grid.add(unitRateField, 1, 2);
-        grid.add(activeCheck, 1, 3);
+        int row = 0;
+        grid.add(new Label("Name:"), 0, row);
+        grid.add(nameField, 1, row++);
+
+        grid.add(new Label("Standing charge (p/day):"), 0, row);
+        grid.add(standingField, 1, row++);
+
+        grid.add(new Label("Day rate (p/kWh):"), 0, row);
+        grid.add(dayRateField, 1, row++);
+
+        grid.add(new Label("Night rate (p/kWh):"), 0, row);
+        grid.add(nightRateField, 1, row++);
+
+        grid.add(new Label("Unit rate (p/kWh):"), 0, row);
+        grid.add(unitRateField, 1, row++);
+
+        grid.add(new Label("Calorific value:"), 0, row);
+        grid.add(cvField, 1, row++);
+
+        grid.add(new Label("Correction factor:"), 0, row);
+        grid.add(cfField, 1, row++);
+
+        grid.add(activeCheck, 1, row++);
 
         dialog.getDialogPane().setContent(grid);
 
         dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == saveType) {
-                try {
-                    tariff.setName(nameField.getText().trim());
-                    tariff.setStandingCharge(new BigDecimal(standingField.getText().trim()));
-                    BigDecimal newUnitRate = new BigDecimal(unitRateField.getText().trim());
-                    if (tariff instanceof ElectricityTariff et) {
-                        et.setUnitRatePence(newUnitRate);
-                    } else if (tariff instanceof GasTariff gt) {
-                        gt.setUnitRatePence(newUnitRate);
-                    }
-                    tariff.setActive(activeCheck.isSelected());
-                    tariffService.updateTariff(tariff);
-                    return tariff;
-                } catch (NumberFormatException e) {
-                    showError("Invalid number format");
-                    return null;
-                } catch (DataPersistenceException e) {
-                    showError("Failed to update tariff: " + e.getMessage());
-                    return null;
+            if (dialogButton != saveType) return null;
+
+            try {
+                tariff.setName(nameField.getText().trim());
+                tariff.setStandingCharge(new BigDecimal(standingField.getText().trim()));
+
+                if (tariff instanceof ElectricityTariff et) {
+                    et.setDayRate(new BigDecimal(dayRateField.getText().trim()));
+                    et.setNightRate(new BigDecimal(nightRateField.getText().trim()));
                 }
+
+                if (tariff instanceof GasTariff gt) {
+                    gt.setUnitRatePence(new BigDecimal(unitRateField.getText().trim()));
+                    gt.setCalorificValue(Double.parseDouble(cvField.getText().trim()));
+                    gt.setCorrectionFactor(Double.parseDouble(cfField.getText().trim()));
+                }
+
+                tariff.setActive(activeCheck.isSelected());
+                tariffService.updateTariff(tariff);
+                return tariff;
+
+            } catch (NumberFormatException e) {
+                showError("Invalid number format");
+                return null;
+            } catch (DataPersistenceException e) {
+                showError("Failed to update tariff: " + e.getMessage());
+                return null;
             }
-            return null;
         });
 
         Optional<Tariff> result = dialog.showAndWait();
@@ -367,6 +464,10 @@ public class TariffController {
             refreshData();
         });
     }
+
+    // --------------------------
+    // Delete
+    // --------------------------
 
     private void deleteTariff(Tariff tariff) {
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
@@ -386,6 +487,26 @@ public class TariffController {
         }
     }
 
+    // --------------------------
+    // Helpers
+    // --------------------------
+
+    private String formatPencePerDay(BigDecimal pence) {
+        if (pence == null) return "N/A";
+        return formatPlain(pence) + "p/day";
+    }
+
+    private String formatPencePerKwh(BigDecimal pence) {
+        if (pence == null) return "N/A";
+        return formatPlain(pence) + "p/kWh";
+    }
+
+    private String formatPlain(BigDecimal val) {
+        // keep up to 5 dp like bills often do, but avoid trailing zeros if not needed
+        BigDecimal scaled = val.setScale(5, RoundingMode.HALF_UP).stripTrailingZeros();
+        return scaled.toPlainString();
+    }
+
     private void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -402,4 +523,3 @@ public class TariffController {
         alert.showAndWait();
     }
 }
-

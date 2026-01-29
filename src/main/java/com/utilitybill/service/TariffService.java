@@ -8,11 +8,14 @@ import com.utilitybill.model.GasTariff;
 import com.utilitybill.model.MeterType;
 import com.utilitybill.model.Tariff;
 
+import com.utilitybill.util.AppLogger;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
 public class TariffService {
+
+    private static final String CLASS_NAME = TariffService.class.getName();
 
     private static volatile TariffService instance;
     private final TariffDAO tariffDAO;
@@ -37,40 +40,56 @@ public class TariffService {
         try {
             if (tariffDAO.count() == 0) {
                 ElectricityTariff elecTariff = new ElectricityTariff(
-                        "Standard Electricity",
-                        new BigDecimal("0.45"), // 45p standing charge per day
-                        new BigDecimal("28.62") // 28.62p per kWh
+                        "Flexible 6 Direct Debit eBill",
+                        new BigDecimal("23.76"), // 23.76p standing charge per day
+                        new BigDecimal("20.316"), // Day rate: 20.316p per kWh
+                        new BigDecimal("20.316") // Night rate: 20.316p per kWh
                 );
-                elecTariff.setDescription("Standard variable rate electricity tariff");
+                elecTariff.setDescription("Direct Debit, prices include VAT");
                 tariffDAO.save(elecTariff);
 
-                ElectricityTariff tieredElec = new ElectricityTariff(
-                        "Economy Electricity",
-                        new BigDecimal("0.40"),
-                        1000, // First 1000 kWh at lower rate
-                        new BigDecimal("25.50"),
-                        new BigDecimal("30.00")
-                );
-                tieredElec.setDescription("Tiered pricing - lower rate for first 1000 kWh");
-                tariffDAO.save(tieredElec);
-
                 GasTariff gasTariff = new GasTariff(
-                        "Standard Gas",
-                        new BigDecimal("0.30"), // 30p standing charge per day
-                        new BigDecimal("7.42") // 7.42p per kWh
+                        "Flexible 6 Direct Debit eBill",
+                        new BigDecimal("26.11"), // 26.11p standing charge per day
+                        new BigDecimal("3.987") // Unit rate: 3.987p per kWh
                 );
-                gasTariff.setDescription("Standard variable rate gas tariff");
+                gasTariff.setDescription("Direct Debit, prices include VAT");
                 tariffDAO.save(gasTariff);
 
-                System.out.println("Default tariffs created successfully");
+                AppLogger.info(CLASS_NAME, "Default tariffs created successfully");
             }
         } catch (DataPersistenceException e) {
-            System.err.println("Warning: Could not initialize default tariffs: " + e.getMessage());
+            AppLogger.warning(CLASS_NAME, "Could not initialize default tariffs: " + e.getMessage(), e);
         }
     }
 
     public ElectricityTariff createElectricityTariff(String name, BigDecimal standingCharge,
-                                                      BigDecimal unitRatePence, String description)
+            BigDecimal dayRate, BigDecimal nightRate,
+            String description)
+            throws ValidationException, DataPersistenceException {
+
+        validateTariffInputs(name, standingCharge, dayRate);
+
+        ElectricityTariff tariff = new ElectricityTariff(name, standingCharge, dayRate, nightRate);
+        tariff.setDescription(description);
+        tariffDAO.save(tariff);
+
+        return tariff;
+    }
+
+    // Overload for backward compatibility with annualUsage parameter (ignored)
+    @Deprecated
+    public ElectricityTariff createElectricityTariff(String name, BigDecimal standingCharge,
+            double annualUsage, BigDecimal dayRate,
+            BigDecimal nightRate, String description)
+            throws ValidationException, DataPersistenceException {
+        // Ignore annualUsage parameter - it's customer-specific, not tariff-specific
+        return createElectricityTariff(name, standingCharge, dayRate, nightRate, description);
+    }
+
+    // Legacy method for flat rate (backward compatibility)
+    public ElectricityTariff createElectricityTariff(String name, BigDecimal standingCharge,
+            BigDecimal unitRatePence, String description)
             throws ValidationException, DataPersistenceException {
 
         validateTariffInputs(name, standingCharge, unitRatePence);
@@ -83,8 +102,8 @@ public class TariffService {
     }
 
     public ElectricityTariff createTieredElectricityTariff(String name, BigDecimal standingCharge,
-                                                            double tier1Threshold, BigDecimal tier1Rate,
-                                                            BigDecimal tier2Rate, String description)
+            double tier1Threshold, BigDecimal tier1Rate,
+            BigDecimal tier2Rate, String description)
             throws ValidationException, DataPersistenceException {
 
         validateTariffInputs(name, standingCharge, tier1Rate);
@@ -93,29 +112,41 @@ public class TariffService {
             throw new ValidationException("tier1Threshold", "Threshold must be positive");
         }
 
-        ElectricityTariff tariff = new ElectricityTariff(name, standingCharge, tier1Threshold, tier1Rate, tier2Rate);
+        ElectricityTariff tariff = ElectricityTariff.createTieredTariff(name, standingCharge, tier1Threshold, tier1Rate,
+                tier2Rate);
         tariff.setDescription(description);
         tariffDAO.save(tariff);
 
         return tariff;
     }
 
-    public GasTariff createGasTariff(String name, BigDecimal standingCharge, BigDecimal unitRatePence,
-                                      BigDecimal calorificValue, String description)
+    public GasTariff createGasTariff(String name, BigDecimal standingCharge,
+            BigDecimal unitRatePence, String description)
             throws ValidationException, DataPersistenceException {
 
+        // Validate name, standing charge, and unit rate
         validateTariffInputs(name, standingCharge, unitRatePence);
 
-        GasTariff tariff;
-        if (calorificValue != null && calorificValue.compareTo(BigDecimal.ZERO) > 0) {
-            tariff = new GasTariff(name, standingCharge, unitRatePence, calorificValue);
-        } else {
-            tariff = new GasTariff(name, standingCharge, unitRatePence);
+        GasTariff tariff = new GasTariff(name, standingCharge, unitRatePence);
+
+        // Set description if provided
+        if (description != null && !description.trim().isEmpty()) {
+            tariff.setDescription(description.trim());
         }
-        tariff.setDescription(description);
+
+        // Save tariff
         tariffDAO.save(tariff);
 
         return tariff;
+    }
+
+    // Overload for backward compatibility with annualUsage parameter (ignored)
+    @Deprecated
+    public GasTariff createGasTariff(String name, BigDecimal standingCharge, double annualUsage,
+            BigDecimal unitRatePence, String description)
+            throws ValidationException, DataPersistenceException {
+        // Ignore annualUsage parameter - it's customer-specific, not tariff-specific
+        return createGasTariff(name, standingCharge, unitRatePence, description);
     }
 
     private void validateTariffInputs(String name, BigDecimal standingCharge, BigDecimal unitRate)
@@ -186,4 +217,3 @@ public class TariffService {
         tariffDAO.delete(tariffId);
     }
 }
-

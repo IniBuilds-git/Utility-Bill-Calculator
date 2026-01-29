@@ -258,12 +258,12 @@ public class Customer implements Serializable {
 
     public boolean hasElectricityMeter() {
         return meters.stream().anyMatch(m ->
-                m.getMeterType() == MeterType.ELECTRICITY || m.getMeterType() == MeterType.DUAL_FUEL);
+                m.getMeterType() == MeterType.ELECTRICITY);
     }
 
     public boolean hasGasMeter() {
         return meters.stream().anyMatch(m ->
-                m.getMeterType() == MeterType.GAS || m.getMeterType() == MeterType.DUAL_FUEL);
+                m.getMeterType() == MeterType.GAS);
     }
 
     @Override

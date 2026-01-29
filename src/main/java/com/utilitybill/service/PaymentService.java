@@ -39,13 +39,16 @@ public class PaymentService {
         return instance;
     }
 
-    public Payment recordPayment(String customerId, String invoiceId, BigDecimal amount, Payment.PaymentMethod paymentMethod)
-            throws ValidationException, CustomerNotFoundException, InsufficientPaymentException, DataPersistenceException {
-        return recordPayment(invoiceId, amount, paymentMethod, null);
+    public Payment recordPayment(String customerId, String invoiceId, BigDecimal amount,
+            Payment.PaymentMethod paymentMethod)
+            throws ValidationException, CustomerNotFoundException, InsufficientPaymentException,
+            DataPersistenceException {
+        return recordPayment(invoiceId, amount, paymentMethod);
     }
 
-    public Payment recordPayment(String invoiceId, BigDecimal amount, Payment.PaymentMethod paymentMethod, String notes)
-            throws ValidationException, CustomerNotFoundException, InsufficientPaymentException, DataPersistenceException {
+    public Payment recordPayment(String invoiceId, BigDecimal amount, Payment.PaymentMethod paymentMethod)
+            throws ValidationException, CustomerNotFoundException, InsufficientPaymentException,
+            DataPersistenceException {
 
         if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
             throw InsufficientPaymentException.invalidAmount(amount);
@@ -72,9 +75,7 @@ public class PaymentService {
                 invoiceId,
                 invoice.getInvoiceNumber(),
                 amount,
-                paymentMethod
-        );
-        payment.setNotes(notes);
+                paymentMethod);
 
         paymentDAO.save(payment);
 
@@ -87,14 +88,10 @@ public class PaymentService {
         return payment;
     }
 
-    public Payment recordAccountPayment(String customerId, BigDecimal amount, Payment.PaymentMethod paymentMethod)
-            throws ValidationException, CustomerNotFoundException, InsufficientPaymentException, DataPersistenceException {
-        return recordAccountPayment(customerId, amount, paymentMethod, null);
-    }
-
     public Payment recordAccountPayment(String customerId, BigDecimal amount,
-                                         Payment.PaymentMethod paymentMethod, String notes)
-            throws ValidationException, CustomerNotFoundException, InsufficientPaymentException, DataPersistenceException {
+            Payment.PaymentMethod paymentMethod)
+            throws ValidationException, CustomerNotFoundException, InsufficientPaymentException,
+            DataPersistenceException {
 
         if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
             throw InsufficientPaymentException.invalidAmount(amount);
@@ -106,9 +103,7 @@ public class PaymentService {
                 customerId,
                 customer.getAccountNumber(),
                 amount,
-                paymentMethod
-        );
-        payment.setNotes(notes);
+                paymentMethod);
 
         paymentDAO.save(payment);
 
@@ -185,4 +180,3 @@ public class PaymentService {
         return paymentDAO.findAll();
     }
 }
-

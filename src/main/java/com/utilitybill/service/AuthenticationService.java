@@ -8,9 +8,12 @@ import com.utilitybill.model.User;
 import com.utilitybill.util.PasswordUtil;
 import com.utilitybill.util.ValidationUtil;
 
+import com.utilitybill.util.AppLogger;
 import java.util.Optional;
 
 public class AuthenticationService {
+
+    private static final String CLASS_NAME = AuthenticationService.class.getName();
 
     private static volatile AuthenticationService instance;
     private final UserDAO userDAO;
@@ -40,13 +43,12 @@ public class AuthenticationService {
                         PasswordUtil.hashPassword("Admin123"),
                         "System Administrator",
                         "admin@utilitybill.com",
-                        User.UserRole.ADMIN
-                );
+                        User.UserRole.ADMIN);
                 userDAO.save(admin);
-                System.out.println("Default admin user created. Username: admin, Password: Admin123");
+                AppLogger.info(CLASS_NAME, "Default admin user created. Username: admin, Password: Admin123");
             }
         } catch (DataPersistenceException e) {
-            System.err.println("Warning: Could not initialize default admin: " + e.getMessage());
+            AppLogger.warning(CLASS_NAME, "Could not initialize default admin: " + e.getMessage(), e);
         }
     }
 
@@ -134,8 +136,7 @@ public class AuthenticationService {
                 PasswordUtil.hashPassword(password),
                 fullName.trim(),
                 email.trim().toLowerCase(),
-                role
-        );
+                role);
         userDAO.save(user);
 
         return user;
@@ -188,4 +189,3 @@ public class AuthenticationService {
         }
     }
 }
-

@@ -24,6 +24,10 @@
             </Label>
             <Label text="Record and manage meter readings" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
         </VBox>
+
+        <Button text="Import Readings"
+                onAction="#handleImport"
+                style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-padding: 14 30; -fx-background-radius: 8; -fx-cursor: hand;"/>
         <Button text="+ New Reading"
                 onAction="#showAddReadingDialog"
                 style="-fx-background-color: #0d9488; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-padding: 14 30; -fx-background-radius: 8; -fx-cursor: hand;"/>

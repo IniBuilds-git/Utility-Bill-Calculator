@@ -2,7 +2,7 @@
 
 A comprehensive desktop application for utility bill management built with JavaFX, demonstrating Object-Oriented Programming principles, design patterns, and file-based data persistence.
 
-## 🎯 Project Overview
+## Project Overview
 
 This application is designed for managing utility (electricity and gas) billing operations, including:
 - Customer management (CRUD operations)
@@ -12,7 +12,7 @@ This application is designed for managing utility (electricity and gas) billing 
 - Tariff management with flexible pricing structures
 - Dashboard with analytics and reporting
 
-## 🏗️ Architecture
+##  Architecture
 
 ### Design Patterns Implemented
 
@@ -151,7 +151,7 @@ Tests cover:
 - Bill calculations (unit costs, standing charges, VAT)
 - Tariff pricing (flat-rate and tiered)
 
-## 📋 OOP Principles Demonstrated
+##   OOP Principles Demonstrated
 
 ### Encapsulation
 - All model classes use private fields with public getters/setters
@@ -173,7 +173,7 @@ Tests cover:
 - Abstract `Tariff` class with abstract methods
 - Service interfaces hide implementation details
 
-## 🎨 UI Features
+## UI Features
 
 - Modern, clean design with teal/cyan theme
 - Responsive layout with sidebar navigation

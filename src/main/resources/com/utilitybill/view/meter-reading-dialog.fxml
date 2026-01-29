@@ -78,15 +78,7 @@
             </VBox>
         </HBox>
 
-        <!-- Notes -->
-        <VBox spacing="5">
-            <Label text="Notes (Optional)" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
-            <TextArea fx:id="notesArea" 
-                      promptText="Any additional notes..."
-                      prefRowCount="3"
-                      wrapText="true"
-                      style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-font-size: 13px;"/>
-        </VBox>
+
     </VBox>
 
     <!-- Action Buttons -->

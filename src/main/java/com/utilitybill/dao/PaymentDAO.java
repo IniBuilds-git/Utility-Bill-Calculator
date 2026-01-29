@@ -1,22 +1,19 @@
 package com.utilitybill.dao;
 
-import com.google.gson.reflect.TypeToken;
 import com.utilitybill.exception.DataPersistenceException;
 import com.utilitybill.model.Payment;
 
-import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public class PaymentDAO extends AbstractJsonDAO<Payment, String> {
+public class PaymentDAO extends AbstractBinaryDAO<Payment, String> {
 
     private static volatile PaymentDAO instance;
-    private static final Type PAYMENT_LIST_TYPE = new TypeToken<List<Payment>>(){}.getType();
 
     private PaymentDAO() {
-        super("payments.json");
+        super("payments.dat");
     }
 
     public static PaymentDAO getInstance() {
@@ -33,11 +30,6 @@ public class PaymentDAO extends AbstractJsonDAO<Payment, String> {
     @Override
     protected String getId(Payment entity) {
         return entity.getPaymentId();
-    }
-
-    @Override
-    protected Type getEntityListType() {
-        return PAYMENT_LIST_TYPE;
     }
 
     public Optional<Payment> findByReferenceNumber(String referenceNumber) throws DataPersistenceException {
@@ -140,4 +132,3 @@ public class PaymentDAO extends AbstractJsonDAO<Payment, String> {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }
-

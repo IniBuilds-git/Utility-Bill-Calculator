@@ -5,6 +5,7 @@ import com.utilitybill.exception.DataPersistenceException;
 import com.utilitybill.model.Invoice;
 import com.utilitybill.model.User;
 import com.utilitybill.service.*;
+import com.utilitybill.util.AppLogger;
 import com.utilitybill.util.DateUtil;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -17,6 +18,10 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -27,43 +32,75 @@ import java.util.List;
 
 public class DashboardController {
 
+    private static final String CLASS_NAME = DashboardController.class.getName();
+
     // Navigation buttons
-    @FXML private Button dashboardBtn;
-    @FXML private Button customersBtn;
-    @FXML private Button meterReadingsBtn;
-    @FXML private Button invoicesBtn;
-    @FXML private Button paymentsBtn;
-    @FXML private Button tariffsBtn;
-    @FXML private Button billGeneratorBtn;
+    @FXML
+    private Button dashboardBtn;
+    @FXML
+    private Button customersBtn;
+    @FXML
+    private Button meterReadingsBtn;
+    @FXML
+    private Button invoicesBtn;
+    @FXML
+    private Button paymentsBtn;
+    @FXML
+    private Button tariffsBtn;
+    @FXML
+    private Button billGeneratorBtn;
 
     // Dashboard stats
-    @FXML private Label totalCustomersLabel;
-    @FXML private Label unpaidInvoicesLabel;
-    @FXML private Label totalRevenueLabel;
-    @FXML private Label overdueLabel;
+    @FXML
+    private Label totalCustomersLabel;
+    @FXML
+    private Label unpaidInvoicesLabel;
+    @FXML
+    private Label totalRevenueLabel;
+    @FXML
+    private Label overdueLabel;
 
     // User info
-    @FXML private Label userLabel;
-    @FXML private Label statusLabel;
-    @FXML private Label dateTimeLabel;
+    @FXML
+    private Label userLabel;
+    @FXML
+    private Label statusLabel;
+    @FXML
+    private Label dateTimeLabel;
 
     // Content area
-    @FXML private StackPane contentArea;
+    @FXML
+    private StackPane contentArea;
 
     // Recent invoices table
-    @FXML private TableView<Invoice> recentInvoicesTable;
-    @FXML private TableColumn<Invoice, String> invoiceNumberCol;
-    @FXML private TableColumn<Invoice, String> customerNameCol;
-    @FXML private TableColumn<Invoice, String> amountCol;
-    @FXML private TableColumn<Invoice, String> statusCol;
-    @FXML private TableColumn<Invoice, String> dueDateCol;
+    @FXML
+    private TableView<Invoice> recentInvoicesTable;
+    @FXML
+    private TableColumn<Invoice, String> invoiceNumberCol;
+    @FXML
+    private TableColumn<Invoice, String> customerNameCol;
+    @FXML
+    private TableColumn<Invoice, String> amountCol;
+    @FXML
+    private TableColumn<Invoice, String> statusCol;
+    @FXML
+    private TableColumn<Invoice, String> dueDateCol;
+
+    // Charts
+    @FXML
+    private BarChart<String, Number> revenueChart;
+    @FXML
+    private CategoryAxis xAxis;
+    @FXML
+    private NumberAxis yAxis;
 
     private final AuthenticationService authService;
     private final CustomerService customerService;
     private final BillingService billingService;
     private final PaymentService paymentService;
 
-    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy  HH:mm:ss");
+    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter
+            .ofPattern("EEEE, d MMMM yyyy  HH:mm:ss");
 
     private Button currentActiveButton;
     private Node dashboardHomeContent;
@@ -95,22 +132,19 @@ public class DashboardController {
     }
 
     private void setupTableColumns() {
-        invoiceNumberCol.setCellValueFactory(data ->
-                new SimpleStringProperty(data.getValue().getInvoiceNumber()));
+        invoiceNumberCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getInvoiceNumber()));
 
-        customerNameCol.setCellValueFactory(data ->
-                new SimpleStringProperty(data.getValue().getAccountNumber()));
+        customerNameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getAccountNumber()));
 
         amountCol.setCellValueFactory(data -> {
             BigDecimal amount = data.getValue().getTotalAmount();
             return new SimpleStringProperty(amount != null ? String.format("£%.2f", amount) : "£0.00");
         });
 
-        statusCol.setCellValueFactory(data ->
-                new SimpleStringProperty(data.getValue().getStatus().getDisplayName()));
+        statusCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getStatus().getDisplayName()));
 
-        dueDateCol.setCellValueFactory(data ->
-                new SimpleStringProperty(DateUtil.formatForDisplay(data.getValue().getDueDate())));
+        dueDateCol.setCellValueFactory(
+                data -> new SimpleStringProperty(DateUtil.formatForDisplay(data.getValue().getDueDate())));
 
         statusCol.setCellFactory(col -> new TableCell<>() {
             @Override
@@ -150,12 +184,14 @@ public class DashboardController {
 
             List<Invoice> allInvoices = billingService.getUnpaidInvoices();
             recentInvoicesTable.setItems(FXCollections.observableArrayList(
-                    allInvoices.stream().limit(10).toList()
-            ));
+                    allInvoices.stream().limit(10).toList()));
+
+            // Populate Chart
+            populateRevenueChart();
 
         } catch (DataPersistenceException e) {
             statusLabel.setText("Error loading dashboard data");
-            System.err.println("Dashboard refresh error: " + e.getMessage());
+            AppLogger.error(CLASS_NAME, "Dashboard refresh error: " + e.getMessage(), e);
         }
     }
 
@@ -253,7 +289,7 @@ public class DashboardController {
             Node content = loader.load();
             contentArea.getChildren().setAll(content);
         } catch (IOException e) {
-            System.err.println("Error loading content: " + e.getMessage());
+            AppLogger.error(CLASS_NAME, "Error loading content: " + e.getMessage(), e);
             showPlaceholder("Error", "Failed to load content: " + e.getMessage());
         }
     }
@@ -276,5 +312,28 @@ public class DashboardController {
         placeholder.getChildren().addAll(icon, titleLabel, descLabel);
         contentArea.getChildren().setAll(placeholder);
     }
-}
 
+    private void populateRevenueChart() throws DataPersistenceException {
+        if (revenueChart == null)
+            return;
+
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Revenue");
+
+        LocalDate today = LocalDate.now();
+        // Last 12 months
+        for (int i = 11; i >= 0; i--) {
+            LocalDate monthDate = today.minusMonths(i);
+            LocalDate startOfMonth = monthDate.withDayOfMonth(1);
+            LocalDate endOfMonth = monthDate.withDayOfMonth(monthDate.lengthOfMonth());
+
+            BigDecimal monthlyRevenue = paymentService.getTotalPaymentsByDateRange(startOfMonth, endOfMonth);
+            String monthName = monthDate.format(DateTimeFormatter.ofPattern("MMM"));
+
+            series.getData().add(new XYChart.Data<>(monthName, monthlyRevenue));
+        }
+
+        revenueChart.getData().clear();
+        revenueChart.getData().add(series);
+    }
+}

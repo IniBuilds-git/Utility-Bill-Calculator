@@ -16,25 +16,41 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import com.utilitybill.util.AppLogger;
+import com.utilitybill.util.FormatUtil;
+import com.utilitybill.util.ViewUtil;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 
 public class CustomerController {
 
-    @FXML private TextField searchField;
-    @FXML private ComboBox<String> filterCombo;
-    @FXML private TableView<Customer> customerTable;
-    @FXML private TableColumn<Customer, String> accountNumberCol;
-    @FXML private TableColumn<Customer, String> nameCol;
-    @FXML private TableColumn<Customer, String> emailCol;
-    @FXML private TableColumn<Customer, String> phoneCol;
-    @FXML private TableColumn<Customer, String> addressCol;
-    @FXML private TableColumn<Customer, String> balanceCol;
-    @FXML private TableColumn<Customer, String> statusCol;
-    @FXML private TableColumn<Customer, Void> actionsCol;
-    @FXML private Label summaryLabel;
-    @FXML private Pagination pagination;
+    @FXML
+    private TextField searchField;
+    @FXML
+    private ComboBox<String> filterCombo;
+    @FXML
+    private TableView<Customer> customerTable;
+    @FXML
+    private TableColumn<Customer, String> accountNumberCol;
+    @FXML
+    private TableColumn<Customer, String> nameCol;
+    @FXML
+    private TableColumn<Customer, String> emailCol;
+    @FXML
+    private TableColumn<Customer, String> phoneCol;
+    @FXML
+    private TableColumn<Customer, String> addressCol;
+    @FXML
+    private TableColumn<Customer, String> balanceCol;
+    @FXML
+    private TableColumn<Customer, String> statusCol;
+    @FXML
+    private TableColumn<Customer, Void> actionsCol;
+    @FXML
+    private Label summaryLabel;
+    @FXML
+    private Pagination pagination;
 
     private final CustomerService customerService;
     private ObservableList<Customer> customerList;
@@ -47,28 +63,26 @@ public class CustomerController {
     public void initialize() {
         setupTableColumns();
 
-        filterCombo.setItems(FXCollections.observableArrayList(
-                "All Customers", "Active", "Inactive", "With Debt"
-        ));
-        filterCombo.setValue("All Customers");
-        filterCombo.setOnAction(e -> handleSearch());
+        // Filter combo may not exist in all views - handle gracefully
+        if (filterCombo != null) {
+            filterCombo.setItems(FXCollections.observableArrayList(
+                    "All Customers", "Active", "Inactive", "With Debt"));
+            filterCombo.setValue("All Customers");
+            filterCombo.setOnAction(e -> handleSearch());
+        }
 
         refreshData();
         searchField.setOnAction(e -> handleSearch());
     }
 
     private void setupTableColumns() {
-        accountNumberCol.setCellValueFactory(data ->
-                new SimpleStringProperty(data.getValue().getAccountNumber()));
+        accountNumberCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getAccountNumber()));
 
-        nameCol.setCellValueFactory(data ->
-                new SimpleStringProperty(data.getValue().getFullName()));
+        nameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getFullName()));
 
-        emailCol.setCellValueFactory(data ->
-                new SimpleStringProperty(data.getValue().getEmail()));
+        emailCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getEmail()));
 
-        phoneCol.setCellValueFactory(data ->
-                new SimpleStringProperty(data.getValue().getPhone()));
+        phoneCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPhone()));
 
         addressCol.setCellValueFactory(data -> {
             if (data.getValue().getServiceAddress() != null) {
@@ -79,7 +93,7 @@ public class CustomerController {
 
         balanceCol.setCellValueFactory(data -> {
             BigDecimal balance = data.getValue().getAccountBalance();
-            String formatted = String.format("£%.2f", balance);
+            String formatted = FormatUtil.formatCurrency(balance);
             return new SimpleStringProperty(formatted);
         });
 
@@ -101,8 +115,8 @@ public class CustomerController {
             }
         });
 
-        statusCol.setCellValueFactory(data ->
-                new SimpleStringProperty(data.getValue().isActive() ? "Active" : "Inactive"));
+        statusCol.setCellValueFactory(
+                data -> new SimpleStringProperty(data.getValue().isActive() ? "Active" : "Inactive"));
 
         statusCol.setCellFactory(col -> new TableCell<>() {
             @Override
@@ -153,14 +167,14 @@ public class CustomerController {
             customerTable.setItems(customerList);
             updateSummary(customers.size());
         } catch (DataPersistenceException e) {
-            showError("Failed to load customers: " + e.getMessage());
+            ViewUtil.showError("Error", "Failed to load customers: " + e.getMessage());
         }
     }
 
     @FXML
     public void handleSearch() {
         String searchText = searchField.getText().trim().toLowerCase();
-        String filter = filterCombo.getValue();
+        String filter = filterCombo != null ? filterCombo.getValue() : "All Customers";
 
         try {
             List<Customer> customers;
@@ -179,10 +193,9 @@ public class CustomerController {
 
             if (!searchText.isEmpty()) {
                 customers = customers.stream()
-                        .filter(c ->
-                                c.getFullName().toLowerCase().contains(searchText) ||
-                                        c.getAccountNumber().toLowerCase().contains(searchText) ||
-                                        c.getEmail().toLowerCase().contains(searchText))
+                        .filter(c -> c.getFullName().toLowerCase().contains(searchText) ||
+                                c.getAccountNumber().toLowerCase().contains(searchText) ||
+                                c.getEmail().toLowerCase().contains(searchText))
                         .toList();
             }
 
@@ -191,7 +204,7 @@ public class CustomerController {
             updateSummary(customers.size());
 
         } catch (DataPersistenceException e) {
-            showError("Search failed: " + e.getMessage());
+            ViewUtil.showError("Error", "Search failed: " + e.getMessage());
         }
     }
 
@@ -208,7 +221,7 @@ public class CustomerController {
             dialogStage.initModality(Modality.APPLICATION_MODAL);
             dialogStage.setScene(new Scene(root));
             dialogStage.setResizable(false);
-            
+
             controller.setDialogStage(dialogStage);
             dialogStage.showAndWait();
 
@@ -216,27 +229,27 @@ public class CustomerController {
                 refreshData();
             }
         } catch (IOException e) {
-            showError("Failed to open dialog: " + e.getMessage());
+            ViewUtil.showError("Error", "Failed to open dialog: " + e.getMessage());
         }
     }
 
     private void viewCustomer(Customer customer) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Customer Details");
-        alert.setHeaderText(customer.getFullName());
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/utilitybill/view/customer-details.fxml"));
+            Parent root = loader.load();
+            
+            CustomerDetailsController controller = loader.getController();
+            controller.setCustomer(customer);
 
-        StringBuilder details = new StringBuilder();
-        details.append("Account Number: ").append(customer.getAccountNumber()).append("\n");
-        details.append("Email: ").append(customer.getEmail()).append("\n");
-        details.append("Phone: ").append(customer.getPhone()).append("\n");
-        details.append("Address: ").append(customer.getServiceAddress() != null ?
-                customer.getServiceAddress().getFullAddress() : "N/A").append("\n");
-        details.append("Balance: £").append(String.format("%.2f", customer.getAccountBalance())).append("\n");
-        details.append("Status: ").append(customer.isActive() ? "Active" : "Inactive").append("\n");
-        details.append("Customer Since: ").append(DateUtil.formatForDisplay(customer.getCreatedAt().toLocalDate()));
-
-        alert.setContentText(details.toString());
-        alert.showAndWait();
+            Stage stage = new Stage();
+            stage.setTitle("Customer Dashboard - " + customer.getFullName());
+            stage.setScene(new Scene(root));
+            stage.show();
+            
+        } catch (IOException e) {
+            AppLogger.error(getClass().getName(), "Failed to open customer details", e);
+            ViewUtil.showError("Error", "Failed to open details view: " + e.getMessage());
+        }
     }
 
     private void editCustomer(Customer customer) {
@@ -252,7 +265,7 @@ public class CustomerController {
             dialogStage.initModality(Modality.APPLICATION_MODAL);
             dialogStage.setScene(new Scene(root));
             dialogStage.setResizable(false);
-            
+
             controller.setDialogStage(dialogStage);
             dialogStage.showAndWait();
 
@@ -260,7 +273,7 @@ public class CustomerController {
                 refreshData();
             }
         } catch (IOException e) {
-            showError("Failed to open dialog: " + e.getMessage());
+            ViewUtil.showError("Error", "Failed to open dialog: " + e.getMessage());
         }
     }
 
@@ -268,12 +281,5 @@ public class CustomerController {
         summaryLabel.setText(String.format("Showing %d customer%s", count, count == 1 ? "" : "s"));
     }
 
-    private void showError(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-}
 
+}

@@ -3,9 +3,7 @@ package com.utilitybill.model;
 public enum MeterType {
 
     ELECTRICITY("Electricity", "kWh", "ELEC"),
-    GAS("Gas", "kWh", "GAS"),
-    DUAL_FUEL("Dual Fuel", "kWh", "DUAL");
-
+    GAS("Gas", "kWh", "GAS");
     private final String displayName;
     private final String unit;
     private final String prefix;

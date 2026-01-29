@@ -3,12 +3,13 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <VBox xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.utilitybill.controller.TariffController"
-      spacing="20" style="-fx-background-color: #f1f5f9;">
+      spacing="20"
+      styleClass="light-background"
+      stylesheets="@styles.css">
 
     <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>
@@ -17,34 +18,39 @@
     <!-- Page Header -->
     <HBox alignment="CENTER_LEFT" spacing="20">
         <VBox spacing="5" HBox.hgrow="ALWAYS">
-            <Label text="Tariff Management">
-                <font>
-                    <Font name="System Bold" size="28"/>
-                </font>
-            </Label>
-            <Label text="Configure electricity and gas tariff rates" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+            <Label text="Tariff Management" styleClass="page-title"/>
+            <Label text="Configure electricity and gas tariff rates" styleClass="page-subtitle"/>
         </VBox>
+
         <Button text="+ Add Tariff"
                 onAction="#showAddTariffDialog"
-                style="-fx-background-color: #0d9488; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-padding: 14 30; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                styleClass="primary-button">
+            <padding>
+                <Insets top="14" right="30" bottom="14" left="30"/>
+            </padding>
+        </Button>
     </HBox>
 
     <!-- Tariff Type Tabs -->
-    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 12;">
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" styleClass="tab-pane">
+
         <!-- Electricity Tariffs -->
-        <Tab text="⚡ Electricity Tariffs">
-            <VBox spacing="15" style="-fx-padding: 20;">
+        <Tab text="Electricity Tariffs">
+            <VBox spacing="15">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+
                 <TableView fx:id="electricityTable" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="elecNameCol" text="Tariff Name" prefWidth="200"/>
-                        <TableColumn fx:id="elecTypeCol" text="Type" prefWidth="100"/>
-                        <TableColumn fx:id="elecStandingCol" text="Standing Charge" prefWidth="130"/>
-                        <TableColumn fx:id="elecUnitCol" text="Unit Rate" prefWidth="120"/>
-                        <TableColumn fx:id="elecTier1Col" text="Tier 1 Rate" prefWidth="100"/>
-                        <TableColumn fx:id="elecTier2Col" text="Tier 2 Rate" prefWidth="100"/>
-                        <TableColumn fx:id="elecStatusCol" text="Status" prefWidth="80"/>
-                        <TableColumn fx:id="elecActionsCol" text="Actions" prefWidth="120"/>
+                        <TableColumn fx:id="elecNameCol" text="Tariff Name" prefWidth="240"/>
+                        <TableColumn fx:id="elecStandingCol" text="Standing Charge" prefWidth="160"/>
+                        <TableColumn fx:id="elecDayRateCol" text="Day Rate" prefWidth="140"/>
+                        <TableColumn fx:id="elecNightRateCol" text="Night Rate" prefWidth="140"/>
+                        <TableColumn fx:id="elecStatusCol" text="Status" prefWidth="100"/>
+                        <TableColumn fx:id="elecActionsCol" text="Actions" prefWidth="150"/>
                     </columns>
+
                     <placeholder>
                         <Label text="No electricity tariffs configured"/>
                     </placeholder>
@@ -53,35 +59,47 @@
         </Tab>
 
         <!-- Gas Tariffs -->
-        <Tab text="🔥 Gas Tariffs">
-            <VBox spacing="15" style="-fx-padding: 20;">
+        <Tab text="Gas Tariffs">
+            <VBox spacing="15">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+
                 <TableView fx:id="gasTable" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="gasNameCol" text="Tariff Name" prefWidth="200"/>
-                        <TableColumn fx:id="gasStandingCol" text="Standing Charge" prefWidth="130"/>
-                        <TableColumn fx:id="gasUnitCol" text="Unit Rate" prefWidth="120"/>
-                        <TableColumn fx:id="gasCalorificCol" text="Calorific Value" prefWidth="120"/>
-                        <TableColumn fx:id="gasStatusCol" text="Status" prefWidth="80"/>
-                        <TableColumn fx:id="gasActionsCol" text="Actions" prefWidth="120"/>
+                        <TableColumn fx:id="gasNameCol" text="Tariff Name" prefWidth="240"/>
+                        <TableColumn fx:id="gasStandingCol" text="Standing Charge" prefWidth="160"/>
+                        <TableColumn fx:id="gasUnitCol" text="Unit Rate" prefWidth="140"/>
+                        <TableColumn fx:id="gasCvCol" text="Calorific Value" prefWidth="140"/>
+                        <TableColumn fx:id="gasCorrectCol" text="Correction Factor" prefWidth="160"/>
+                        <TableColumn fx:id="gasStatusCol" text="Status" prefWidth="100"/>
+                        <TableColumn fx:id="gasActionsCol" text="Actions" prefWidth="150"/>
                     </columns>
+
                     <placeholder>
                         <Label text="No gas tariffs configured"/>
                     </placeholder>
                 </TableView>
             </VBox>
         </Tab>
+
     </TabPane>
 
     <!-- Info Panel -->
-    <HBox spacing="20" style="-fx-background-color: #f0fdfa; -fx-background-radius: 10; -fx-padding: 20; -fx-border-color: #99f6e4; -fx-border-radius: 10;">
+    <HBox spacing="20" styleClass="info-panel">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
         <VBox spacing="5" HBox.hgrow="ALWAYS">
-            <Label text="ℹ️ About Tariffs" style="-fx-font-weight: bold; -fx-text-fill: #0d9488;"/>
-            <Label text="Tariffs define how customer bills are calculated. You can set up flat-rate or tiered pricing structures." 
-                   wrapText="true" style="-fx-text-fill: #475569;"/>
+            <Label text="About Tariffs" styleClass="info-title"/>
+            <Label text="Tariffs define the standing charge and unit rates used to calculate bills. Electricity can have day/night rates, and gas includes conversion factors."
+                   wrapText="true" styleClass="info-text"/>
         </VBox>
+
         <VBox spacing="5">
-            <Label text="Current VAT Rate" style="-fx-font-weight: bold; -fx-text-fill: #0d9488;"/>
-            <Label text="5% (Reduced rate for energy)" style="-fx-text-fill: #475569;"/>
+            <Label text="Current VAT Rate" styleClass="info-title"/>
+            <Label text="5% (Reduced rate for energy)" styleClass="info-text"/>
         </VBox>
     </HBox>
 

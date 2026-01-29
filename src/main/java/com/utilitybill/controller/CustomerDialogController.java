@@ -15,20 +15,34 @@ import java.util.List;
 
 public class CustomerDialogController {
 
-    @FXML private Label dialogTitle;
-    @FXML private TextField firstNameField;
-    @FXML private TextField lastNameField;
-    @FXML private TextField emailField;
-    @FXML private TextField phoneField;
-    @FXML private TextField houseNumberField;
-    @FXML private TextField streetField;
-    @FXML private TextField cityField;
-    @FXML private TextField countyField;
-    @FXML private TextField postcodeField;
-    @FXML private ComboBox<MeterType> meterTypeCombo;
-    @FXML private ComboBox<Tariff> tariffCombo;
-    @FXML private ComboBox<Customer.CustomerType> customerTypeCombo;
-    @FXML private Label errorLabel;
+    @FXML
+    private Label dialogTitle;
+    @FXML
+    private TextField firstNameField;
+    @FXML
+    private TextField lastNameField;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private TextField phoneField;
+    @FXML
+    private TextField houseNumberField;
+    @FXML
+    private TextField streetField;
+    @FXML
+    private TextField cityField;
+    @FXML
+    private TextField countyField;
+    @FXML
+    private TextField postcodeField;
+    @FXML
+    private ComboBox<MeterType> meterTypeCombo;
+    @FXML
+    private ComboBox<Tariff> tariffCombo;
+    @FXML
+    private ComboBox<Customer.CustomerType> customerTypeCombo;
+    @FXML
+    private Label errorLabel;
 
     private final CustomerService customerService;
     private final TariffService tariffService;
@@ -161,28 +175,28 @@ public class CustomerDialogController {
     private boolean validateFields() {
         StringBuilder errors = new StringBuilder();
 
-        if (firstNameField.getText().trim().isEmpty()) {
+        if (getText(firstNameField).isEmpty()) {
             errors.append("First name is required\n");
         }
-        if (lastNameField.getText().trim().isEmpty()) {
+        if (getText(lastNameField).isEmpty()) {
             errors.append("Last name is required\n");
         }
-        if (emailField.getText().trim().isEmpty()) {
+        if (getText(emailField).isEmpty()) {
             errors.append("Email is required\n");
         }
-        if (phoneField.getText().trim().isEmpty()) {
+        if (getText(phoneField).isEmpty()) {
             errors.append("Phone number is required\n");
         }
-        if (houseNumberField.getText().trim().isEmpty()) {
+        if (getText(houseNumberField).isEmpty()) {
             errors.append("House number is required\n");
         }
-        if (streetField.getText().trim().isEmpty()) {
+        if (getText(streetField).isEmpty()) {
             errors.append("Street is required\n");
         }
-        if (cityField.getText().trim().isEmpty()) {
+        if (getText(cityField).isEmpty()) {
             errors.append("City is required\n");
         }
-        if (postcodeField.getText().trim().isEmpty()) {
+        if (getText(postcodeField).isEmpty()) {
             errors.append("Postcode is required\n");
         }
         if (tariffCombo.getValue() == null) {
@@ -196,24 +210,29 @@ public class CustomerDialogController {
         return true;
     }
 
+    private String getText(TextField field) {
+        if (field == null || field.getText() == null) {
+            return "";
+        }
+        return field.getText().trim();
+    }
+
     private void createCustomer() throws ValidationException, DuplicateAccountException, DataPersistenceException {
         Address address = new Address(
-                houseNumberField.getText().trim(),
-                streetField.getText().trim(),
-                cityField.getText().trim(),
-                countyField.getText().trim(),
-                postcodeField.getText().trim().toUpperCase()
-        );
+                getText(houseNumberField),
+                getText(streetField),
+                getText(cityField),
+                getText(countyField),
+                getText(postcodeField).toUpperCase());
 
         Customer newCustomer = customerService.createCustomer(
-                firstNameField.getText().trim(),
-                lastNameField.getText().trim(),
-                emailField.getText().trim(),
-                phoneField.getText().trim(),
+                getText(firstNameField),
+                getText(lastNameField),
+                getText(emailField),
+                getText(phoneField),
                 address,
                 meterTypeCombo.getValue(),
-                tariffCombo.getValue() != null ? tariffCombo.getValue().getTariffId() : null
-        );
+                tariffCombo.getValue() != null ? tariffCombo.getValue().getTariffId() : null);
 
         newCustomer.setCustomerType(customerTypeCombo.getValue());
         try {
@@ -225,20 +244,20 @@ public class CustomerDialogController {
     }
 
     private void updateCustomer() throws ValidationException, DataPersistenceException {
-        customer.setFirstName(firstNameField.getText().trim());
-        customer.setLastName(lastNameField.getText().trim());
-        customer.setEmail(emailField.getText().trim());
-        customer.setPhone(phoneField.getText().trim());
+        customer.setFirstName(getText(firstNameField));
+        customer.setLastName(getText(lastNameField));
+        customer.setEmail(getText(emailField));
+        customer.setPhone(getText(phoneField));
 
         Address address = customer.getServiceAddress();
         if (address == null) {
             address = new Address();
         }
-        address.setHouseNumber(houseNumberField.getText().trim());
-        address.setStreet(streetField.getText().trim());
-        address.setCity(cityField.getText().trim());
-        address.setCounty(countyField.getText().trim());
-        address.setPostcode(postcodeField.getText().trim().toUpperCase());
+        address.setHouseNumber(getText(houseNumberField));
+        address.setStreet(getText(streetField));
+        address.setCity(getText(cityField));
+        address.setCounty(getText(countyField));
+        address.setPostcode(getText(postcodeField).toUpperCase());
         customer.setServiceAddress(address);
 
         customer.setCustomerType(customerTypeCombo.getValue());
@@ -250,7 +269,7 @@ public class CustomerDialogController {
         try {
             customerService.updateCustomer(customer);
         } catch (com.utilitybill.exception.CustomerNotFoundException e) {
-            throw new DataPersistenceException("Customer not found", "", 
+            throw new DataPersistenceException("Customer not found", "",
                     com.utilitybill.exception.DataPersistenceException.Operation.WRITE, e);
         }
     }
@@ -278,4 +297,3 @@ public class CustomerDialogController {
         return saved;
     }
 }
-

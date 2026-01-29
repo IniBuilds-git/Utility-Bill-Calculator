@@ -133,8 +133,8 @@ class BillCalculatorTest {
         void shouldCalculateFlatRateBill() {
             ElectricityTariff tariff = new ElectricityTariff(
                     "Test Tariff",
-                    new BigDecimal("0.45"),  // 45p standing charge per day
-                    new BigDecimal("28.62")   // 28.62p per kWh
+                    new BigDecimal("0.45"), // 45p standing charge per day
+                    new BigDecimal("28.62") // 28.62p per kWh
             );
 
             // 100 kWh over 30 days
@@ -162,12 +162,12 @@ class BillCalculatorTest {
         @Test
         @DisplayName("Should calculate tiered electricity bill")
         void shouldCalculateTieredBill() {
-            ElectricityTariff tariff = new ElectricityTariff(
+            ElectricityTariff tariff = ElectricityTariff.createTieredTariff(
                     "Tiered Tariff",
-                    new BigDecimal("0.40"),   // 40p standing charge per day
-                    500,                        // First 500 kWh at tier 1 rate
-                    new BigDecimal("25.00"),   // 25p per kWh for tier 1
-                    new BigDecimal("30.00")    // 30p per kWh for tier 2
+                    new BigDecimal("0.40"), // 40p standing charge per day
+                    500, // First 500 kWh at tier 1 rate
+                    new BigDecimal("25.00"), // 25p per kWh for tier 1
+                    new BigDecimal("30.00") // 30p per kWh for tier 2
             );
 
             // 600 kWh - should use both tiers
@@ -190,8 +190,8 @@ class BillCalculatorTest {
         void shouldCalculateGasBill() {
             GasTariff tariff = new GasTariff(
                     "Test Gas Tariff",
-                    new BigDecimal("0.30"),  // 30p standing charge per day
-                    new BigDecimal("7.42")    // 7.42p per kWh
+                    new BigDecimal("0.30"), // 30p standing charge per day
+                    new BigDecimal("7.42") // 7.42p per kWh
             );
 
             // 500 kWh over 31 days
@@ -268,4 +268,3 @@ class BillCalculatorTest {
         }
     }
 }
-

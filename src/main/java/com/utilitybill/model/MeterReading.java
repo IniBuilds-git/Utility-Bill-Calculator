@@ -15,12 +15,23 @@ public class MeterReading implements Serializable {
     private String customerId;
     private double readingValue;
     private double previousReadingValue;
+
+    // For electricity day/night meters (Economy 7, Economy 10)
+    private Double dayReading;
+    private Double nightReading;
+    private Double previousDayReading;
+    private Double previousNightReading;
+
+    // For gas meter conversion
+    private boolean imperialMeter;
+    private Double cubicMeters;
+    private Double calorificValue;
+
     private LocalDate readingDate;
     private LocalDateTime recordedAt;
     private ReadingType readingType;
     private String submittedBy;
     private boolean billed;
-    private String notes;
 
     public enum ReadingType {
         ACTUAL("Actual Reading"),
@@ -57,7 +68,7 @@ public class MeterReading implements Serializable {
     }
 
     public MeterReading(String meterId, String customerId, double readingValue,
-                        double previousReadingValue, ReadingType readingType) {
+            double previousReadingValue, ReadingType readingType) {
         this(meterId, customerId, readingValue, readingType);
         this.previousReadingValue = previousReadingValue;
     }
@@ -142,16 +153,100 @@ public class MeterReading implements Serializable {
         this.billed = billed;
     }
 
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
     public double getConsumption() {
+        // OPENING readings represent the starting point and have no consumption
+        if (readingType == ReadingType.OPENING) {
+            return 0;
+        }
         return readingValue - previousReadingValue;
+    }
+
+    // Day/Night electricity readings
+    public Double getDayReading() {
+        return dayReading;
+    }
+
+    public void setDayReading(Double dayReading) {
+        this.dayReading = dayReading;
+    }
+
+    public Double getNightReading() {
+        return nightReading;
+    }
+
+    public void setNightReading(Double nightReading) {
+        this.nightReading = nightReading;
+    }
+
+    public Double getPreviousDayReading() {
+        return previousDayReading;
+    }
+
+    public void setPreviousDayReading(Double previousDayReading) {
+        this.previousDayReading = previousDayReading;
+    }
+
+    public Double getPreviousNightReading() {
+        return previousNightReading;
+    }
+
+    public void setPreviousNightReading(Double previousNightReading) {
+        this.previousNightReading = previousNightReading;
+    }
+
+    public boolean hasDayNightReadings() {
+        return dayReading != null && nightReading != null;
+    }
+
+    public double getDayConsumption() {
+        // OPENING readings represent the starting point and have no consumption
+        if (readingType == ReadingType.OPENING) {
+            return 0;
+        }
+        if (dayReading == null || previousDayReading == null) {
+            return 0;
+        }
+        return dayReading - previousDayReading;
+    }
+
+    public double getNightConsumption() {
+        // OPENING readings represent the starting point and have no consumption
+        if (readingType == ReadingType.OPENING) {
+            return 0;
+        }
+        if (nightReading == null || previousNightReading == null) {
+            return 0;
+        }
+        return nightReading - previousNightReading;
+    }
+
+    public double getTotalDayNightConsumption() {
+        return getDayConsumption() + getNightConsumption();
+    }
+
+    // Gas meter fields
+    public boolean isImperialMeter() {
+        return imperialMeter;
+    }
+
+    public void setImperialMeter(boolean imperialMeter) {
+        this.imperialMeter = imperialMeter;
+    }
+
+    public Double getCubicMeters() {
+        return cubicMeters;
+    }
+
+    public void setCubicMeters(Double cubicMeters) {
+        this.cubicMeters = cubicMeters;
+    }
+
+    public Double getCalorificValue() {
+        return calorificValue;
+    }
+
+    public void setCalorificValue(Double calorificValue) {
+        this.calorificValue = calorificValue;
     }
 
     public boolean isEstimated() {
@@ -172,8 +267,10 @@ public class MeterReading implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         MeterReading that = (MeterReading) o;
         return Objects.equals(readingId, that.readingId);
     }

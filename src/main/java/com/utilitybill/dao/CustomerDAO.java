@@ -1,20 +1,17 @@
 package com.utilitybill.dao;
 
-import com.google.gson.reflect.TypeToken;
 import com.utilitybill.exception.DataPersistenceException;
 import com.utilitybill.model.Customer;
 
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
 
-public class CustomerDAO extends AbstractJsonDAO<Customer, String> {
+public class CustomerDAO extends AbstractBinaryDAO<Customer, String> {
 
     private static volatile CustomerDAO instance;
-    private static final Type CUSTOMER_LIST_TYPE = new TypeToken<List<Customer>>(){}.getType();
 
     private CustomerDAO() {
-        super("customers.json");
+        super("customers.dat");
     }
 
     public static CustomerDAO getInstance() {
@@ -31,11 +28,6 @@ public class CustomerDAO extends AbstractJsonDAO<Customer, String> {
     @Override
     protected String getId(Customer entity) {
         return entity.getCustomerId();
-    }
-
-    @Override
-    protected Type getEntityListType() {
-        return CUSTOMER_LIST_TYPE;
     }
 
     public Optional<Customer> findByAccountNumber(String accountNumber) throws DataPersistenceException {
@@ -55,7 +47,7 @@ public class CustomerDAO extends AbstractJsonDAO<Customer, String> {
         lock.readLock().lock();
         try {
             return cache.values().stream()
-                    .filter(c -> c.getEmail().equalsIgnoreCase(email))
+                    .filter(c -> c.getEmail() != null && c.getEmail().equalsIgnoreCase(email))
                     .findFirst();
         } finally {
             lock.readLock().unlock();
@@ -115,18 +107,6 @@ public class CustomerDAO extends AbstractJsonDAO<Customer, String> {
         }
     }
 
-    public List<Customer> findByType(Customer.CustomerType type) throws DataPersistenceException {
-        initializeCache();
-        lock.readLock().lock();
-        try {
-            return cache.values().stream()
-                    .filter(c -> c.getCustomerType() == type)
-                    .toList();
-        } finally {
-            lock.readLock().unlock();
-        }
-    }
-
     public boolean emailExists(String email) throws DataPersistenceException {
         return findByEmail(email).isPresent();
     }
@@ -135,4 +115,3 @@ public class CustomerDAO extends AbstractJsonDAO<Customer, String> {
         return findByAccountNumber(accountNumber).isPresent();
     }
 }
-

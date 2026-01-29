@@ -4,32 +4,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.effect.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.utilitybill.controller.LoginController"
-            style="-fx-background-color: linear-gradient(to bottom right, #0f172a, #1e293b);">
+            styleClass="gradient-background"
+            stylesheets="@styles.css">
 
     <center>
         <VBox alignment="CENTER" spacing="0" maxWidth="450">
             <!-- Login Card -->
-            <VBox spacing="25" alignment="CENTER"
-                  style="-fx-background-color: white; -fx-background-radius: 20; -fx-padding: 50 40;">
-                <effect>
-                    <DropShadow color="rgba(0,0,0,0.25)" radius="30" offsetY="10"/>
-                </effect>
+            <VBox spacing="25" alignment="CENTER" styleClass="login-card">
+                <padding>
+                    <Insets top="50" right="40" bottom="50" left="40"/>
+                </padding>
 
                 <!-- Logo/Header Section -->
                 <VBox alignment="CENTER" spacing="10">
-                    <Label text="⚡" style="-fx-font-size: 48px;"/>
-                    <Label text="Utility Bill Manager">
-                        <font>
-                            <Font name="System Bold" size="28"/>
-                        </font>
-                    </Label>
-                    <Label text="Sign in to your account" style="-fx-text-fill: #64748b; -fx-font-size: 14px;"/>
+                    <Label text="Power" styleClass="logo-text"/>
+                    <Label text="Utility Bill Manager" styleClass="login-title"/>
+                    <Label text="Sign in to your account" styleClass="login-subtitle"/>
                 </VBox>
 
                 <!-- Login Form -->
@@ -37,21 +31,29 @@
 
                     <!-- Username Field -->
                     <VBox spacing="8">
-                        <Label text="Username" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                        <Label text="Username" styleClass="form-label"/>
                         <TextField fx:id="usernameField"
                                    promptText="Enter your username"
                                    prefHeight="45"
-                                   style="-fx-background-color: #f1f5f9; -fx-background-radius: 8; -fx-border-color: #cbd5e1; -fx-border-radius: 8; -fx-padding: 12 15; -fx-font-size: 14px;"/>
+                                   styleClass="text-field">
+                            <padding>
+                                <Insets top="12" right="15" bottom="12" left="15"/>
+                            </padding>
+                        </TextField>
                     </VBox>
 
                     <!-- Password Field -->
                     <VBox spacing="8">
-                        <Label text="Password" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                        <Label text="Password" styleClass="form-label"/>
                         <PasswordField fx:id="passwordField"
                                        promptText="Enter your password"
                                        prefHeight="45"
                                        onAction="#handleLogin"
-                                       style="-fx-background-color: #f1f5f9; -fx-background-radius: 8; -fx-border-color: #cbd5e1; -fx-border-radius: 8; -fx-padding: 12 15; -fx-font-size: 14px;"/>
+                                       styleClass="password-field">
+                            <padding>
+                                <Insets top="12" right="15" bottom="12" left="15"/>
+                            </padding>
+                        </PasswordField>
                     </VBox>
 
                     <!-- Error Message -->
@@ -59,28 +61,28 @@
                            visible="false"
                            managed="false"
                            wrapText="true"
-                           style="-fx-text-fill: #ef4444; -fx-font-size: 13px; -fx-padding: 10 15; -fx-background-color: #fef2f2; -fx-background-radius: 8;"/>
+                           styleClass="error-message">
+                        <padding>
+                            <Insets top="10" right="15" bottom="10" left="15"/>
+                        </padding>
+                    </Label>
 
                     <!-- Login Button -->
                     <Button text="Sign In"
                             onAction="#handleLogin"
                             prefHeight="45"
                             maxWidth="Infinity"
-                            style="-fx-background-color: #0d9488; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                            styleClass="primary-button"/>
 
                 </VBox>
 
                 <!-- Footer -->
                 <VBox alignment="CENTER" spacing="10">
                     <Separator/>
-                    <Label text="Default: admin / Admin123" style="-fx-text-fill: #94a3b8; -fx-font-size: 12px; -fx-font-style: italic;"/>
+                    <Label text="Default: admin / Admin123" styleClass="hint-text"/>
                 </VBox>
 
             </VBox>
-
-            <!-- Copyright -->
-            <Label text="© 2024 Utility Bill Management System" 
-                   style="-fx-text-fill: #94a3b8; -fx-font-size: 12px; -fx-padding: 20 0 0 0;"/>
 
         </VBox>
     </center>

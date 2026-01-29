@@ -8,6 +8,9 @@ module com.utilitybill {
     requires javafx.fxml;
     requires transitive javafx.graphics;
 
+    // Java logging
+    requires java.logging;
+
     // JSON processing - using transitive for adapter classes
     requires transitive com.google.gson;
 
@@ -17,6 +20,14 @@ module com.utilitybill {
     // Icons
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.fontawesome5;
+
+    // PDF Generation
+    requires kernel;
+    requires layout;
+    requires io;
+
+    // Email
+    requires jakarta.mail;
 
     // Open packages to JavaFX for FXML injection
     opens com.utilitybill to javafx.fxml;
