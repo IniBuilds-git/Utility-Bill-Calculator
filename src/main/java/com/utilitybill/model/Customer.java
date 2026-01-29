@@ -28,23 +28,7 @@ public class Customer implements Serializable {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private boolean active;
-    private CustomerType customerType;
 
-    public enum CustomerType {
-        RESIDENTIAL("Residential"),
-        COMMERCIAL("Commercial"),
-        INDUSTRIAL("Industrial");
-
-        private final String displayName;
-
-        CustomerType(String displayName) {
-            this.displayName = displayName;
-        }
-
-        public String getDisplayName() {
-            return displayName;
-        }
-    }
 
     public Customer() {
         this.customerId = java.util.UUID.randomUUID().toString();
@@ -54,7 +38,7 @@ public class Customer implements Serializable {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
         this.active = true;
-        this.customerType = CustomerType.RESIDENTIAL;
+
     }
 
     public Customer(String firstName, String lastName, String email,
@@ -197,14 +181,7 @@ public class Customer implements Serializable {
         this.updatedAt = LocalDateTime.now();
     }
 
-    public CustomerType getCustomerType() {
-        return customerType;
-    }
 
-    public void setCustomerType(CustomerType customerType) {
-        this.customerType = customerType;
-        this.updatedAt = LocalDateTime.now();
-    }
 
     public void addMeter(Meter meter) {
         if (meter != null && !meters.contains(meter)) {
@@ -281,7 +258,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Customer{id='%s', account='%s', name='%s', email='%s', type=%s}",
-                customerId, accountNumber, getFullName(), email, customerType);
+        return String.format("Customer{id='%s', account='%s', name='%s', email='%s'}",
+                customerId, accountNumber, getFullName(), email);
     }
 }

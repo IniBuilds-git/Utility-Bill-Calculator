@@ -90,12 +90,12 @@ class BillCalculatorTest {
         @Test
         @DisplayName("Should calculate standing charge correctly")
         void shouldCalculateStandingCharge() {
-            // 30 days at £0.45/day = £13.50
-            BigDecimal charge = BillCalculator.calculateStandingCharge(new BigDecimal("0.45"), 30);
+            // 30 days at 45p/day = £13.50
+            BigDecimal charge = BillCalculator.calculateStandingCharge(new BigDecimal("45.00"), 30);
             assertEquals(new BigDecimal("13.50"), charge);
 
-            // 31 days at £0.30/day = £9.30
-            charge = BillCalculator.calculateStandingCharge(new BigDecimal("0.30"), 31);
+            // 31 days at 30p/day = £9.30
+            charge = BillCalculator.calculateStandingCharge(new BigDecimal("30.00"), 31);
             assertEquals(new BigDecimal("9.30"), charge);
         }
 
@@ -133,7 +133,7 @@ class BillCalculatorTest {
         void shouldCalculateFlatRateBill() {
             ElectricityTariff tariff = new ElectricityTariff(
                     "Test Tariff",
-                    new BigDecimal("0.45"), // 45p standing charge per day
+                    new BigDecimal("45.00"), // 45p standing charge per day
                     new BigDecimal("28.62") // 28.62p per kWh
             );
 
@@ -164,7 +164,7 @@ class BillCalculatorTest {
         void shouldCalculateTieredBill() {
             ElectricityTariff tariff = ElectricityTariff.createTieredTariff(
                     "Tiered Tariff",
-                    new BigDecimal("0.40"), // 40p standing charge per day
+                    new BigDecimal("40.00"), // 40p standing charge per day
                     500, // First 500 kWh at tier 1 rate
                     new BigDecimal("25.00"), // 25p per kWh for tier 1
                     new BigDecimal("30.00") // 30p per kWh for tier 2
@@ -190,7 +190,7 @@ class BillCalculatorTest {
         void shouldCalculateGasBill() {
             GasTariff tariff = new GasTariff(
                     "Test Gas Tariff",
-                    new BigDecimal("0.30"), // 30p standing charge per day
+                    new BigDecimal("30.00"), // 30p standing charge per day
                     new BigDecimal("7.42") // 7.42p per kWh
             );
 

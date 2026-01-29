@@ -353,8 +353,14 @@ public class PaymentController {
                 }
 
                 BigDecimal amount;
+                String amountText = amountField.getText().trim();
+                if (!com.utilitybill.util.ValidationUtil.isValidCurrency(amountText)) {
+                     showError("Invalid amount format. Please enter a valid positive number (e.g., 10.50)");
+                     return null;
+                }
+
                 try {
-                    amount = new BigDecimal(amountField.getText().trim());
+                    amount = new BigDecimal(amountText);
                     if (amount.compareTo(BigDecimal.ZERO) <= 0) {
                         showError("Amount must be positive");
                         return null;

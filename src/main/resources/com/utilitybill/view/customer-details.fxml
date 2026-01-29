@@ -98,7 +98,6 @@
                                 <columns>
                                     <TableColumn fx:id="readingDateCol" text="Date" prefWidth="120" />
                                     <TableColumn fx:id="readingMeterIdCol" text="Meter ID" prefWidth="100" />
-                                    <TableColumn fx:id="readingTypeCol" text="Type" prefWidth="100" />
                                     <TableColumn fx:id="readingValueCol" text="Reading" prefWidth="100" />
                                     <TableColumn fx:id="consumptionCol" text="Consumption" prefWidth="100" />
                                 </columns>

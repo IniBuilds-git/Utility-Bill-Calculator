@@ -41,7 +41,6 @@
                    HBox.hgrow="ALWAYS"
                    prefHeight="40"
                    style="-fx-background-color: #f1f5f9; -fx-background-radius: 8; -fx-border-color: transparent; -fx-padding: 10 15; -fx-font-size: 14px;"/>
-        <ComboBox fx:id="readingTypeCombo" promptText="Reading Type" prefWidth="150" prefHeight="40"/>
         <DatePicker fx:id="fromDatePicker" promptText="From Date" prefHeight="40"/>
         <DatePicker fx:id="toDatePicker" promptText="To Date" prefHeight="40"/>
         <Button text="Search" 
@@ -58,7 +57,6 @@
             <TableColumn fx:id="readingCol" text="Reading" prefWidth="100"/>
             <TableColumn fx:id="previousCol" text="Previous" prefWidth="100"/>
             <TableColumn fx:id="consumptionCol" text="Consumption" prefWidth="100"/>
-            <TableColumn fx:id="typeCol" text="Type" prefWidth="100"/>
             <TableColumn fx:id="dateCol" text="Date" prefWidth="120"/>
             <TableColumn fx:id="statusCol" text="Status" prefWidth="80"/>
         </columns>

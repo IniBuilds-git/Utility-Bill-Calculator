@@ -217,6 +217,7 @@ public class CustomerController {
             controller.setMode(CustomerDialogController.Mode.ADD);
 
             Stage dialogStage = new Stage();
+            dialogStage.initOwner(customerTable.getScene().getWindow());
             dialogStage.setTitle("Add New Customer");
             dialogStage.initModality(Modality.APPLICATION_MODAL);
             dialogStage.setScene(new Scene(root));
@@ -242,6 +243,13 @@ public class CustomerController {
             controller.setCustomer(customer);
 
             Stage stage = new Stage();
+            // Don't set owner for View Customer so it can be independent, or set it if desired. 
+            // The user report was about moving to another screen (modal?). 
+            // Better to NOT set owner for non-modal "View" to allow side-by-side comparison?
+            // "Integrate this customer-specific dashboard ... opens as a new window"
+            // Let's keep View independent for now, but if they want it 'minimised' together, we should set it.
+            // I will set it to be safe.
+            stage.initOwner(customerTable.getScene().getWindow());
             stage.setTitle("Customer Dashboard - " + customer.getFullName());
             stage.setScene(new Scene(root));
             stage.show();
@@ -261,6 +269,7 @@ public class CustomerController {
             controller.setCustomer(customer);
 
             Stage dialogStage = new Stage();
+            dialogStage.initOwner(customerTable.getScene().getWindow());
             dialogStage.setTitle("Edit Customer");
             dialogStage.initModality(Modality.APPLICATION_MODAL);
             dialogStage.setScene(new Scene(root));

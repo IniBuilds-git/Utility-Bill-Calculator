@@ -1,339 +1,182 @@
 package com.utilitybill.controller;
 
 import com.utilitybill.exception.DataPersistenceException;
+import com.utilitybill.exception.UtilityBillException;
 import com.utilitybill.model.Customer;
-import com.utilitybill.model.MeterReading;
-import com.utilitybill.service.BillingService;
+import com.utilitybill.model.MeterReadingRecord;
+import com.utilitybill.model.MeterType;
 import com.utilitybill.service.CustomerService;
-import com.utilitybill.util.DateUtil;
-import com.utilitybill.util.LocalDateAdapter;
+import com.utilitybill.service.MeterReadingService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+import javafx.scene.layout.GridPane;
 
-import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import javafx.stage.FileChooser;
-import java.io.File;
-import java.io.FileReader;
-import java.io.BufferedReader;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
 public class MeterReadingController {
 
-    @FXML
-    private TextField searchField;
-    @FXML
-    private ComboBox<String> readingTypeCombo;
-    @FXML
-    private DatePicker fromDatePicker;
-    @FXML
-    private DatePicker toDatePicker;
-    @FXML
-    private TableView<MeterReading> readingsTable;
-    @FXML
-    private TableColumn<MeterReading, String> readingIdCol;
-    @FXML
-    private TableColumn<MeterReading, String> customerCol;
-    @FXML
-    private TableColumn<MeterReading, String> meterIdCol;
-    @FXML
-    private TableColumn<MeterReading, String> readingCol;
-    @FXML
-    private TableColumn<MeterReading, String> previousCol;
-    @FXML
-    private TableColumn<MeterReading, String> consumptionCol;
-    @FXML
-    private TableColumn<MeterReading, String> typeCol;
-    @FXML
-    private TableColumn<MeterReading, String> dateCol;
-    @FXML
-    private TableColumn<MeterReading, String> statusCol;
+    @FXML private TextField searchField;
+    @FXML private DatePicker fromDatePicker;
+    @FXML private DatePicker toDatePicker;
 
-    private final BillingService billingService;
-    private final CustomerService customerService;
-    private ObservableList<MeterReading> readingsList;
+    @FXML private TableView<MeterReadingRecord> readingsTable;
+    @FXML private TableColumn<MeterReadingRecord, String> readingIdCol;
+    @FXML private TableColumn<MeterReadingRecord, String> customerCol;
+    @FXML private TableColumn<MeterReadingRecord, String> meterIdCol;
+    @FXML private TableColumn<MeterReadingRecord, String> readingCol;
+    @FXML private TableColumn<MeterReadingRecord, String> previousCol;
+    @FXML private TableColumn<MeterReadingRecord, String> consumptionCol;
+    @FXML private TableColumn<MeterReadingRecord, String> dateCol;
+    @FXML private TableColumn<MeterReadingRecord, String> statusCol;
 
-    public MeterReadingController() {
-        this.billingService = BillingService.getInstance();
-        this.customerService = CustomerService.getInstance();
-    }
+    private final MeterReadingService service = MeterReadingService.getInstance();
+    private final CustomerService customerService = CustomerService.getInstance();
 
     @FXML
     public void initialize() {
-        setupTableColumns();
-        setupFilters();
-        refreshData();
+        readingIdCol.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getReadingId()));
+        customerCol.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getAccountNumber()));
+        meterIdCol.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getMeterType().toString()));
+        readingCol.setCellValueFactory(d -> new SimpleStringProperty(String.format("%.2f", d.getValue().getClosingRead())));
+        previousCol.setCellValueFactory(d -> new SimpleStringProperty(String.format("%.2f", d.getValue().getOpeningRead())));
+        consumptionCol.setCellValueFactory(d -> new SimpleStringProperty(String.format("%.2f", d.getValue().getKWh())));
+        dateCol.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getClosingDate().toString()));
+        statusCol.setCellValueFactory(d -> new SimpleStringProperty("Billed")); // Simplified status
+
+        refresh();
     }
 
-    private void setupTableColumns() {
-        readingIdCol.setCellValueFactory(
-                data -> new SimpleStringProperty(data.getValue().getReadingId().substring(0, 8) + "..."));
+    @FXML
+    private void handleSearch() {
+        String query = searchField.getText();
+        if (query == null || query.trim().isEmpty()) {
+            refresh();
+            return;
+        }
+        List<MeterReadingRecord> filtered = service.getReadingsForCustomer(query.trim());
+        readingsTable.setItems(FXCollections.observableArrayList(filtered));
+    }
 
-        customerCol.setCellValueFactory(data -> {
-            try {
-                Customer customer = customerService.getCustomerById(data.getValue().getCustomerId());
-                return new SimpleStringProperty(customer.getFullName());
-            } catch (Exception e) {
-                return new SimpleStringProperty("Unknown");
+    @FXML
+    private void handleImport() {
+        // Placeholder for import logic
+        Alert info = new Alert(Alert.AlertType.INFORMATION);
+        info.setTitle("Import");
+        info.setHeaderText("Import Meter Readings");
+        info.setContentText("Import functionality is not yet implemented.");
+        info.showAndWait();
+    }
+
+    @FXML
+    private void showAddReadingDialog() {
+        Dialog<MeterReadingRecord> dialog = new Dialog<>();
+        dialog.setTitle("Add Meter Reading");
+
+        ButtonType saveType = new ButtonType("Save", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(saveType, ButtonType.CANCEL);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+
+        ComboBox<Customer> customerCombo = new ComboBox<>();
+        try {
+            customerCombo.setItems(FXCollections.observableArrayList(customerService.getAllCustomers()));
+            customerCombo.setConverter(new javafx.util.StringConverter<>() {
+                @Override public String toString(Customer c) {
+                    if (c == null) return "";
+                    return c.getFullName() + " (" + c.getAccountNumber() + ")";
+                }
+                @Override public Customer fromString(String s) { return null; }
+            });
+        } catch (DataPersistenceException e) {
+            showError("Failed to load customers: " + e.getMessage());
+        }
+
+        ComboBox<MeterType> meterTypeCombo = new ComboBox<>();
+        
+        customerCombo.valueProperty().addListener((obs, oldVal, newVal) -> {
+            meterTypeCombo.getItems().clear();
+            if (newVal != null) {
+                if (newVal.hasElectricityMeter()) {
+                    meterTypeCombo.getItems().add(MeterType.ELECTRICITY);
+                }
+                if (newVal.hasGasMeter()) {
+                    meterTypeCombo.getItems().add(MeterType.GAS);
+                }
+                if (!meterTypeCombo.getItems().isEmpty()) {
+                    meterTypeCombo.getSelectionModel().selectFirst();
+                }
             }
         });
 
-        meterIdCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMeterId()));
+        DatePicker openDate = new DatePicker(LocalDate.now().minusDays(30));
+        DatePicker closeDate = new DatePicker(LocalDate.now());
+        TextField openRead = new TextField();
+        TextField closeRead = new TextField();
 
-        readingCol.setCellValueFactory(
-                data -> new SimpleStringProperty(String.format("%.2f", data.getValue().getReadingValue())));
+        grid.addRow(0, new Label("Customer:"), customerCombo);
+        grid.addRow(1, new Label("Meter Type:"), meterTypeCombo);
+        grid.addRow(2, new Label("Opening Date:"), openDate);
+        grid.addRow(3, new Label("Closing Date:"), closeDate);
+        grid.addRow(4, new Label("Opening Read:"), openRead);
+        grid.addRow(5, new Label("Closing Read:"), closeRead);
 
-        previousCol.setCellValueFactory(
-                data -> new SimpleStringProperty(String.format("%.2f", data.getValue().getPreviousReadingValue())));
+        dialog.getDialogPane().setContent(grid);
 
-        consumptionCol.setCellValueFactory(
-                data -> new SimpleStringProperty(String.format("%.2f", data.getValue().getConsumption())));
-
-        typeCol.setCellValueFactory(
-                data -> new SimpleStringProperty(data.getValue().getReadingType().getDisplayName()));
-
-        dateCol.setCellValueFactory(
-                data -> new SimpleStringProperty(DateUtil.formatForDisplay(data.getValue().getReadingDate())));
-
-        statusCol.setCellValueFactory(
-                data -> new SimpleStringProperty(data.getValue().isBilled() ? "Billed" : "Pending"));
-
-        // Style the status column
-        statusCol.setCellFactory(col -> new TableCell<>() {
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                    setStyle("");
-                } else {
-                    setText(item);
-                    if ("Billed".equals(item)) {
-                        setStyle("-fx-text-fill: #10b981;");
-                    } else {
-                        setStyle("-fx-text-fill: #f59e0b;");
-                    }
+        dialog.setResultConverter(btn -> {
+            if (btn != saveType) return null;
+            try {
+                Customer selectedCustomer = customerCombo.getValue();
+                if (selectedCustomer == null) {
+                    showError("Please select a customer.");
+                    return null;
                 }
+
+                MeterReadingRecord r = new MeterReadingRecord();
+                r.setAccountNumber(selectedCustomer.getAccountNumber());
+                r.setMeterType(meterTypeCombo.getValue());
+                r.setOpeningDate(openDate.getValue());
+                r.setClosingDate(closeDate.getValue());
+                r.setOpeningRead(Double.parseDouble(openRead.getText().trim()));
+                r.setClosingRead(Double.parseDouble(closeRead.getText().trim()));
+                
+                if (r.getMeterType() == MeterType.GAS) {
+                    r.setGasImperial(false);
+                    r.setCorrectionFactor(1.02264);
+                    r.setCalorificValue(39.4);
+                }
+
+                r.recalc();
+                return r;
+            } catch (Exception e) {
+                showError("Invalid input. Please check numbers and dates.");
+                return null;
+            }
+        });
+
+        dialog.showAndWait().ifPresent(r -> {
+            try {
+                service.addReading(r);
+                refresh();
+            } catch (UtilityBillException e) {
+                showError(e.getMessage());
             }
         });
     }
 
-    private void setupFilters() {
-        readingTypeCombo.setItems(FXCollections.observableArrayList(
-                "All Types", "Actual", "Estimated", "Smart Meter"));
-        readingTypeCombo.setValue("All Types");
+    private void refresh() {
+        readingsTable.setItems(FXCollections.observableArrayList());
     }
 
-    @FXML
-    public void refreshData() {
-        try {
-            List<MeterReading> allReadings = new ArrayList<>();
-
-            for (Customer customer : customerService.getAllCustomers()) {
-                allReadings.addAll(billingService.getCustomerReadings(customer.getCustomerId()));
-            }
-
-            readingsList = FXCollections.observableArrayList(allReadings);
-            readingsTable.setItems(readingsList);
-        } catch (DataPersistenceException e) {
-            showError("Failed to load readings: " + e.getMessage());
-        }
-    }
-
-    @FXML
-    public void handleSearch() {
-        String searchText = searchField.getText().trim().toLowerCase();
-        String typeFilter = readingTypeCombo.getValue();
-        LocalDate fromDate = fromDatePicker.getValue();
-        LocalDate toDate = toDatePicker.getValue();
-
-        try {
-            List<MeterReading> allReadings = new ArrayList<>();
-            for (Customer customer : customerService.getAllCustomers()) {
-                allReadings.addAll(billingService.getCustomerReadings(customer.getCustomerId()));
-            }
-
-            List<MeterReading> filtered = allReadings.stream()
-                    .filter(r -> {
-                        if (!searchText.isEmpty()) {
-                            try {
-                                Customer c = customerService.getCustomerById(r.getCustomerId());
-                                if (!c.getFullName().toLowerCase().contains(searchText) &&
-                                        !r.getMeterId().toLowerCase().contains(searchText)) {
-                                    return false;
-                                }
-                            } catch (Exception e) {
-                                return false;
-                            }
-                        }
-
-                        if (typeFilter != null && !"All Types".equals(typeFilter)) {
-                            String type = r.getReadingType().getDisplayName();
-                            if (!type.toLowerCase().contains(typeFilter.toLowerCase())) {
-                                return false;
-                            }
-                        }
-
-                        if (fromDate != null && r.getReadingDate().isBefore(fromDate)) {
-                            return false;
-                        }
-                        if (toDate != null && r.getReadingDate().isAfter(toDate)) {
-                            return false;
-                        }
-
-                        return true;
-                    })
-                    .toList();
-
-            readingsList = FXCollections.observableArrayList(filtered);
-            readingsTable.setItems(readingsList);
-        } catch (DataPersistenceException e) {
-            showError("Search failed: " + e.getMessage());
-        }
-    }
-
-    @FXML
-    public void showAddReadingDialog() {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/utilitybill/view/meter-reading-dialog.fxml"));
-            Parent root = loader.load();
-            MeterReadingDialogController controller = loader.getController();
-
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Record New Meter Reading");
-            dialogStage.initModality(Modality.APPLICATION_MODAL);
-            dialogStage.setScene(new Scene(root));
-            dialogStage.setResizable(false);
-
-            controller.setDialogStage(dialogStage);
-            dialogStage.showAndWait();
-
-            if (controller.isSaved()) {
-                refreshData();
-            }
-        } catch (IOException e) {
-            showError("Failed to open dialog: " + e.getMessage());
-        }
-    }
-
-    @FXML
-    public void handleImport() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Import Meter Readings");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Data Files", "*.csv", "*.json"),
-                new FileChooser.ExtensionFilter("CSV Files", "*.csv"),
-                new FileChooser.ExtensionFilter("JSON Files", "*.json"));
-
-        File selectedFile = fileChooser.showOpenDialog(readingsTable.getScene().getWindow());
-        if (selectedFile != null) {
-            String fileName = selectedFile.getName().toLowerCase();
-            try {
-                int count = 0;
-                if (fileName.endsWith(".json")) {
-                    count = importJson(selectedFile);
-                } else if (fileName.endsWith(".csv")) {
-                    count = importCsv(selectedFile);
-                } else {
-                    showError("Unsupported file format");
-                    return;
-                }
-
-                showSuccess("Successfully imported " + count + " readings");
-                refreshData();
-
-            } catch (Exception e) {
-                showError("Import failed: " + e.getMessage());
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private int importJson(File file) throws IOException, DataPersistenceException {
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
-                .create();
-
-        try (FileReader reader = new FileReader(file)) {
-            List<MeterReading> readings = gson.fromJson(reader, new TypeToken<List<MeterReading>>() {
-            }.getType());
-            int count = 0;
-            if (readings != null) {
-                for (MeterReading r : readings) {
-                    try {
-                        billingService.recordMeterReading(
-                                r.getCustomerId(),
-                                r.getMeterId(),
-                                r.getReadingValue(),
-                                r.getReadingDate(),
-                                r.getReadingType());
-                        count++;
-                    } catch (Exception e) {
-                        System.err.println("Skipping invalid reading: " + e.getMessage());
-                    }
-                }
-            }
-            return count;
-        }
-    }
-
-    private int importCsv(File file) throws IOException {
-        int count = 0;
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-            boolean header = true;
-            while ((line = br.readLine()) != null) {
-                if (header) {
-                    header = false;
-                    continue; // Skip header row
-                }
-
-                String[] parts = line.split(",");
-                if (parts.length >= 5) {
-                    try {
-                        String customerId = parts[0].trim();
-                        String meterId = parts[1].trim();
-                        double value = Double.parseDouble(parts[2].trim());
-                        LocalDate date = LocalDate.parse(parts[3].trim());
-                        MeterReading.ReadingType type = MeterReading.ReadingType.valueOf(parts[4].trim().toUpperCase());
-
-                        billingService.recordMeterReading(customerId, meterId, value, date, type);
-                        count++;
-                    } catch (Exception e) {
-                        System.err.println("Failed to parse CSV line: " + line + " -> " + e.getMessage());
-                    }
-                }
-            }
-        }
-        return count;
-    }
-
-    private void showSuccess(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Success");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
-    private void showError(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+    private void showError(String msg) {
+        Alert a = new Alert(Alert.AlertType.ERROR);
+        a.setTitle("Error");
+        a.setHeaderText(null);
+        a.setContentText(msg);
+        a.showAndWait();
     }
 }

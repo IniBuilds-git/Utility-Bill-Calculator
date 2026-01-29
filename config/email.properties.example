@@ -1,0 +1,12 @@
+# Email Configuration for Utility Bill Calculator
+# Copy this file to email.properties and fill in your credentials
+# DO NOT commit email.properties to version control!
+
+# SMTP Server Settings
+smtp.host=smtp.gmail.com
+smtp.port=465
+
+# Authentication (use Gmail App Password, not your regular password)
+# To create an App Password: Google Account > Security > 2-Step Verification > App passwords
+smtp.username=your-email@gmail.com
+smtp.password=your-app-password

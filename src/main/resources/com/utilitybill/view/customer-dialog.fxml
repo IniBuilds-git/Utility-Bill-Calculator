@@ -111,11 +111,7 @@
                     </VBox>
                 </HBox>
 
-                <VBox spacing="5">
-                    <Label text="Customer Type" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
-                    <ComboBox fx:id="customerTypeCombo" promptText="Select type"
-                              maxWidth="200" prefHeight="40"/>
-                </VBox>
+
             </VBox>
 
             <!-- Error Message -->

@@ -23,6 +23,7 @@ public class TariffService {
     private TariffService() {
         this.tariffDAO = TariffDAO.getInstance();
         initializeDefaultTariffs();
+        standardizeVatRates(); // Ensure all existing data is updated to 5% VAT
     }
 
     public static TariffService getInstance() {
@@ -215,5 +216,28 @@ public class TariffService {
 
     public void deleteTariff(String tariffId) throws DataPersistenceException {
         tariffDAO.delete(tariffId);
+    }
+
+    /**
+     * Standardizes all existing tariffs to use the standard 5% VAT rate.
+     * This is called on system startup to ensure consistency across all data.
+     */
+    private void standardizeVatRates() {
+        try {
+            List<Tariff> allTariffs = tariffDAO.findAll();
+            boolean updated = false;
+            for (Tariff tariff : allTariffs) {
+                if (tariff.getVatRate() == null || tariff.getVatRate().compareTo(Tariff.STANDARD_VAT_RATE) != 0) {
+                    tariff.setVatRate(Tariff.STANDARD_VAT_RATE);
+                    tariffDAO.update(tariff);
+                    updated = true;
+                }
+            }
+            if (updated) {
+                AppLogger.info(CLASS_NAME, "All existing tariffs standardized to 5% VAT");
+            }
+        } catch (DataPersistenceException e) {
+            AppLogger.warning(CLASS_NAME, "Could not standardize VAT rates: " + e.getMessage());
+        }
     }
 }

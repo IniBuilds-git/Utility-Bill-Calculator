@@ -199,13 +199,67 @@ Documentation will be generated in `target/site/apidocs/`
 - Role-based access control (Admin, Operator, Viewer)
 - Input validation and sanitization
 
-## 📊 Billing Features
+## 📏 Meter Reading Module
 
-- Flat-rate and tiered pricing support
-- Automatic VAT calculation (5% reduced rate)
-- Standing charge per day
-- Consumption tracking
-- Invoice generation with line items
+The Meter Reading module records customer energy consumption over a period and converts raw readings into billable energy usage. These readings are the foundation for the **Invoice Management** module.
+
+### Meter Reading Input
+
+| Input Field | Description |
+| :--- | :--- |
+| **Account Number** | Unique customer identifier |
+| **Meter Type** | GAS or ELECTRICITY |
+| **Opening Read** | Meter reading at the start of the period |
+| **Closing Read** | Meter reading at the end of the period |
+| **Opening Date** | Start date of billing period |
+| **Closing Date** | End date of billing period |
+
+#### Additional Inputs by Meter Type
+
+**Gas Meter**
+- **Units**: Calculated automatically (Closing − Opening)
+- **Imperial to m³ Factor**: Fixed (2.83)
+- **Correction Factor**: System-defined default (~1.02264)
+- **Calorific Value**: System-defined default (~39.0 MJ/m³)
+
+**Electricity Meter**
+- **Day Opening/Closing Read**: Day meter values
+- **Night Opening/Closing Read**: Night meter values
+
+---
+
+### Meter Reading Output
+
+#### Gas Meter Output
+| Output Field | Description |
+| :--- | :--- |
+| **Units** | Closing Read − Opening Read |
+| **m³** | Units × 2.83 |
+| **kWh** | (m³ × Correction Factor × Calorific Value) ÷ 3.6 |
+
+**Example (Gas)**:
+- Opening: 10091.5, Closing: 10127.6 → Units: 36.1
+- m³ = 36.1 × 2.83 = 102.16
+- kWh = (102.16 × 1.02264 × 39.0) ÷ 3.6 = 1143.43
+
+#### Electricity Meter Output
+| Output Field | Description |
+| :--- | :--- |
+| **Day/Night Units** | Respective Closing − Opening |
+| **Total Units** | Day Units + Night Units |
+| **kWh** | Same as total units |
+
+---
+
+### Validation Rules
+- **Logical Check**: Closing read cannot be less than Opening read.
+- **Completeness**: All required fields must be present.
+- **Format**: Non-numeric input is rejected.
+- **Temporality**: Invalid date ranges or future dates are flagged.
+
+---
+
+## 📊 Billing Features
 
 ## 🛠️ Future Enhancements
 

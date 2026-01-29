@@ -99,18 +99,6 @@ public class MeterReadingDAO extends AbstractBinaryDAO<MeterReading, String> {
         }
     }
 
-    public List<MeterReading> findByType(MeterReading.ReadingType readingType) throws DataPersistenceException {
-        initializeCache();
-        lock.readLock().lock();
-        try {
-            return cache.values().stream()
-                    .filter(r -> r.getReadingType() == readingType)
-                    .toList();
-        } finally {
-            lock.readLock().unlock();
-        }
-    }
-
     public double getPreviousReadingValue(String meterId) throws DataPersistenceException {
         Optional<MeterReading> latest = findLatestByMeterId(meterId);
         return latest.map(MeterReading::getReadingValue).orElse(0.0);

@@ -66,10 +66,10 @@ public class BillGeneratorController {
     public void initialize() {
         elecStandingChargeField.setText("22.63");
         elecUnitPriceField.setText("19.349");
-        elecDayOpeningField.setText("40470.637");
-        elecDayClosingField.setText("40516.687");
-        elecNightOpeningField.setText("37386.998");
-        elecNightClosingField.setText("37623.210");
+        elecDayOpeningField.setText("37386.998");
+        elecDayClosingField.setText("37623.210");
+        elecNightOpeningField.setText("40470.637");
+        elecNightClosingField.setText("40516.687");
 
         gasStandingChargeField.setText("24.87");
         gasUnitPriceField.setText("3.797");

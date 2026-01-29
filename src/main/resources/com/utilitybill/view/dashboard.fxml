@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.chart.*?>
+
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -65,6 +65,16 @@
                     </padding>
                 </Button>
 
+                <Button fx:id="tariffsBtn" text="Tariffs"
+                        onAction="#showTariffs"
+                        maxWidth="Infinity"
+                        alignment="CENTER_LEFT"
+                        styleClass="nav-button">
+                    <padding>
+                        <Insets top="12" right="15" bottom="12" left="15"/>
+                    </padding>
+                </Button>
+
                 <Button fx:id="customersBtn" text="  Customers"
                         onAction="#showCustomers"
                         maxWidth="Infinity"
@@ -105,15 +115,7 @@
                     </padding>
                 </Button>
 
-                <Button fx:id="tariffsBtn" text="Tariffs"
-                        onAction="#showTariffs"
-                        maxWidth="Infinity"
-                        alignment="CENTER_LEFT"
-                        styleClass="nav-button">
-                    <padding>
-                        <Insets top="12" right="15" bottom="12" left="15"/>
-                    </padding>
-                </Button>
+
 
                 <Separator>
                     <padding>
@@ -146,16 +148,6 @@
                         <Insets top="15" right="10" bottom="10" left="10"/>
                     </padding>
                 </Label>
-
-                <Button text="Analytics"
-                        onAction="#showReports"
-                        maxWidth="Infinity"
-                        alignment="CENTER_LEFT"
-                        styleClass="nav-button">
-                    <padding>
-                        <Insets top="12" right="15" bottom="12" left="15"/>
-                    </padding>
-                </Button>
 
             </VBox>
 
@@ -216,33 +208,13 @@
                         </VBox>
                     </HBox>
 
-                    <!-- Revenue Chart -->
-                    <VBox spacing="15">
-                        <Label text="Revenue Overview - Last 12 Months" styleClass="section-title"/>
-                        <BarChart fx:id="revenueChart" legendVisible="false" animated="false" minHeight="250" maxHeight="300">
-                            <xAxis>
-                                <CategoryAxis fx:id="xAxis" label="Month"/>
-                            </xAxis>
-                            <yAxis>
-                                <NumberAxis fx:id="yAxis" label="Revenue (£)"/>
-                            </yAxis>
-                        </BarChart>
-                    </VBox>
-
                     <!-- Quick Actions -->
                     <VBox spacing="15">
                         <Label text="Quick Actions" styleClass="section-title"/>
                         <HBox spacing="15">
-                            <Button text="Calculate Bill"
-                                    onAction="#showBillGenerator"
-                                    styleClass="primary-button">
-                                <padding>
-                                    <Insets top="12" right="20" bottom="12" left="20"/>
-                                </padding>
-                            </Button>
                             <Button text="+ Add Customer"
                                     onAction="#showAddCustomer"
-                                    styleClass="secondary-button">
+                                    styleClass="primary-button">
                                 <padding>
                                     <Insets top="12" right="20" bottom="12" left="20"/>
                                 </padding>
@@ -261,41 +233,22 @@
                                     <Insets top="12" right="20" bottom="12" left="20"/>
                                 </padding>
                             </Button>
+                            <Button text="Calculate Bill"
+                                    onAction="#showBillGenerator"
+                                    styleClass="secondary-button">
+                                <padding>
+                                    <Insets top="12" right="20" bottom="12" left="20"/>
+                                </padding>
+                            </Button>
                         </HBox>
                     </VBox>
 
-                    <!-- Recent Activity -->
-                    <VBox spacing="15" VBox.vgrow="ALWAYS">
-                        <Label text="Recent Invoices" styleClass="section-title"/>
-                        <TableView fx:id="recentInvoicesTable" VBox.vgrow="ALWAYS" styleClass="table-view">
-                            <columns>
-                                <TableColumn fx:id="invoiceNumberCol" text="Invoice #" prefWidth="120"/>
-                                <TableColumn fx:id="customerNameCol" text="Customer" prefWidth="200"/>
-                                <TableColumn fx:id="amountCol" text="Amount" prefWidth="100"/>
-                                <TableColumn fx:id="statusCol" text="Status" prefWidth="100"/>
-                                <TableColumn fx:id="dueDateCol" text="Due Date" prefWidth="120"/>
-                            </columns>
-                            <placeholder>
-                                <Label text="No recent invoices"/>
-                            </placeholder>
-                        </TableView>
-                    </VBox>
+                    <!-- Spacer -->
+                    <Region VBox.vgrow="ALWAYS"/>
 
                 </VBox>
             </StackPane>
         </HBox>
     </center>
-
-    <!-- Status Bar -->
-    <bottom>
-        <HBox alignment="CENTER_LEFT" spacing="20" styleClass="status-bar">
-            <padding>
-                <Insets top="10" right="20" bottom="10" left="20"/>
-            </padding>
-            <Label fx:id="statusLabel" text="Ready" styleClass="status-text"/>
-            <Region HBox.hgrow="ALWAYS"/>
-            <Label fx:id="dateTimeLabel" text="" styleClass="status-text"/>
-        </HBox>
-    </bottom>
 
 </BorderPane>

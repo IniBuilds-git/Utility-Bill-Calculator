@@ -62,7 +62,7 @@ class InvoiceTest {
         @Test
         @DisplayName("Should initialize with PENDING status")
         void shouldInitializeWithPendingStatus() {
-            assertEquals(Invoice.InvoiceStatus.PENDING, invoice.getStatus());
+            assertEquals(Invoice.InvoiceStatus.DRAFT, invoice.getStatus());
         }
 
         @Test

@@ -63,11 +63,6 @@ class CustomerTest {
             assertTrue(customer.isActive());
         }
 
-        @Test
-        @DisplayName("Should initialize with RESIDENTIAL customer type")
-        void shouldBeResidentialByDefault() {
-            assertEquals(Customer.CustomerType.RESIDENTIAL, customer.getCustomerType());
-        }
 
         @Test
         @DisplayName("Should initialize with zero account balance")

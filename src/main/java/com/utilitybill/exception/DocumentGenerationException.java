@@ -2,10 +2,6 @@ package com.utilitybill.exception;
 
 /**
  * Exception thrown when document generation (PDF, reports) fails.
- * 
- * @author Utility Bill Management System
- * @version 1.0
- * @since 2024
  */
 public class DocumentGenerationException extends UtilityBillException {
 

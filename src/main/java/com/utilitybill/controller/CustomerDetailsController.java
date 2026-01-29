@@ -63,7 +63,6 @@ public class CustomerDetailsController {
     @FXML private TableView<MeterReading> readingsTable;
     @FXML private TableColumn<MeterReading, String> readingDateCol;
     @FXML private TableColumn<MeterReading, String> readingMeterIdCol;
-    @FXML private TableColumn<MeterReading, String> readingTypeCol;
     @FXML private TableColumn<MeterReading, String> readingValueCol;
     @FXML private TableColumn<MeterReading, String> consumptionCol;
 
@@ -169,7 +168,6 @@ public class CustomerDetailsController {
     private void setupReadingsTable() {
         readingDateCol.setCellValueFactory(data -> new SimpleStringProperty(DateUtil.formatForDisplay(data.getValue().getReadingDate())));
         readingMeterIdCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMeterId()));
-        readingTypeCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getReadingType().getDisplayName()));
         readingValueCol.setCellValueFactory(data -> new SimpleStringProperty(FormatUtil.formatReading(data.getValue().getReadingValue())));
         consumptionCol.setCellValueFactory(data -> new SimpleStringProperty(FormatUtil.formatReading(data.getValue().getConsumption())));
     }

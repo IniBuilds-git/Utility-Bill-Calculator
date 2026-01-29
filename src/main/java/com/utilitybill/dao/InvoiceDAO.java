@@ -96,9 +96,7 @@ public class InvoiceDAO extends AbstractBinaryDAO<Invoice, String> {
         lock.readLock().lock();
         try {
             return cache.values().stream()
-                    .filter(i -> i.getStatus() == Invoice.InvoiceStatus.PENDING ||
-                            i.getStatus() == Invoice.InvoiceStatus.PARTIAL ||
-                            i.getStatus() == Invoice.InvoiceStatus.OVERDUE)
+                    .filter(i -> i.getStatus() == Invoice.InvoiceStatus.PENDING)
                     .toList();
         } finally {
             lock.readLock().unlock();

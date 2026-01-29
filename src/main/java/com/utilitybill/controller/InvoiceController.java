@@ -1,338 +1,332 @@
 package com.utilitybill.controller;
 
-import com.utilitybill.exception.CustomerNotFoundException;
 import com.utilitybill.exception.DataPersistenceException;
-import com.utilitybill.exception.ValidationException;
-import com.utilitybill.model.Customer;
-import com.utilitybill.model.Invoice;
+import com.utilitybill.model.*;
 import com.utilitybill.service.BillingService;
 import com.utilitybill.service.CustomerService;
+import com.utilitybill.service.PaymentService;
 import com.utilitybill.util.DateUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class InvoiceController {
 
-    @FXML private TextField searchField;
-    @FXML private ComboBox<String> statusCombo;
-    @FXML private DatePicker fromDatePicker;
-    @FXML private DatePicker toDatePicker;
-    @FXML private TableView<Invoice> invoicesTable;
-    @FXML private TableColumn<Invoice, String> invoiceNumberCol;
-    @FXML private TableColumn<Invoice, String> customerCol;
-    @FXML private TableColumn<Invoice, String> accountCol;
+    @FXML private ComboBox<Customer> customerComboBox;
+    @FXML private Label totalBilledLabel;
+    @FXML private Label totalPaidLabel;
+    @FXML private Label balanceDueLabel;
+
+    @FXML private TableView<Invoice> invoiceTable;
+    @FXML private TableColumn<Invoice, String> invoiceIdCol;
     @FXML private TableColumn<Invoice, String> periodCol;
-    @FXML private TableColumn<Invoice, String> amountCol;
+    @FXML private TableColumn<Invoice, String> meterTypeCol;
+    @FXML private TableColumn<Invoice, String> tariffCol;
+    @FXML private TableColumn<Invoice, String> kwhCol;
+    @FXML private TableColumn<Invoice, String> totalCol;
     @FXML private TableColumn<Invoice, String> paidCol;
     @FXML private TableColumn<Invoice, String> balanceCol;
     @FXML private TableColumn<Invoice, String> statusCol;
-    @FXML private TableColumn<Invoice, String> dueDateCol;
-    @FXML private TableColumn<Invoice, Void> actionsCol;
 
-    private final BillingService billingService;
-    private final CustomerService customerService;
-    private ObservableList<Invoice> invoicesList;
+    @FXML private TextArea billSummaryArea;
 
-    public InvoiceController() {
-        this.billingService = BillingService.getInstance();
-        this.customerService = CustomerService.getInstance();
-    }
+    private final BillingService billingService = BillingService.getInstance();
+    private final CustomerService customerService = CustomerService.getInstance();
+    private final PaymentService paymentService = PaymentService.getInstance();
 
     @FXML
     public void initialize() {
-        setupTableColumns();
-        setupFilters();
-        refreshData();
-    }
-
-    private void setupTableColumns() {
-        invoiceNumberCol.setCellValueFactory(data -> 
-            new SimpleStringProperty(data.getValue().getInvoiceNumber()));
-        
-        customerCol.setCellValueFactory(data -> {
-            try {
-                Customer customer = customerService.getCustomerById(data.getValue().getCustomerId());
-                return new SimpleStringProperty(customer.getFullName());
-            } catch (Exception e) {
-                return new SimpleStringProperty("Unknown");
-            }
-        });
-        
-        accountCol.setCellValueFactory(data -> 
-            new SimpleStringProperty(data.getValue().getAccountNumber()));
-        
-        periodCol.setCellValueFactory(data -> {
-            Invoice inv = data.getValue();
-            return new SimpleStringProperty(
-                DateUtil.formatForDisplay(inv.getPeriodStart()) + " - " + 
-                DateUtil.formatForDisplay(inv.getPeriodEnd()));
-        });
-        
-        amountCol.setCellValueFactory(data -> {
-            BigDecimal amount = data.getValue().getTotalAmount();
-            return new SimpleStringProperty(amount != null ? String.format("£%.2f", amount) : "£0.00");
-        });
-        
-        paidCol.setCellValueFactory(data -> {
-            BigDecimal paid = data.getValue().getAmountPaid();
-            return new SimpleStringProperty(paid != null ? String.format("£%.2f", paid) : "£0.00");
-        });
-        
-        balanceCol.setCellValueFactory(data -> {
-            BigDecimal balance = data.getValue().getBalanceDue();
-            return new SimpleStringProperty(balance != null ? String.format("£%.2f", balance) : "£0.00");
-        });
-        
-        statusCol.setCellValueFactory(data -> 
-            new SimpleStringProperty(data.getValue().getStatus().getDisplayName()));
-
-        dueDateCol.setCellValueFactory(data ->
-            new SimpleStringProperty(DateUtil.formatForDisplay(data.getValue().getDueDate())));
-
-        statusCol.setCellFactory(col -> new TableCell<>() {
+        invoiceIdCol.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getInvoiceNumber()));
+        periodCol.setCellValueFactory(d -> new SimpleStringProperty(
+                DateUtil.formatForDisplay(d.getValue().getPeriodStart()) + " - " + DateUtil.formatForDisplay(d.getValue().getPeriodEnd())));
+        meterTypeCol.setCellValueFactory(d -> new SimpleStringProperty(
+                d.getValue().getMeterType() == null ? "-" : d.getValue().getMeterType().getDisplayName()));
+        tariffCol.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getTariffName() == null ? "-" : d.getValue().getTariffName()));
+        kwhCol.setCellValueFactory(d -> new SimpleStringProperty(String.format("%.2f", d.getValue().getKWh())));
+        totalCol.setCellValueFactory(d -> new SimpleStringProperty(formatMoney(d.getValue().getTotalAmount())));
+        paidCol.setCellValueFactory(d -> new SimpleStringProperty(formatMoney(d.getValue().getAmountPaid())));
+        balanceCol.setCellValueFactory(d -> new SimpleStringProperty(formatMoney(d.getValue().getBalanceDue())));
+        statusCol.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getStatus().getDisplayName()));
+        statusCol.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
                     setText(null);
+                    setGraphic(null);
                     setStyle("");
+                    setOnMouseClicked(null);
+                    setCursor(javafx.scene.Cursor.DEFAULT);
                 } else {
                     setText(item);
-                    switch (item) {
-                        case "Paid" -> setStyle("-fx-text-fill: #10b981; -fx-font-weight: bold;");
-                        case "Overdue" -> setStyle("-fx-text-fill: #ef4444; -fx-font-weight: bold;");
-                        case "Pending" -> setStyle("-fx-text-fill: #f59e0b;");
-                        case "Cancelled" -> setStyle("-fx-text-fill: #94a3b8;");
-                        default -> setStyle("");
+                    Invoice invoice = getTableView().getItems().get(getIndex());
+                    if (invoice.getStatus() == Invoice.InvoiceStatus.PENDING || invoice.getStatus() == Invoice.InvoiceStatus.OVERDUE) {
+                        setStyle("-fx-text-fill: #0d9488; -fx-font-weight: bold; -fx-underline: true;");
+                        setCursor(javafx.scene.Cursor.HAND);
+                        setOnMouseClicked(event -> {
+                            if (event.getButton() == javafx.scene.input.MouseButton.PRIMARY) {
+                                handleQuickPayment(invoice);
+                            }
+                        });
+                    } else {
+                        setStyle("");
+                        setCursor(javafx.scene.Cursor.DEFAULT);
+                        setOnMouseClicked(null);
                     }
                 }
             }
         });
 
-        actionsCol.setCellFactory(col -> new TableCell<>() {
-            private final Button viewBtn = new Button("View");
-            {
-                viewBtn.setStyle("-fx-background-color: #0d9488; -fx-text-fill: white; -fx-font-size: 11px; -fx-padding: 5 10; -fx-background-radius: 4;");
-                viewBtn.setOnAction(e -> {
-                    Invoice invoice = getTableView().getItems().get(getIndex());
-                    showInvoiceDetails(invoice);
-                });
-            }
+        invoiceTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                setGraphic(empty ? null : viewBtn);
+        // Auto-show summary when single selection changes
+        invoiceTable.getSelectionModel().selectedItemProperty().addListener((obs, oldV, newV) -> {
+            if (newV != null) {
+                billSummaryArea.setText(newV.getRunSummary());
             }
         });
-    }
 
-    private void setupFilters() {
-        statusCombo.setItems(FXCollections.observableArrayList(
-            "All Status", "Pending", "Paid", "Overdue", "Cancelled"
-        ));
-        statusCombo.setValue("All Status");
+        // Populate customer dropdown
+        try {
+            List<Customer> customers = customerService.getAllCustomers();
+            customerComboBox.setItems(FXCollections.observableArrayList(customers));
+            customerComboBox.setConverter(new javafx.util.StringConverter<>() {
+                @Override public String toString(Customer c) {
+                    if (c == null) return "";
+                    return c.getFullName() + " (" + c.getAccountNumber() + ")";
+                }
+                @Override public Customer fromString(String s) { return null; }
+            });
+        } catch (DataPersistenceException e) {
+            showError("Failed to load customers: " + e.getMessage());
+        }
+
+        clearSummary();
     }
 
     @FXML
-    public void refreshData() {
+    public void handleLoadInvoices() {
+        Customer customer = customerComboBox.getValue();
+        if (customer == null) {
+            showError("Please select a customer.");
+            return;
+        }
         try {
-            List<Invoice> allInvoices = new ArrayList<>();
-            for (Customer customer : customerService.getAllCustomers()) {
-                allInvoices.addAll(billingService.getCustomerInvoices(customer.getCustomerId()));
-            }
-            invoicesList = FXCollections.observableArrayList(allInvoices);
-            invoicesTable.setItems(invoicesList);
+            List<Invoice> list = billingService.getCustomerInvoices(customer.getCustomerId());
+            invoiceTable.setItems(FXCollections.observableArrayList(list));
+            updateSummary(list);
+            billSummaryArea.clear();
         } catch (DataPersistenceException e) {
             showError("Failed to load invoices: " + e.getMessage());
         }
     }
 
     @FXML
-    public void handleSearch() {
-        String searchText = searchField.getText().trim().toLowerCase();
-        String statusFilter = statusCombo.getValue();
-        LocalDate fromDate = fromDatePicker.getValue();
-        LocalDate toDate = toDatePicker.getValue();
+    public void handleClear() {
+        customerComboBox.setValue(null);
+        invoiceTable.setItems(FXCollections.observableArrayList());
+        clearSummary();
+        billSummaryArea.clear();
+    }
+
+    @FXML
+    public void handleGenerateInvoice() {
+        Customer customer = customerComboBox.getValue();
+        if (customer == null) {
+            showError("Please select a customer first.");
+            return;
+        }
 
         try {
-            List<Invoice> allInvoices = new ArrayList<>();
-            for (Customer customer : customerService.getAllCustomers()) {
-                allInvoices.addAll(billingService.getCustomerInvoices(customer.getCustomerId()));
+            List<MeterReading> readings = billingService.getCustomerReadings(customer.getCustomerId());
+            if (readings.isEmpty()) {
+                showError("No meter readings found for this account. Add meter readings first.");
+                return;
             }
 
-            List<Invoice> filtered = allInvoices.stream()
-                .filter(inv -> {
-                    if (!searchText.isEmpty()) {
-                        boolean matches = inv.getInvoiceNumber().toLowerCase().contains(searchText) ||
-                                         inv.getAccountNumber().toLowerCase().contains(searchText);
-                        if (!matches) {
-                            try {
-                                Customer c = customerService.getCustomerById(inv.getCustomerId());
-                                matches = c.getFullName().toLowerCase().contains(searchText);
-                            } catch (Exception e) {
-                                // Ignore
-                            }
-                        }
-                        if (!matches) return false;
-                    }
-                    
-                    if (statusFilter != null && !"All Status".equals(statusFilter)) {
-                        if (!inv.getStatus().getDisplayName().equals(statusFilter)) {
-                            return false;
-                        }
-                    }
-                    
-                    if (fromDate != null && inv.getIssueDate().isBefore(fromDate)) {
-                        return false;
-                    }
-                    if (toDate != null && inv.getIssueDate().isAfter(toDate)) {
-                        return false;
-                    }
-                    
-                    return true;
-                })
-                .toList();
+            Dialog<MeterReading> pick = new Dialog<>();
+            pick.setTitle("Select Meter Reading");
+            pick.setHeaderText("Choose the meter reading record to invoice for " + customer.getFullName());
 
-            invoicesList = FXCollections.observableArrayList(filtered);
-            invoicesTable.setItems(invoicesList);
-        } catch (DataPersistenceException e) {
-            showError("Search failed: " + e.getMessage());
+            ButtonType selectBtn = new ButtonType("Generate Invoice", ButtonBar.ButtonData.OK_DONE);
+            pick.getDialogPane().getButtonTypes().addAll(selectBtn, ButtonType.CANCEL);
+
+            ComboBox<MeterReading> cb = new ComboBox<>(FXCollections.observableArrayList(readings));
+            cb.getSelectionModel().selectLast();
+
+            cb.setConverter(new javafx.util.StringConverter<>() {
+                @Override public String toString(MeterReading r) {
+                    if (r == null) return "";
+                    return DateUtil.formatForDisplay(r.getReadingDate()) + " (Value: " + r.getReadingValue() + ")";
+                }
+                @Override public MeterReading fromString(String s) { return null; }
+            });
+
+            GridPane grid = new GridPane();
+            grid.setHgap(10); grid.setVgap(10);
+            grid.add(new Label("Select Reading:"), 0, 0);
+            grid.add(cb, 1, 0);
+
+            pick.getDialogPane().setContent(grid);
+            pick.setResultConverter(btn -> btn == selectBtn ? cb.getSelectionModel().getSelectedItem() : null);
+
+            Optional<MeterReading> chosenOpt = pick.showAndWait();
+            if (chosenOpt.isPresent()) {
+                MeterReading chosen = chosenOpt.get();
+                Invoice inv = billingService.generateInvoice(
+                    customer.getCustomerId(),
+                    chosen.getPeriodStartDate() != null ? chosen.getPeriodStartDate() : chosen.getReadingDate().minusMonths(1),
+                    chosen.getReadingDate()
+                );
+                handleLoadInvoices();
+                billSummaryArea.setText(inv.getRunSummary());
+            }
+        } catch (Exception e) {
+            showError("Failed to generate invoice: " + e.getMessage());
         }
     }
 
     @FXML
-    public void showGenerateInvoiceDialog() {
-        Dialog<Invoice> dialog = new Dialog<>();
-        dialog.setTitle("Generate Invoice");
-        dialog.setHeaderText("Generate a new invoice for a customer");
-
-        ButtonType generateType = new ButtonType("Generate", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(generateType, ButtonType.CANCEL);
-
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(20, 150, 10, 10));
-
-        ComboBox<Customer> customerCombo = new ComboBox<>();
-        DatePicker periodStart = new DatePicker(LocalDate.now().minusMonths(1));
-        DatePicker periodEnd = new DatePicker(LocalDate.now());
-
-        try {
-            customerCombo.setItems(FXCollections.observableArrayList(customerService.getActiveCustomers()));
-            customerCombo.setConverter(new javafx.util.StringConverter<>() {
-                @Override
-                public String toString(Customer c) {
-                    return c == null ? "" : c.getAccountNumber() + " - " + c.getFullName();
-                }
-                @Override
-                public Customer fromString(String s) { return null; }
-            });
-        } catch (DataPersistenceException e) {
-            showError("Failed to load customers");
+    public void handleAddPayment() {
+        Invoice selected = invoiceTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showError("Select an invoice to pay.");
             return;
         }
 
-        grid.add(new Label("Customer:"), 0, 0);
-        grid.add(customerCombo, 1, 0);
-        grid.add(new Label("Period Start:"), 0, 1);
-        grid.add(periodStart, 1, 1);
-        grid.add(new Label("Period End:"), 0, 2);
-        grid.add(periodEnd, 1, 2);
+        BigDecimal balance = selected.getBalanceDue();
+        if (balance.compareTo(BigDecimal.ZERO) <= 0) {
+            showError("This invoice is already fully paid.");
+            return;
+        }
+
+        Dialog<BigDecimal> dialog = new Dialog<>();
+        dialog.setTitle("Pay Invoice (Full Balance)");
+
+        ButtonType payBtn = new ButtonType("Pay Full", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(payBtn, ButtonType.CANCEL);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10); grid.setVgap(10);
+
+        TextField amountField = new TextField(formatMoney(balance));
+        amountField.setDisable(true);
+        DatePicker datePicker = new DatePicker(LocalDate.now());
+
+        grid.addRow(0, new Label("Amount (£):"), amountField);
+        grid.addRow(1, new Label("Payment Date:"), datePicker);
 
         dialog.getDialogPane().setContent(grid);
+        dialog.setResultConverter(btn -> btn == payBtn ? balance : null);
 
-        dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == generateType) {
-                Customer customer = customerCombo.getValue();
-                if (customer == null) {
-                    showError("Please select a customer");
-                    return null;
-                }
+        dialog.showAndWait().ifPresent(amount -> {
+            try {
+                paymentService.recordPayment(selected.getInvoiceId(), amount, Payment.PaymentMethod.BANK_TRANSFER);
+                handleLoadInvoices();
+                billSummaryArea.setText(selected.getRunSummary());
+            } catch (Exception e) {
+                showError("Payment failed: " + e.getMessage());
+            }
+        });
+    }
+
+    @FXML
+    public void handleDeleteInvoice() {
+        Invoice selected = invoiceTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showError("Select an invoice to cancel.");
+            return;
+        }
+
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Cancel Invoice");
+        confirm.setHeaderText("Cancel invoice " + selected.getInvoiceNumber() + "?");
+        confirm.setContentText("This will mark the invoice as CANCELLED and credit the customer's account balance. This action cannot be undone.");
+
+        Optional<ButtonType> res = confirm.showAndWait();
+        if (res.isPresent() && res.get() == ButtonType.OK) {
+            try {
+                billingService.cancelInvoice(selected.getInvoiceId());
+                handleLoadInvoices();
+                billSummaryArea.clear();
+            } catch (Exception e) {
+                showError("Cancellation failed: " + e.getMessage());
+            }
+        }
+    }
+
+    @FXML
+    public void handleViewSummary() {
+        List<Invoice> selectedItems = invoiceTable.getSelectionModel().getSelectedItems();
+        if (selectedItems == null || selectedItems.isEmpty()) {
+            showError("Select at least one invoice to view summary.");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (Invoice inv : selectedItems) {
+            sb.append(inv.getRunSummary()).append("\n\n");
+        }
+        billSummaryArea.setText(sb.toString());
+    }
+
+    private void updateSummary(List<Invoice> list) {
+        BigDecimal totalBilled = list.stream().map(Invoice::getTotalAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal totalPaid = list.stream().map(Invoice::getAmountPaid).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal balance = totalBilled.subtract(totalPaid);
+
+        totalBilledLabel.setText(formatMoney(totalBilled));
+        totalPaidLabel.setText(formatMoney(totalPaid));
+        balanceDueLabel.setText(formatMoney(balance));
+    }
+
+    private void clearSummary() {
+        totalBilledLabel.setText("£0.00");
+        totalPaidLabel.setText("£0.00");
+        balanceDueLabel.setText("£0.00");
+    }
+
+    private void handleQuickPayment(Invoice selected) {
+        BigDecimal balance = selected.getBalanceDue();
+        if (balance.compareTo(BigDecimal.ZERO) <= 0) return;
+
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Quick Payment");
+        confirm.setHeaderText("Pay full balance?");
+        confirm.setContentText(String.format("Record full payment of %s for Invoice %s?",
+                formatMoney(balance), selected.getInvoiceNumber()));
+
+        confirm.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
                 try {
-                    return billingService.generateInvoice(
-                        customer.getCustomerId(),
-                        periodStart.getValue(),
-                        periodEnd.getValue()
-                    );
-                } catch (CustomerNotFoundException | ValidationException | DataPersistenceException e) {
-                    showError("Failed to generate invoice: " + e.getMessage());
-                    return null;
+                    paymentService.recordPayment(selected.getInvoiceId(), balance, Payment.PaymentMethod.BANK_TRANSFER);
+                    handleLoadInvoices();
+                    billSummaryArea.setText(selected.getRunSummary());
+                } catch (Exception e) {
+                    showError("Payment failed: " + e.getMessage());
                 }
             }
-            return null;
-        });
-
-        Optional<Invoice> result = dialog.showAndWait();
-        result.ifPresent(invoice -> {
-            showSuccess("Invoice " + invoice.getInvoiceNumber() + " generated successfully!");
-            refreshData();
-            showInvoiceDetails(invoice);
         });
     }
 
-    private void showInvoiceDetails(Invoice invoice) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Invoice Details");
-        alert.setHeaderText("Invoice: " + invoice.getInvoiceNumber());
-        
-        VBox content = new VBox(10);
-        content.setPadding(new Insets(10));
-        
-        content.getChildren().addAll(
-            new Label("Account: " + invoice.getAccountNumber()),
-            new Label("Period: " + DateUtil.formatForDisplay(invoice.getPeriodStart()) + 
-                     " - " + DateUtil.formatForDisplay(invoice.getPeriodEnd())),
-            new Label("─".repeat(40)),
-            new Label("Opening Reading: " + String.format("%.2f", invoice.getOpeningReading())),
-            new Label("Closing Reading: " + String.format("%.2f", invoice.getClosingReading())),
-            new Label("Units Consumed: " + String.format("%.2f kWh", invoice.getUnitsConsumed())),
-            new Label("─".repeat(40)),
-            new Label("Unit Cost: " + String.format("£%.2f", invoice.getUnitCost())),
-            new Label("Standing Charge: " + String.format("£%.2f", invoice.getStandingChargeTotal())),
-            new Label("Subtotal: " + String.format("£%.2f", invoice.getSubtotal())),
-            new Label("VAT (" + invoice.getVatRate().multiply(BigDecimal.valueOf(100)) + "%): " + 
-                     String.format("£%.2f", invoice.getVatAmount())),
-            new Label("─".repeat(40)),
-            new Label("TOTAL: " + String.format("£%.2f", invoice.getTotalAmount())),
-            new Label("Amount Paid: " + String.format("£%.2f", invoice.getAmountPaid())),
-            new Label("Balance Due: " + String.format("£%.2f", invoice.getBalanceDue())),
-            new Label("─".repeat(40)),
-            new Label("Status: " + invoice.getStatus().getDisplayName()),
-            new Label("Due Date: " + DateUtil.formatForDisplay(invoice.getDueDate()))
-        );
-        
-        alert.getDialogPane().setContent(content);
-        alert.showAndWait();
+    private String formatMoney(BigDecimal gbp) {
+        if (gbp == null) return "£0.00";
+        return "£" + gbp.setScale(2, RoundingMode.HALF_UP).toPlainString();
     }
 
-    private void showError(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
-    private void showSuccess(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Success");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+    private void showError(String msg) {
+        Alert a = new Alert(Alert.AlertType.ERROR);
+        a.setTitle("Error");
+        a.setHeaderText(null);
+        a.setContentText(msg);
+        a.showAndWait();
     }
 }
-

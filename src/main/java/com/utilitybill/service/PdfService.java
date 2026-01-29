@@ -80,7 +80,7 @@ public class PdfService implements InvoiceGenerator {
                 table.addCell(item.getDescription());
                 table.addCell(String.format("%.2f %s", item.getQuantity(), item.getUnit()));
                 table.addCell(String.format("£%.4f", item.getUnitPrice()));
-                table.addCell(String.format("£%.2f", item.getTotalCost()));
+                table.addCell(String.format("£%.2f", item.getAmount()));
             }
 
             document.add(table);

@@ -198,6 +198,7 @@ public class TariffController {
     @FXML
     public void showAddTariffDialog() {
         Dialog<Tariff> dialog = new Dialog<>();
+        dialog.initOwner(electricityTable.getScene().getWindow());
         dialog.setTitle("Add Tariff");
         dialog.setHeaderText("Create a new tariff");
 
@@ -237,23 +238,38 @@ public class TariffController {
         cfField.setPromptText("Correction factor");
 
         // Switch visible inputs based on type
+        CheckBox dayNightCheck = new CheckBox("Day/Night Split Rate");
+        dayNightCheck.setSelected(true); // Default to split rate for Elec
+
+        // Switch visible inputs based on type
         Runnable applyTypeVisibility = () -> {
             boolean isElectric = "Electricity".equals(typeCombo.getValue());
+            boolean isDayNight = dayNightCheck.isSelected();
 
-            dayRateField.setDisable(!isElectric);
-            nightRateField.setDisable(!isElectric);
+            dayNightCheck.setVisible(isElectric);
+            
+            // Electricity fields logic
+            dayRateField.setDisable(!isElectric || !isDayNight);
+            nightRateField.setDisable(!isElectric || !isDayNight);
 
-            unitRateField.setDisable(isElectric);
+            // Unit rate is for Gas OR Flat Rate Electricity
+            boolean showUnitRate = (!isElectric) || (isElectric && !isDayNight);
+            unitRateField.setDisable(!showUnitRate);
+            
+            // Gas only fields
             cvField.setDisable(isElectric);
             cfField.setDisable(isElectric);
         };
 
         typeCombo.setOnAction(e -> applyTypeVisibility.run());
+        dayNightCheck.setOnAction(e -> applyTypeVisibility.run());
         applyTypeVisibility.run();
 
         int row = 0;
         grid.add(new Label("Type:"), 0, row);
         grid.add(typeCombo, 1, row++);
+
+        grid.add(dayNightCheck, 1, row++);
 
         grid.add(new Label("Tariff name:"), 0, row);
         grid.add(nameField, 1, row++);
@@ -268,7 +284,7 @@ public class TariffController {
         grid.add(new Label("Night rate (p/kWh):"), 0, row);
         grid.add(nightRateField, 1, row++);
 
-        // Gas
+        // Gas / Flat Rate Elec
         grid.add(new Label("Unit rate (p/kWh):"), 0, row);
         grid.add(unitRateField, 1, row++);
 
@@ -287,8 +303,8 @@ public class TariffController {
                 String type = typeCombo.getValue();
                 String name = nameField.getText().trim();
 
-                if (name.isEmpty()) {
-                    showError("Tariff name is required.");
+                if (!com.utilitybill.util.ValidationUtil.isValidTariffName(name)) {
+                    showError("Invalid tariff name. Only letters, numbers, spaces, and hyphens allowed.");
                     return null;
                 }
                 if (standingField.getText().trim().isEmpty()) {
@@ -296,24 +312,56 @@ public class TariffController {
                     return null;
                 }
 
+                if (!com.utilitybill.util.ValidationUtil.isValidDecimal(standingField.getText().trim())) {
+                    showError("Invalid standing charge format.");
+                    return null;
+                }
                 BigDecimal standing = new BigDecimal(standingField.getText().trim());
 
                 Tariff tariff;
 
                 if ("Electricity".equals(type)) {
-                    if (dayRateField.getText().trim().isEmpty() || nightRateField.getText().trim().isEmpty()) {
-                        showError("Day rate and Night rate are required for electricity tariffs.");
-                        return null;
+                    if (dayNightCheck.isSelected()) {
+                        // Split Rate Logic
+                        if (dayRateField.getText().trim().isEmpty() || nightRateField.getText().trim().isEmpty()) {
+                            showError("Day rate and Night rate are required for split-rate tariffs.");
+                            return null;
+                        }
+
+                        if (!com.utilitybill.util.ValidationUtil.isValidDecimal(dayRateField.getText().trim()) ||
+                                !com.utilitybill.util.ValidationUtil.isValidDecimal(nightRateField.getText().trim())) {
+                            showError("Invalid rate format.");
+                            return null;
+                        }
+
+                        BigDecimal day = new BigDecimal(dayRateField.getText().trim());
+                        BigDecimal night = new BigDecimal(nightRateField.getText().trim());
+                        tariff = new ElectricityTariff(name, standing, day, night);
+                    } else {
+                        // Flat Rate Logic
+                        if (unitRateField.getText().trim().isEmpty()) {
+                            showError("Unit rate is required for flat-rate tariffs.");
+                            return null;
+                        }
+                        if (!com.utilitybill.util.ValidationUtil.isValidDecimal(unitRateField.getText().trim())) {
+                            showError("Invalid rate format.");
+                            return null;
+                        }
+                        BigDecimal unit = new BigDecimal(unitRateField.getText().trim());
+                        // Create using flat rate constructor
+                        tariff = new ElectricityTariff(name, standing, unit);
                     }
-
-                    BigDecimal day = new BigDecimal(dayRateField.getText().trim());
-                    BigDecimal night = new BigDecimal(nightRateField.getText().trim());
-
-                    tariff = new ElectricityTariff(name, standing, day, night);
 
                 } else {
                     if (unitRateField.getText().trim().isEmpty()) {
                         showError("Unit rate is required for gas tariffs.");
+                        return null;
+                    }
+                    
+                    if (!com.utilitybill.util.ValidationUtil.isValidDecimal(unitRateField.getText().trim()) ||
+                        !com.utilitybill.util.ValidationUtil.isValidDecimal(cvField.getText().trim()) ||
+                        !com.utilitybill.util.ValidationUtil.isValidDecimal(cfField.getText().trim())) {
+                        showError("Invalid gas tariff parameters.");
                         return null;
                     }
 
@@ -351,6 +399,7 @@ public class TariffController {
 
     private void editTariff(Tariff tariff) {
         Dialog<Tariff> dialog = new Dialog<>();
+        dialog.initOwner(electricityTable.getScene().getWindow());
         dialog.setTitle("Edit Tariff");
         dialog.setHeaderText("Edit tariff: " + tariff.getName());
 
@@ -381,6 +430,9 @@ public class TariffController {
             ElectricityTariff et = (ElectricityTariff) tariff;
             dayRateField.setText(et.getDayRate() == null ? "" : et.getDayRate().toString());
             nightRateField.setText(et.getNightRate() == null ? "" : et.getNightRate().toString());
+            if (et.getDayRate() == null && et.getUnitRatePence() != null) {
+                 unitRateField.setText(et.getUnitRatePence().toString());
+            }
         }
 
         if (isGas) {
@@ -390,13 +442,27 @@ public class TariffController {
             cfField.setText(String.valueOf(gt.getCorrectionFactor()));
         }
 
-        // Disable irrelevant fields
-        dayRateField.setDisable(!isElectric);
-        nightRateField.setDisable(!isElectric);
+        CheckBox dayNightCheck = new CheckBox("Day/Night Split Rate");
+        // Determine initial state: Electric AND has day/night rates
+        boolean initialSplitState = isElectric && ((ElectricityTariff) tariff).getDayRate() != null && ((ElectricityTariff) tariff).getNightRate() != null;
+        dayNightCheck.setSelected(initialSplitState);
+        dayNightCheck.setVisible(isElectric);
 
-        unitRateField.setDisable(!isGas);
-        cvField.setDisable(!isGas);
-        cfField.setDisable(!isGas);
+        // Logic to toggle fields
+        Runnable applyEditVisibility = () -> {
+            boolean split = dayNightCheck.isSelected();
+            dayRateField.setDisable(!isElectric || !split);
+            nightRateField.setDisable(!isElectric || !split);
+            
+            boolean showUnit = !isElectric || (isElectric && !split);
+            unitRateField.setDisable(!showUnit);
+            
+            cvField.setDisable(!isGas);
+            cfField.setDisable(!isGas);
+        };
+
+        dayNightCheck.setOnAction(e -> applyEditVisibility.run());
+        applyEditVisibility.run();
 
         CheckBox activeCheck = new CheckBox("Active");
         activeCheck.setSelected(tariff.isActive());
@@ -404,6 +470,10 @@ public class TariffController {
         int row = 0;
         grid.add(new Label("Name:"), 0, row);
         grid.add(nameField, 1, row++);
+
+        if (isElectric) {
+            grid.add(dayNightCheck, 1, row++);
+        }
 
         grid.add(new Label("Standing charge (p/day):"), 0, row);
         grid.add(standingField, 1, row++);
@@ -431,12 +501,41 @@ public class TariffController {
             if (dialogButton != saveType) return null;
 
             try {
+                if (!com.utilitybill.util.ValidationUtil.isValidTariffName(nameField.getText().trim())) {
+                    showError("Invalid tariff name.");
+                    return null;
+                }
+                if (!com.utilitybill.util.ValidationUtil.isValidDecimal(standingField.getText().trim())) {
+                    showError("Invalid standing charge.");
+                    return null;
+                }
+                
                 tariff.setName(nameField.getText().trim());
                 tariff.setStandingCharge(new BigDecimal(standingField.getText().trim()));
 
                 if (tariff instanceof ElectricityTariff et) {
-                    et.setDayRate(new BigDecimal(dayRateField.getText().trim()));
-                    et.setNightRate(new BigDecimal(nightRateField.getText().trim()));
+                    if (dayNightCheck.isSelected()) {
+                         // Switch to Split Rate
+                         if (!com.utilitybill.util.ValidationUtil.isValidDecimal(dayRateField.getText().trim()) ||
+                             !com.utilitybill.util.ValidationUtil.isValidDecimal(nightRateField.getText().trim())) {
+                             showError("Invalid day/night rates.");
+                             return null;
+                         }
+                         et.setDayRate(new BigDecimal(dayRateField.getText().trim()));
+                         et.setNightRate(new BigDecimal(nightRateField.getText().trim()));
+                         // Clear unit rate to indicate split
+                         // et.setUnitRatePence(null); // Optional depending on model implementation, but safer to keep consistency
+                    } else {
+                         // Switch to Flat Rate
+                         if (!com.utilitybill.util.ValidationUtil.isValidDecimal(unitRateField.getText().trim())) {
+                             showError("Invalid unit rate.");
+                             return null;
+                         }
+                         BigDecimal rate = new BigDecimal(unitRateField.getText().trim());
+                         et.setUnitRatePence(rate);
+                         et.setDayRate(null);
+                         et.setNightRate(null);
+                    }
                 }
 
                 if (tariff instanceof GasTariff gt) {

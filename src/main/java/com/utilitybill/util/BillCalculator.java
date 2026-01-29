@@ -89,7 +89,7 @@ public final class BillCalculator {
         if (startDate == null || endDate == null) {
             return 0;
         }
-        return (int) ChronoUnit.DAYS.between(startDate, endDate);
+        return (int) ChronoUnit.DAYS.between(startDate, endDate) + 1;
     }
 
     public static double estimateConsumption(double averageDailyUsage, int days) {

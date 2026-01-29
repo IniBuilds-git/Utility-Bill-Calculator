@@ -28,21 +28,29 @@
         <!-- Customer Selection -->
         <VBox spacing="5">
             <Label text="Customer *" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+            <!-- Combo for manual selection -->
             <ComboBox fx:id="customerCombo" 
                       promptText="Select a customer"
                       maxWidth="Infinity"
                       prefHeight="40"
                       style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+            <!-- Label for pre-selected context -->
+            <Label fx:id="selectedCustomerLabel" 
+                   visible="false" managed="false"
+                   style="-fx-font-size: 14px; -fx-text-fill: #334155; -fx-background-color: #f1f5f9; -fx-padding: 8 12; -fx-background-radius: 6;"/>
         </VBox>
 
         <!-- Meter Selection -->
         <VBox spacing="5">
             <Label text="Meter *" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
-            <ComboBox fx:id="meterCombo" 
-                      promptText="Select a meter"
-                      maxWidth="Infinity"
-                      prefHeight="40"
-                      style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+            <!-- ListView for manual selection -->
+            <ListView fx:id="meterList" 
+                      prefHeight="100" 
+                      style="-fx-background-color: white; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+            <!-- Label for pre-selected context -->
+            <Label fx:id="selectedMeterLabel" 
+                   visible="false" managed="false"
+                   style="-fx-font-size: 14px; -fx-text-fill: #334155; -fx-background-color: #f1f5f9; -fx-padding: 8 12; -fx-background-radius: 6;"/>
         </VBox>
 
         <!-- Previous Reading Display -->
@@ -54,31 +62,113 @@
 
         <!-- New Reading Value -->
         <VBox spacing="5">
-            <Label text="New Reading Value (kWh/m³) *" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
-            <TextField fx:id="readingField" 
-                       promptText="Enter reading value"
-                       prefHeight="40"
-                       style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 14px;"/>
+            <VBox fx:id="standardReadingBox" spacing="5">
+                <!-- Row for Opening Reading -->
+                <VBox spacing="2">
+                   <Label text="Opening Reading (kWh/m³) *" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+                   <TextField fx:id="openingReadingField" 
+                           promptText="Enter opening reading"
+                           prefHeight="40"
+                           style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 14px;"/>
+                </VBox>
+                <!-- Row for Closing Reading -->
+                <VBox spacing="2">
+                   <Label text="Closing Reading (kWh/m³) *" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+                   <TextField fx:id="readingField" 
+                           promptText="Enter closing reading"
+                           prefHeight="40"
+                           style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 14px;"/>
+                </VBox>
+            </VBox>
+
+            <VBox fx:id="dayNightReadingBox" spacing="10" visible="false" managed="false">
+                <HBox spacing="10">
+                     <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <Label text="Day Opening (kWh) *" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+                        <TextField fx:id="dayOpeningField" 
+                               promptText="Day Opening"
+                               prefHeight="40"
+                               style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 14px;"/>
+                     </VBox>
+                     <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <Label text="Day Closing (kWh) *" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+                        <TextField fx:id="dayReadingField" 
+                               promptText="Day Closing"
+                               prefHeight="40"
+                               style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 14px;"/>
+                     </VBox>
+                </HBox>
+                <HBox spacing="10">
+                     <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <Label text="Night Opening (kWh) *" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+                        <TextField fx:id="nightOpeningField" 
+                               promptText="Night Opening"
+                               prefHeight="40"
+                               style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 14px;"/>
+                     </VBox>
+                     <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <Label text="Night Closing (kWh) *" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+                        <TextField fx:id="nightReadingField" 
+                               promptText="Night Closing"
+                               prefHeight="40"
+                               style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 14px;"/>
+                     </VBox>
+                </HBox>
+            </VBox>
         </VBox>
 
-        <!-- Reading Type and Date -->
-        <HBox spacing="15">
+        <!-- Reading Dates -->
+        <HBox spacing="10">
             <VBox spacing="5" HBox.hgrow="ALWAYS">
-                <Label text="Reading Type" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
-                <ComboBox fx:id="readingTypeCombo" 
-                          maxWidth="Infinity"
-                          prefHeight="40"
-                          style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+                <Label text="Opening Date *" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+                <DatePicker fx:id="periodStartDatePicker" maxWidth="Infinity" prefHeight="40"/>
             </VBox>
             <VBox spacing="5" HBox.hgrow="ALWAYS">
-                <Label text="Reading Date *" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
-                <DatePicker fx:id="readingDatePicker" 
-                            maxWidth="Infinity"
-                            prefHeight="40"/>
+                <Label text="Closing Date *" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+                <DatePicker fx:id="readingDatePicker" maxWidth="Infinity" prefHeight="40"/>
             </VBox>
         </HBox>
 
+        <!-- Output Preview Section -->
+        <VBox fx:id="previewBox" spacing="8" style="-fx-background-color: #f8fafc; -fx-padding: 15; -fx-background-radius: 10; -fx-border-color: #0d9488; -fx-border-width: 1; -fx-border-radius: 10;">
+            <Label text="CALCULATED OUTPUT (PREVIEW)" style="-fx-font-weight: bold; -fx-font-size: 11px; -fx-text-fill: #0d9488;"/>
+            
+            <!-- Gas Preview -->
+            <VBox fx:id="gasPreviewBox" spacing="5" visible="false" managed="false">
+                <HBox spacing="15">
+                    <HBox spacing="5">
+                        <Label text="Units:" style="-fx-text-fill: #64748b; -fx-font-size: 12px;"/>
+                        <Label fx:id="gasUnitsLabel" text="0.00" style="-fx-font-weight: bold;"/>
+                    </HBox>
+                    <HBox spacing="5">
+                        <Label text="m³:" style="-fx-text-fill: #64748b; -fx-font-size: 12px;"/>
+                        <Label fx:id="gasM3Label" text="0.00" style="-fx-font-weight: bold;"/>
+                    </HBox>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER_LEFT">
+                    <Label text="Total Energy:" style="-fx-text-fill: #64748b; -fx-font-size: 12px;"/>
+                    <Label fx:id="gasKwhLabel" text="0.00 kWh" style="-fx-font-weight: bold; -fx-text-fill: #0d9488; -fx-font-size: 16px;"/>
+                </HBox>
+            </VBox>
 
+            <!-- Electricity Preview -->
+            <VBox fx:id="elecPreviewBox" spacing="5" visible="false" managed="false">
+                <HBox spacing="15">
+                    <HBox spacing="5">
+                        <Label text="Day Usage:" style="-fx-text-fill: #64748b; -fx-font-size: 12px;"/>
+                        <Label fx:id="elecDayUnitsLabel" text="0.00" style="-fx-font-weight: bold;"/>
+                    </HBox>
+                    <HBox spacing="5">
+                        <Label text="Night Usage:" style="-fx-text-fill: #64748b; -fx-font-size: 12px;"/>
+                        <Label fx:id="elecNightUnitsLabel" text="0.00" style="-fx-font-weight: bold;"/>
+                    </HBox>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER_LEFT">
+                    <Label text="Total Energy:" style="-fx-text-fill: #64748b; -fx-font-size: 12px;"/>
+                    <Label fx:id="elecKwhLabel" text="0.00 kWh" style="-fx-font-weight: bold; -fx-text-fill: #0d9488; -fx-font-size: 16px;"/>
+                </HBox>
+            </VBox>
+        </VBox>
     </VBox>
 
     <!-- Action Buttons -->

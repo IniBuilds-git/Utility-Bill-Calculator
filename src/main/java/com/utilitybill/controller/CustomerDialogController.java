@@ -39,8 +39,7 @@ public class CustomerDialogController {
     private ComboBox<MeterType> meterTypeCombo;
     @FXML
     private ComboBox<Tariff> tariffCombo;
-    @FXML
-    private ComboBox<Customer.CustomerType> customerTypeCombo;
+
     @FXML
     private Label errorLabel;
 
@@ -65,8 +64,7 @@ public class CustomerDialogController {
         meterTypeCombo.setItems(FXCollections.observableArrayList(MeterType.values()));
         meterTypeCombo.setValue(MeterType.ELECTRICITY);
 
-        customerTypeCombo.setItems(FXCollections.observableArrayList(Customer.CustomerType.values()));
-        customerTypeCombo.setValue(Customer.CustomerType.RESIDENTIAL);
+
 
         loadTariffs();
         meterTypeCombo.setOnAction(e -> loadTariffs());
@@ -129,7 +127,7 @@ public class CustomerDialogController {
             postcodeField.setText(address.getPostcode());
         }
 
-        customerTypeCombo.setValue(customer.getCustomerType());
+
 
         if (!customer.getMeters().isEmpty()) {
             meterTypeCombo.setValue(customer.getMeters().get(0).getMeterType());
@@ -234,7 +232,7 @@ public class CustomerDialogController {
                 meterTypeCombo.getValue(),
                 tariffCombo.getValue() != null ? tariffCombo.getValue().getTariffId() : null);
 
-        newCustomer.setCustomerType(customerTypeCombo.getValue());
+
         try {
             customerService.updateCustomer(newCustomer);
         } catch (com.utilitybill.exception.CustomerNotFoundException e) {
@@ -260,7 +258,7 @@ public class CustomerDialogController {
         address.setPostcode(getText(postcodeField).toUpperCase());
         customer.setServiceAddress(address);
 
-        customer.setCustomerType(customerTypeCombo.getValue());
+
 
         if (tariffCombo.getValue() != null) {
             customer.setTariffId(tariffCombo.getValue().getTariffId());

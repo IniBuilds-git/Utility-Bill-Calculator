@@ -6,28 +6,15 @@ import com.utilitybill.model.Invoice;
 import com.utilitybill.model.User;
 import com.utilitybill.service.*;
 import com.utilitybill.util.AppLogger;
-import com.utilitybill.util.DateUtil;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
-import javafx.util.Duration;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class DashboardController {
@@ -63,44 +50,17 @@ public class DashboardController {
     // User info
     @FXML
     private Label userLabel;
-    @FXML
-    private Label statusLabel;
-    @FXML
-    private Label dateTimeLabel;
 
     // Content area
     @FXML
     private StackPane contentArea;
 
-    // Recent invoices table
-    @FXML
-    private TableView<Invoice> recentInvoicesTable;
-    @FXML
-    private TableColumn<Invoice, String> invoiceNumberCol;
-    @FXML
-    private TableColumn<Invoice, String> customerNameCol;
-    @FXML
-    private TableColumn<Invoice, String> amountCol;
-    @FXML
-    private TableColumn<Invoice, String> statusCol;
-    @FXML
-    private TableColumn<Invoice, String> dueDateCol;
-
-    // Charts
-    @FXML
-    private BarChart<String, Number> revenueChart;
-    @FXML
-    private CategoryAxis xAxis;
-    @FXML
-    private NumberAxis yAxis;
+    // Charts and Table removed for simplicity
 
     private final AuthenticationService authService;
     private final CustomerService customerService;
     private final BillingService billingService;
     private final PaymentService paymentService;
-
-    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter
-            .ofPattern("EEEE, d MMMM yyyy  HH:mm:ss");
 
     private Button currentActiveButton;
     private Node dashboardHomeContent;
@@ -125,45 +85,7 @@ public class DashboardController {
             dashboardHomeContent = contentArea.getChildren().get(0);
         }
 
-        setupTableColumns();
         refreshDashboardStats();
-        startClock();
-        statusLabel.setText("Dashboard loaded successfully");
-    }
-
-    private void setupTableColumns() {
-        invoiceNumberCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getInvoiceNumber()));
-
-        customerNameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getAccountNumber()));
-
-        amountCol.setCellValueFactory(data -> {
-            BigDecimal amount = data.getValue().getTotalAmount();
-            return new SimpleStringProperty(amount != null ? String.format("£%.2f", amount) : "£0.00");
-        });
-
-        statusCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getStatus().getDisplayName()));
-
-        dueDateCol.setCellValueFactory(
-                data -> new SimpleStringProperty(DateUtil.formatForDisplay(data.getValue().getDueDate())));
-
-        statusCol.setCellFactory(col -> new TableCell<>() {
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                    setStyle("");
-                } else {
-                    setText(item);
-                    switch (item) {
-                        case "Paid" -> setStyle("-fx-text-fill: #10b981;");
-                        case "Overdue" -> setStyle("-fx-text-fill: #ef4444; -fx-font-weight: bold;");
-                        case "Pending" -> setStyle("-fx-text-fill: #f59e0b;");
-                        default -> setStyle("");
-                    }
-                }
-            }
-        });
     }
 
     private void refreshDashboardStats() {
@@ -182,25 +104,9 @@ public class DashboardController {
             List<Invoice> overdueInvoices = billingService.getOverdueInvoices();
             overdueLabel.setText(String.valueOf(overdueInvoices.size()));
 
-            List<Invoice> allInvoices = billingService.getUnpaidInvoices();
-            recentInvoicesTable.setItems(FXCollections.observableArrayList(
-                    allInvoices.stream().limit(10).toList()));
-
-            // Populate Chart
-            populateRevenueChart();
-
         } catch (DataPersistenceException e) {
-            statusLabel.setText("Error loading dashboard data");
             AppLogger.error(CLASS_NAME, "Dashboard refresh error: " + e.getMessage(), e);
         }
-    }
-
-    private void startClock() {
-        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            dateTimeLabel.setText(LocalDateTime.now().format(DATE_TIME_FORMAT));
-        }), new KeyFrame(Duration.seconds(1)));
-        clock.setCycleCount(Animation.INDEFINITE);
-        clock.play();
     }
 
     private static final String ACTIVE_BUTTON_STYLE = "-fx-background-color: #e0f2f1; -fx-text-fill: #0d9488; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 12 15; -fx-background-radius: 8; -fx-cursor: hand;";
@@ -221,55 +127,42 @@ public class DashboardController {
             contentArea.getChildren().setAll(dashboardHomeContent);
         }
         refreshDashboardStats();
-        statusLabel.setText("Dashboard");
     }
 
     @FXML
     private void showCustomers() {
         setActiveButton(customersBtn);
         loadContent("/com/utilitybill/view/customer-management.fxml");
-        statusLabel.setText("Customer Management");
     }
 
     @FXML
     private void showMeterReadings() {
         setActiveButton(meterReadingsBtn);
         loadContent("/com/utilitybill/view/meter-readings.fxml");
-        statusLabel.setText("Meter Readings");
     }
 
     @FXML
     private void showInvoices() {
         setActiveButton(invoicesBtn);
         loadContent("/com/utilitybill/view/invoices.fxml");
-        statusLabel.setText("Invoice Management");
     }
 
     @FXML
     private void showPayments() {
         setActiveButton(paymentsBtn);
         loadContent("/com/utilitybill/view/payments.fxml");
-        statusLabel.setText("Payment Processing");
     }
 
     @FXML
     private void showTariffs() {
         setActiveButton(tariffsBtn);
         loadContent("/com/utilitybill/view/tariffs.fxml");
-        statusLabel.setText("Tariff Management");
     }
 
     @FXML
     private void showBillGenerator() {
         setActiveButton(billGeneratorBtn);
         loadContent("/com/utilitybill/view/bill-generator.fxml");
-        statusLabel.setText("Bill Calculator");
-    }
-
-    @FXML
-    private void showReports() {
-        statusLabel.setText("Reports & Analytics - Coming Soon");
-        showPlaceholder("Reports & Analytics", "View detailed reports and analytics");
     }
 
     @FXML
@@ -311,29 +204,5 @@ public class DashboardController {
 
         placeholder.getChildren().addAll(icon, titleLabel, descLabel);
         contentArea.getChildren().setAll(placeholder);
-    }
-
-    private void populateRevenueChart() throws DataPersistenceException {
-        if (revenueChart == null)
-            return;
-
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName("Revenue");
-
-        LocalDate today = LocalDate.now();
-        // Last 12 months
-        for (int i = 11; i >= 0; i--) {
-            LocalDate monthDate = today.minusMonths(i);
-            LocalDate startOfMonth = monthDate.withDayOfMonth(1);
-            LocalDate endOfMonth = monthDate.withDayOfMonth(monthDate.lengthOfMonth());
-
-            BigDecimal monthlyRevenue = paymentService.getTotalPaymentsByDateRange(startOfMonth, endOfMonth);
-            String monthName = monthDate.format(DateTimeFormatter.ofPattern("MMM"));
-
-            series.getData().add(new XYChart.Data<>(monthName, monthlyRevenue));
-        }
-
-        revenueChart.getData().clear();
-        revenueChart.getData().add(series);
     }
 }

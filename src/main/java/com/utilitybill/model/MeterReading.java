@@ -27,50 +27,37 @@ public class MeterReading implements Serializable {
     private Double cubicMeters;
     private Double calorificValue;
 
-    private LocalDate readingDate;
+    private LocalDate readingDate; // Closing Date
+    private LocalDate periodStartDate; // Opening Date
     private LocalDateTime recordedAt;
-    private ReadingType readingType;
     private String submittedBy;
     private boolean billed;
-
-    public enum ReadingType {
-        ACTUAL("Actual Reading"),
-        ESTIMATED("Estimated"),
-        SMART("Smart Meter"),
-        OPENING("Opening Reading"),
-        FINAL("Final Reading");
-
-        private final String displayName;
-
-        ReadingType(String displayName) {
-            this.displayName = displayName;
-        }
-
-        public String getDisplayName() {
-            return displayName;
-        }
-    }
 
     public MeterReading() {
         this.readingId = UUID.randomUUID().toString();
         this.recordedAt = LocalDateTime.now();
         this.readingDate = LocalDate.now();
-        this.readingType = ReadingType.ACTUAL;
         this.billed = false;
     }
 
-    public MeterReading(String meterId, String customerId, double readingValue, ReadingType readingType) {
+    public MeterReading(String meterId, String customerId, double readingValue) {
         this();
         this.meterId = meterId;
         this.customerId = customerId;
         this.readingValue = readingValue;
-        this.readingType = readingType;
     }
 
     public MeterReading(String meterId, String customerId, double readingValue,
-            double previousReadingValue, ReadingType readingType) {
-        this(meterId, customerId, readingValue, readingType);
+            double previousReadingValue) {
+        this(meterId, customerId, readingValue);
         this.previousReadingValue = previousReadingValue;
+    }
+
+    public MeterReading(String meterId, String customerId, double readingValue,
+            double previousReadingValue, LocalDate periodStartDate, LocalDate readingDate) {
+        this(meterId, customerId, readingValue, previousReadingValue);
+        this.periodStartDate = periodStartDate;
+        this.readingDate = readingDate;
     }
 
     public String getReadingId() {
@@ -121,6 +108,14 @@ public class MeterReading implements Serializable {
         this.readingDate = readingDate;
     }
 
+    public LocalDate getPeriodStartDate() {
+        return periodStartDate;
+    }
+
+    public void setPeriodStartDate(LocalDate periodStartDate) {
+        this.periodStartDate = periodStartDate;
+    }
+
     public LocalDateTime getRecordedAt() {
         return recordedAt;
     }
@@ -128,15 +123,6 @@ public class MeterReading implements Serializable {
     public void setRecordedAt(LocalDateTime recordedAt) {
         this.recordedAt = recordedAt;
     }
-
-    public ReadingType getReadingType() {
-        return readingType;
-    }
-
-    public void setReadingType(ReadingType readingType) {
-        this.readingType = readingType;
-    }
-
     public String getSubmittedBy() {
         return submittedBy;
     }
@@ -154,10 +140,6 @@ public class MeterReading implements Serializable {
     }
 
     public double getConsumption() {
-        // OPENING readings represent the starting point and have no consumption
-        if (readingType == ReadingType.OPENING) {
-            return 0;
-        }
         return readingValue - previousReadingValue;
     }
 
@@ -199,10 +181,6 @@ public class MeterReading implements Serializable {
     }
 
     public double getDayConsumption() {
-        // OPENING readings represent the starting point and have no consumption
-        if (readingType == ReadingType.OPENING) {
-            return 0;
-        }
         if (dayReading == null || previousDayReading == null) {
             return 0;
         }
@@ -210,10 +188,6 @@ public class MeterReading implements Serializable {
     }
 
     public double getNightConsumption() {
-        // OPENING readings represent the starting point and have no consumption
-        if (readingType == ReadingType.OPENING) {
-            return 0;
-        }
         if (nightReading == null || previousNightReading == null) {
             return 0;
         }
@@ -249,18 +223,6 @@ public class MeterReading implements Serializable {
         this.calorificValue = calorificValue;
     }
 
-    public boolean isEstimated() {
-        return readingType == ReadingType.ESTIMATED;
-    }
-
-    public boolean isSmartMeterReading() {
-        return readingType == ReadingType.SMART;
-    }
-
-    public boolean isValidReading() {
-        return readingValue >= previousReadingValue;
-    }
-
     public void markAsBilled() {
         this.billed = true;
     }
@@ -282,7 +244,7 @@ public class MeterReading implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("MeterReading{id='%s', meter='%s', value=%.2f, type=%s, date=%s}",
-                readingId, meterId, readingValue, readingType, readingDate);
+        return String.format("MeterReading{id='%s', meter='%s', value=%.2f, date=%s}",
+                readingId, meterId, readingValue, readingDate);
     }
 }

@@ -1,70 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <VBox xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.utilitybill.controller.InvoiceController"
-      spacing="20" style="-fx-background-color: #f1f5f9;">
+      spacing="12"
+      style="-fx-background-color: white;">
 
     <padding>
-        <Insets top="30" right="30" bottom="30" left="30"/>
+        <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
 
-    <!-- Page Header -->
-    <HBox alignment="CENTER_LEFT" spacing="20">
-        <VBox spacing="5" HBox.hgrow="ALWAYS">
-            <Label text="Invoice Management">
-                <font>
-                    <Font name="System Bold" size="28"/>
-                </font>
-            </Label>
-            <Label text="Generate and manage customer invoices" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+    <Label text="Invoice Management"
+           style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+
+    <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: #f8fafc; -fx-padding: 15; -fx-background-radius: 10; -fx-border-color: #e2e8f0; -fx-border-radius: 10;">
+        <Label text="Customer:" style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="customerComboBox" prefWidth="300" promptText="Select Customer..." style="-fx-background-radius: 5;"/>
+        <Button text="Load Invoices" onAction="#handleLoadInvoices"
+                style="-fx-background-color: #0d9488; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;"/>
+        <Button text="Clear" onAction="#handleClear"
+                style="-fx-background-color: #64748b; -fx-text-fill: white; -fx-cursor: hand;"/>
+    </HBox>
+
+    <HBox spacing="30" alignment="CENTER_LEFT" style="-fx-padding: 10 0;">
+        <VBox spacing="2">
+            <Label text="Total Billed" style="-fx-font-size: 12px; -fx-text-fill: #64748b;"/>
+            <Label fx:id="totalBilledLabel" text="£0.00" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
         </VBox>
-        <Button text="+ Generate Invoice"
-                onAction="#showGenerateInvoiceDialog"
-                style="-fx-background-color: #0d9488; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-padding: 14 30; -fx-background-radius: 8; -fx-cursor: hand;"/>
+        <Separator orientation="VERTICAL"/>
+        <VBox spacing="2">
+            <Label text="Total Paid" style="-fx-font-size: 12px; -fx-text-fill: #64748b;"/>
+            <Label fx:id="totalPaidLabel" text="£0.00" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #10b981;"/>
+        </VBox>
+        <Separator orientation="VERTICAL"/>
+        <VBox spacing="2">
+            <Label text="Balance Due" style="-fx-font-size: 12px; -fx-text-fill: #64748b;"/>
+            <Label fx:id="balanceDueLabel" text="£0.00" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #ef4444;"/>
+        </VBox>
     </HBox>
 
-    <!-- Filter Bar -->
-    <HBox spacing="15" alignment="CENTER_LEFT" 
-          style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 15 20;">
-        <TextField fx:id="searchField"
-                   promptText="Search by invoice number or customer..."
-                   HBox.hgrow="ALWAYS"
-                   prefHeight="40"
-                   style="-fx-background-color: #f1f5f9; -fx-background-radius: 8; -fx-border-color: transparent; -fx-padding: 10 15; -fx-font-size: 14px;"/>
-        <ComboBox fx:id="statusCombo" promptText="Status" prefWidth="150" prefHeight="40"/>
-        <DatePicker fx:id="fromDatePicker" promptText="From Date" prefHeight="40"/>
-        <DatePicker fx:id="toDatePicker" promptText="To Date" prefHeight="40"/>
-        <Button text="Search" 
-                onAction="#handleSearch"
-                style="-fx-background-color: #e2e8f0; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 8; -fx-cursor: hand;"/>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="+ Generate Invoice" onAction="#handleGenerateInvoice"
+                style="-fx-background-color: #0d9488; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 8; -fx-cursor: hand;"/>
+        <Button text="Add Payment (Full)" onAction="#handleAddPayment"
+                style="-fx-background-color: #0d9488; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 8; -fx-cursor: hand;"/>
+        <Button text="Delete Invoice" onAction="#handleDeleteInvoice"
+                style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 8; -fx-cursor: hand;"/>
+        <Button text="View Bill Summary" onAction="#handleViewSummary"
+                style="-fx-background-color: #64748b; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 8; -fx-cursor: hand;"/>
     </HBox>
 
-    <!-- Invoices Table -->
-    <TableView fx:id="invoicesTable" VBox.vgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 12;">
-        <columns>
-            <TableColumn fx:id="invoiceNumberCol" text="Invoice #" prefWidth="120"/>
-            <TableColumn fx:id="customerCol" text="Customer" prefWidth="180"/>
-            <TableColumn fx:id="accountCol" text="Account #" prefWidth="120"/>
-            <TableColumn fx:id="periodCol" text="Period" prefWidth="150"/>
-            <TableColumn fx:id="amountCol" text="Amount" prefWidth="100"/>
-            <TableColumn fx:id="paidCol" text="Paid" prefWidth="100"/>
-            <TableColumn fx:id="balanceCol" text="Balance" prefWidth="100"/>
-            <TableColumn fx:id="statusCol" text="Status" prefWidth="100"/>
-            <TableColumn fx:id="dueDateCol" text="Due Date" prefWidth="120"/>
-            <TableColumn fx:id="actionsCol" text="Actions" prefWidth="100"/>
-        </columns>
-        <placeholder>
-            <VBox alignment="CENTER" spacing="10">
-                <Label text="No invoices found" style="-fx-font-size: 16px; -fx-text-fill: #94a3b8;"/>
-                <Label text="Generate an invoice to get started" style="-fx-font-size: 13px; -fx-text-fill: #cbd5e1;"/>
-            </VBox>
-        </placeholder>
-    </TableView>
+    <SplitPane dividerPositions="0.7" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent; -fx-padding: 5 0 0 0;">
+        <VBox spacing="8" style="-fx-background-color: white;">
+            <TableView fx:id="invoiceTable" VBox.vgrow="ALWAYS" style="-fx-background-radius: 8; -fx-border-color: #e2e8f0; -fx-border-radius: 8;">
+                <columns>
+                    <TableColumn fx:id="invoiceIdCol" text="Invoice ID" prefWidth="180"/>
+                    <TableColumn fx:id="periodCol" text="Billing Period" prefWidth="180"/>
+                    <TableColumn fx:id="meterTypeCol" text="Meter" prefWidth="90"/>
+                    <TableColumn fx:id="tariffCol" text="Tariff" prefWidth="140"/>
+                    <TableColumn fx:id="kwhCol" text="kWh" prefWidth="80"/>
+                    <TableColumn fx:id="totalCol" text="Total (£)" prefWidth="90"/>
+                    <TableColumn fx:id="paidCol" text="Paid (£)" prefWidth="90"/>
+                    <TableColumn fx:id="balanceCol" text="Balance (£)" prefWidth="100"/>
+                    <TableColumn fx:id="statusCol" text="Status" prefWidth="90"/>
+                </columns>
+                <placeholder>
+                    <Label text="No invoices loaded" style="-fx-text-fill: #94a3b8;"/>
+                </placeholder>
+            </TableView>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-background-color: #f8fafc; -fx-padding: 15; -fx-background-radius: 8; -fx-border-color: #e2e8f0; -fx-border-radius: 8;">
+            <Label text="Bill Summary"
+                   style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+            <TextArea fx:id="billSummaryArea"
+                      editable="false"
+                      wrapText="true"
+                      VBox.vgrow="ALWAYS"
+                      style="-fx-font-family: 'Courier New'; -fx-font-size: 13px; -fx-control-inner-background: #ffffff; -fx-background-color: white;"/>
+        </VBox>
+    </SplitPane>
 
 </VBox>

@@ -106,7 +106,17 @@ public class BillingService {
      * @throws DataPersistenceException     if there is a data storage error
      */
     public MeterReading recordMeterReading(String customerId, String meterId, double readingValue,
-            LocalDate readingDate, MeterReading.ReadingType readingType)
+            LocalDate periodStartDate, LocalDate readingDate)
+            throws InvalidMeterReadingException, CustomerNotFoundException, DataPersistenceException {
+        
+        // Backward compatibility: Lookup previous reading automatically
+        double previousReading = meterReadingDAO.getPreviousReadingValue(meterId);
+        
+        return recordMeterReading(customerId, meterId, readingValue, previousReading, periodStartDate, readingDate);
+    }
+
+    public MeterReading recordMeterReading(String customerId, String meterId, double readingValue,
+            double explicitPreviousReading, LocalDate periodStartDate, LocalDate readingDate)
             throws InvalidMeterReadingException, CustomerNotFoundException, DataPersistenceException {
 
         Customer customer = customerService.getCustomerById(customerId);
@@ -117,24 +127,82 @@ public class BillingService {
                     "Meter not found for customer");
         }
 
-        double previousReading = meterReadingDAO.getPreviousReadingValue(meterId);
-
-        if (readingValue < 0) {
+        if (readingValue < 0 || explicitPreviousReading < 0) {
             throw InvalidMeterReadingException.negativeReading(meterId, readingValue);
         }
-        if (readingValue < previousReading) {
-            throw new InvalidMeterReadingException(meterId, readingValue, previousReading);
+        
+        if (readingValue < explicitPreviousReading) {
+            throw new InvalidMeterReadingException(meterId, readingValue, explicitPreviousReading);
         }
 
-        MeterReading reading = new MeterReading(meterId, customerId, readingValue, previousReading, readingType);
-        reading.setReadingDate(readingDate);
+        MeterReading reading = new MeterReading(meterId, customerId, readingValue, explicitPreviousReading, periodStartDate, readingDate);
 
         meterReadingDAO.save(reading);
 
         meter.setCurrentReading(readingValue);
 
         AppLogger.info(CLASS_NAME, "Meter reading recorded: meterId=" + meterId +
-                " value=" + readingValue + " consumption=" + reading.getConsumption());
+                " value=" + readingValue + " prev=" + explicitPreviousReading + " consumption=" + reading.getConsumption());
+
+        return reading;
+    }
+
+    public MeterReading recordMeterReading(String customerId, String meterId, Double dayReadingValue, Double dayOpeningValue,
+            Double nightReadingValue, Double nightOpeningValue, LocalDate periodStartDate, LocalDate readingDate)
+            throws InvalidMeterReadingException, CustomerNotFoundException, DataPersistenceException {
+
+        Customer customer = customerService.getCustomerById(customerId);
+        Meter meter = customer.getMeterById(meterId);
+        
+        if (meter == null) {
+            throw new InvalidMeterReadingException(meterId, 0, "MTR004", "Meter not found for customer");
+        }
+        
+        if (meter instanceof ElectricityMeter) {
+             ElectricityMeter elecMeter = (ElectricityMeter) meter;
+             if (!elecMeter.isDayNightMeter()) {
+                 // Auto-upgrade meter if we are recording separate day/night readings
+                 elecMeter.setDayNightMeter(true);
+                 AppLogger.info(CLASS_NAME, "Auto-upgraded meter " + meterId + " to Day/Night type based on reading input");
+             }
+        } else {
+             throw new InvalidMeterReadingException(meterId, 0, "MTR005", "Meter is not an electricity meter");
+        }
+
+        if (dayOpeningValue == null) dayOpeningValue = 0.0;
+        if (nightOpeningValue == null) nightOpeningValue = 0.0;
+
+        if (dayReadingValue < 0 || dayOpeningValue < 0 || nightReadingValue < 0 || nightOpeningValue < 0) {
+            throw new InvalidMeterReadingException(meterId, -1, "MTR006", "Readings cannot be negative");
+        }
+        
+        if (dayReadingValue < dayOpeningValue) {
+             throw new InvalidMeterReadingException(meterId, dayReadingValue, dayOpeningValue);
+        }
+        if (nightReadingValue < nightOpeningValue) {
+             throw new InvalidMeterReadingException(meterId, nightReadingValue, nightOpeningValue);
+        }
+
+        // Calculate total for backward compatibility / summary
+        double totalValue = dayReadingValue + nightReadingValue;
+        double previousTotal = dayOpeningValue + nightOpeningValue;
+
+        MeterReading reading = new MeterReading(meterId, customerId, totalValue, previousTotal, periodStartDate, readingDate);
+        reading.setDayReading(dayReadingValue);
+        reading.setNightReading(nightReadingValue);
+        reading.setPreviousDayReading(dayOpeningValue);
+        reading.setPreviousNightReading(nightOpeningValue);
+
+        meterReadingDAO.save(reading);
+
+        // Update meter current state
+        ElectricityMeter elecMeter = (ElectricityMeter) meter;
+        elecMeter.setCurrentDayReading(dayReadingValue);
+        elecMeter.setCurrentNightReading(nightReadingValue);
+        elecMeter.setCurrentReading(totalValue);
+
+        AppLogger.info(CLASS_NAME, "Day/Night reading recorded: meterId=" + meterId +
+                " D=" + dayReadingValue + " (prev " + dayOpeningValue + ") N=" + nightReadingValue + " (prev " + nightOpeningValue + ")");
 
         return reading;
     }
@@ -209,6 +277,7 @@ public class BillingService {
         }
 
         invoice.calculateTotals();
+        invoice.setStatus(Invoice.InvoiceStatus.PENDING);
         invoice.setAccountBalanceAfter(customer.getAccountBalance().add(invoice.getTotalAmount()));
 
         invoiceDAO.save(invoice);
@@ -405,6 +474,7 @@ public class BillingService {
         invoice.setCubicMeters(cubicMeters);
         invoice.setCorrectedVolume(correctedVolume);
         invoice.setCalorificValue(tariff.getCalorificValue());
+        invoice.setCorrectionFactor(tariff.getCorrectionFactor());
         invoice.setKwhFromGas(totalKwh);
         invoice.setImperialMeter(isImperial);
 

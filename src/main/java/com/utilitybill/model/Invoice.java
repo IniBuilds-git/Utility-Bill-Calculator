@@ -60,6 +60,7 @@ public class Invoice implements Serializable {
     private Double cubicMeters; // After imperial conversion (if applicable)
     private Double correctedVolume; // After applying correction factor
     private Double calorificValue; // CV used for conversion
+    private Double correctionFactor; // Factor used (e.g. 1.02264)
     private Double kwhFromGas; // Final kWh after full conversion
     private boolean imperialMeter;
     private String notes;
@@ -70,12 +71,11 @@ public class Invoice implements Serializable {
     private BigDecimal accountBalanceAfter;
 
     public enum InvoiceStatus {
+        DRAFT("Draft"),
         PENDING("Pending"),
-        PARTIAL("Partially Paid"),
         PAID("Paid"),
         OVERDUE("Overdue"),
-        CANCELLED("Cancelled"),
-        DISPUTED("Disputed");
+        CANCELLED("Cancelled");
 
         private final String displayName;
 
@@ -162,7 +162,7 @@ public class Invoice implements Serializable {
         this.lineItems = new ArrayList<>();
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
-        this.status = InvoiceStatus.PENDING;
+        this.status = InvoiceStatus.DRAFT;
         this.amountPaid = BigDecimal.ZERO;
         this.vatRate = Tariff.STANDARD_VAT_RATE;
     }
@@ -423,8 +423,8 @@ public class Invoice implements Serializable {
         if (this.balanceDue.compareTo(BigDecimal.ZERO) <= 0) {
             this.status = InvoiceStatus.PAID;
             this.balanceDue = BigDecimal.ZERO;
-        } else if (this.amountPaid.compareTo(BigDecimal.ZERO) > 0) {
-            this.status = InvoiceStatus.PARTIAL;
+        } else {
+            this.status = InvoiceStatus.PENDING;
         }
 
         this.updatedAt = LocalDateTime.now();
@@ -469,15 +469,11 @@ public class Invoice implements Serializable {
     }
 
     public void updateStatus() {
-        if (status == InvoiceStatus.CANCELLED)
+        if (status == InvoiceStatus.CANCELLED || status == InvoiceStatus.DRAFT)
             return;
 
         if (balanceDue.compareTo(BigDecimal.ZERO) <= 0) {
             status = InvoiceStatus.PAID;
-        } else if (isOverdue()) {
-            status = InvoiceStatus.OVERDUE;
-        } else if (amountPaid.compareTo(BigDecimal.ZERO) > 0) {
-            status = InvoiceStatus.PARTIAL;
         } else {
             status = InvoiceStatus.PENDING;
         }
@@ -616,6 +612,14 @@ public class Invoice implements Serializable {
         this.kwhFromGas = kwhFromGas;
     }
 
+    public Double getCorrectionFactor() {
+        return correctionFactor;
+    }
+
+    public void setCorrectionFactor(Double correctionFactor) {
+        this.correctionFactor = correctionFactor;
+    }
+
     public boolean isImperialMeter() {
         return imperialMeter;
     }
@@ -647,5 +651,57 @@ public class Invoice implements Serializable {
 
     public void setAccountBalanceAfter(BigDecimal accountBalanceAfter) {
         this.accountBalanceAfter = accountBalanceAfter;
+    }
+
+    public String getRunSummary() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("--------------------------------------------------\n");
+        sb.append("               INVOICE SUMMARY                    \n");
+        sb.append("--------------------------------------------------\n");
+        sb.append(String.format("Invoice No:    %s\n", invoiceNumber));
+        sb.append(String.format("Account No:    %s\n", accountNumber));
+        sb.append(String.format("Period:        %s to %s\n", periodStart, periodEnd));
+        sb.append(String.format("Meter Type:    %s\n", meterType));
+        sb.append(String.format("Tariff:        %s\n", tariffName));
+        sb.append("--------------------------------------------------\n");
+
+        if (hasDayNightBreakdown()) {
+            sb.append(String.format("Day Usage:     %.2f kWh @ £%.4f\n", dayUnitsConsumed, dayUnitRate != null ? dayUnitRate.divide(BigDecimal.valueOf(100), 4, java.math.RoundingMode.HALF_UP) : BigDecimal.ZERO));
+            sb.append(String.format("Night Usage:   %.2f kWh @ £%.4f\n", nightUnitsConsumed, nightUnitRate != null ? nightUnitRate.divide(BigDecimal.valueOf(100), 4, java.math.RoundingMode.HALF_UP) : BigDecimal.ZERO));
+        } else if (meterType == MeterType.GAS) {
+            sb.append(String.format("Meter Units:   %.2f %s\n", meterUnits != null ? meterUnits : 0.0, imperialMeter ? "(Imperial)" : "(Metric)"));
+            sb.append(String.format("Cubic Meters:  %.2f m3\n", cubicMeters != null ? cubicMeters : 0.0));
+            sb.append(String.format("Energy:        %.2f kWh\n", kwhFromGas != null ? kwhFromGas : 0.0));
+        } else {
+            sb.append(String.format("Usage:         %.2f kWh @ £%.4f\n", unitsConsumed, unitRate != null ? unitRate.divide(BigDecimal.valueOf(100), 4, java.math.RoundingMode.HALF_UP) : BigDecimal.ZERO));
+        }
+
+        sb.append(String.format("Standing Chg:  £%.2f (%d days)\n", standingChargeTotal != null ? standingChargeTotal : BigDecimal.ZERO, getBillingDays()));
+        sb.append("--------------------------------------------------\n");
+        sb.append(String.format("Subtotal:      £%.2f\n", subtotal != null ? subtotal : BigDecimal.ZERO));
+        sb.append(String.format("VAT (%.0f%%):    £%.2f\n", vatRate != null ? vatRate.multiply(BigDecimal.valueOf(100)) : 0.0, vatAmount != null ? vatAmount : BigDecimal.ZERO));
+        sb.append(String.format("TOTAL AMOUNT:  £%.2f\n", totalAmount != null ? totalAmount : BigDecimal.ZERO));
+        sb.append("--------------------------------------------------\n");
+        sb.append(String.format("Amount Paid:   £%.2f\n", amountPaid != null ? amountPaid : BigDecimal.ZERO));
+        sb.append(String.format("BALANCE DUE:   £%.2f\n", balanceDue != null ? balanceDue : BigDecimal.ZERO));
+        sb.append(String.format("Status:        %s\n", status != null ? status.getDisplayName() : "Unknown"));
+        sb.append("--------------------------------------------------\n");
+
+        return sb.toString();
+    }
+
+    public double getKWh() {
+        if (meterType == MeterType.GAS) {
+            return kwhFromGas != null ? kwhFromGas : 0.0;
+        }
+        return unitsConsumed;
+    }
+
+    public BigDecimal getTotalGbp() {
+        return totalAmount;
+    }
+
+    public BigDecimal getTotalPaid() {
+        return amountPaid;
     }
 }

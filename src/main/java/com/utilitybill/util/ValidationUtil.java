@@ -25,6 +25,18 @@ public final class ValidationUtil {
             "^ACC-\\d{6}$"
     );
 
+    private static final Pattern CURRENCY_PATTERN = Pattern.compile(
+            "^\\d+(\\.\\d{1,2})?$"
+    );
+
+    private static final Pattern DECIMAL_PATTERN = Pattern.compile(
+            "^\\d+(\\.\\d+)?$"
+    );
+
+    private static final Pattern NAME_PATTERN = Pattern.compile(
+            "^[a-zA-Z\\s'-]+$"
+    );
+
     private static final int MIN_PASSWORD_LENGTH = 8;
 
     private ValidationUtil() {
@@ -162,6 +174,35 @@ public final class ValidationUtil {
             return false;
         }
         return ACCOUNT_NUMBER_PATTERN.matcher(accountNumber.trim()).matches();
+    }
+
+    public static boolean isValidCurrency(String amount) {
+        if (amount == null || amount.trim().isEmpty()) {
+            return false;
+        }
+        return CURRENCY_PATTERN.matcher(amount.trim()).matches();
+    }
+
+    public static boolean isValidDecimal(String value) {
+        if (value == null || value.trim().isEmpty()) {
+            return false;
+        }
+        return DECIMAL_PATTERN.matcher(value.trim()).matches();
+    }
+
+    public static boolean isValidName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return false;
+        }
+        return NAME_PATTERN.matcher(name.trim()).matches();
+    }
+
+    public static boolean isValidTariffName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return false;
+        }
+        // Allow letters, numbers, spaces, apostrophes, and hyphens
+        return Pattern.matches("^[a-zA-Z0-9\\s'-]+$", name.trim());
     }
 
     @FunctionalInterface

@@ -2,10 +2,6 @@ package com.utilitybill.exception;
 
 /**
  * Exception thrown when a notification (email, SMS, etc.) fails to send.
- * 
- * @author Utility Bill Management System
- * @version 1.0
- * @since 2024
  */
 public class NotificationException extends UtilityBillException {
 
