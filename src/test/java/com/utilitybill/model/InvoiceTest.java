@@ -13,10 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Unit tests for the Invoice model class.
  * Tests invoice creation, line items, and total calculations.
- *
- * @author Utility Bill Management System
- * @version 1.0
- * @since 2024
  */
 @DisplayName("Invoice Model Tests")
 class InvoiceTest {

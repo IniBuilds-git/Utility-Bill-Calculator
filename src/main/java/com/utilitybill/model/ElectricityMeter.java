@@ -19,7 +19,6 @@ public class ElectricityMeter extends Meter {
     
     @Override
     public double updateReading(double newReading) {
-        // Default simpler behavior if just single reading passed
          if (newReading < 0) {
             throw new IllegalArgumentException("Meter reading cannot be negative");
         }

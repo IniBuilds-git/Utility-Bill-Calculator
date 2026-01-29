@@ -1,279 +1,136 @@
 # Utility Bill Management System
 
-A comprehensive desktop application for utility bill management built with JavaFX, demonstrating Object-Oriented Programming principles, design patterns, and file-based data persistence.
+A professional utility management application for electricity and gas billing. Designed with **JavaFX** and **Maven**, this system demonstrates advanced **Object-Oriented Programming (OOP)** principles, design patterns, and robust data persistence.
 
-## Project Overview
+---
 
-This application is designed for managing utility (electricity and gas) billing operations, including:
-- Customer management (CRUD operations)
-- Meter reading recording and validation
-- Invoice generation with itemized charges
-- Payment processing and tracking
-- Tariff management with flexible pricing structures
-- Dashboard with analytics and reporting
+## Key Features
 
-##  Architecture
+- **Customer Management**: Full life-cycle management (Add, View, Edit, Delete).
+- **Meter Readings**: Precision tracking for Electricity (Day/Night) and Gas (including m³ to kWh conversion).
+- **Automated Invoicing**: Generation of itemized bills with VAT and standing charges.
+- **Payment Processing**: Record and track payments against pending invoices.
+- **Interactive Dashboard**: Real-time analytics, debt tracking, and system summaries.
+- **Tariff System**: Flexible pricing for both electricity and gas utilities.
 
-### Design Patterns Implemented
+---
 
-| Pattern | Implementation | Purpose |
-|---------|---------------|---------|
-| **Singleton** | Service classes (AuthenticationService, CustomerService, etc.) | Single instance for centralized state management |
-| **Factory** | Meter class static factory methods | Creating different meter types (Electricity, Gas, Dual) |
-| **Template Method** | Tariff.calculateBill() | Defining billing algorithm skeleton with customizable steps |
-| **DAO Pattern** | CustomerDAO, InvoiceDAO, PaymentDAO, etc. | Abstracting data persistence operations |
-| **MVC** | FXML Views + Controllers + Models | Separating UI, business logic, and data |
+## Technology Stack
 
-### Project Structure
+| Component | Technology |
+| :--- | :--- |
+| **Language** | Java 21 |
+| **UI Framework** | JavaFX 21 |
+| **Build Tool** | Apache Maven |
+| **Persistence** | Binary Serialization (.dat files) |
+| **Styling** | Custom CSS (Modern Aesthetic) |
+| **Logging** | Custom AppLogger |
 
+---
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+- [Java Development Kit (JDK) 21](https://www.oracle.com/java/technologies/downloads/#java21)
+- [Apache Maven 3.8+](https://maven.apache.org/download.cgi)
+- An IDE (IntelliJ IDEA, VS Code, or Eclipse)
+
+---
+
+## Installation & Setup
+
+1. **Clone the Repository**
+   ```bash
+   git clone <repository-url>
+   cd UtilityBillCalculatorAssignment
+   ```
+
+2. **Install Dependencies**
+   ```bash
+   ./mvnw clean install
+   ```
+
+---
+
+## Running the Application
+
+### Option 1: Using Maven (Recommended)
+Launch the application directly using the JavaFX Maven plugin:
+```bash
+./mvnw javafx:run
 ```
+
+### Option 2: Using the Shadow Launcher
+If you are running in an environment where JavaFX modules are not automatically detected:
+```bash
+./mvnw clean compile
+./mvnw exec:java -Dexec.mainClass="com.utilitybill.Launcher"
+```
+
+---
+
+## Default Credentials
+
+Upon first launch, the system initializes a default administrator account:
+
+| Field | Value |
+| :--- | :--- |
+| **Username** | `admin` |
+| **Password** | `Admin123` |
+
+---
+
+## Project Structure
+
+```text
 src/main/java/com/utilitybill/
-├── Main.java                    # Application entry point
-├── controller/                  # FXML Controllers
-│   ├── LoginController.java
-│   ├── DashboardController.java
-│   ├── CustomerController.java
-│   └── CustomerDialogController.java
-├── model/                       # Domain models
-│   ├── User.java
-│   ├── Customer.java
-│   ├── Address.java
-│   ├── Meter.java
-│   ├── MeterType.java
-│   ├── MeterReading.java
-│   ├── Tariff.java (abstract)
-│   ├── ElectricityTariff.java
-│   ├── GasTariff.java
-│   ├── Invoice.java
-│   └── Payment.java
-├── service/                     # Business logic (Singleton pattern)
-│   ├── AuthenticationService.java
-│   ├── CustomerService.java
-│   ├── BillingService.java
-│   ├── PaymentService.java
-│   └── TariffService.java
-├── dao/                         # Data Access Objects
-│   ├── DataPersistence.java (interface)
-│   ├── AbstractJsonDAO.java
-│   ├── UserDAO.java
-│   ├── CustomerDAO.java
-│   ├── InvoiceDAO.java
-│   ├── PaymentDAO.java
-│   ├── TariffDAO.java
-│   └── MeterReadingDAO.java
-├── util/                        # Utility classes
-│   ├── ValidationUtil.java
-│   ├── DateUtil.java
-│   ├── PasswordUtil.java
-│   └── BillCalculator.java
-└── exception/                   # Custom exceptions
-    ├── UtilityBillException.java
-    ├── InvalidCredentialsException.java
-    ├── CustomerNotFoundException.java
-    ├── InvalidMeterReadingException.java
-    ├── DuplicateAccountException.java
-    ├── InsufficientPaymentException.java
-    ├── DataPersistenceException.java
-    └── ValidationException.java
-
-src/main/resources/com/utilitybill/
-├── view/                        # FXML views
-│   ├── login.fxml
-│   ├── dashboard.fxml
-│   ├── customer-management.fxml
-│   └── customer-dialog.fxml
-└── css/
-    └── styles.css               # Application styling
-
-src/test/java/com/utilitybill/
-└── util/                        # JUnit 5 tests
-    ├── ValidationUtilTest.java
-    └── BillCalculatorTest.java
+├── controller/         # FXML UI Controllers
+├── dao/                # Data Access Objects (Binary Persistence)
+├── exception/          # Custom Application Exceptions
+├── model/              # Domain Objects (Customer, Meter, Invoice, etc.)
+├── service/            # Business Logic Layer (Singletons)
+├── util/               # Helper classes (Validation, Security, Logging)
+└── Main.java           # Entry Point
 ```
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- **Java 21** or higher
-- **Maven 3.8+**
-- **JavaFX 21** (included via Maven dependencies)
-
-### Running the Application
-
-1. Clone the repository
-2. Navigate to the project directory
-3. Run with Maven:
-
-```bash
-mvn clean javafx:run
-```
-
-Or compile and run:
-
-```bash
-mvn clean compile
-mvn exec:java -Dexec.mainClass="com.utilitybill.Launcher"
-```
-
-### Default Login Credentials
-
-```
-Username: admin
-Password: Admin123
-```
-
-## 📦 Data Persistence
-
-The application uses **JSON-based file storage** for all data persistence:
-
-| File | Purpose |
-|------|---------|
-| `data/users.json` | User accounts and authentication |
-| `data/customers.json` | Customer information and meters |
-| `data/tariffs.json` | Electricity and gas tariff rates |
-| `data/invoices.json` | Generated invoices |
-| `data/payments.json` | Payment records |
-| `data/meter_readings.json` | Meter reading history |
-
-The data directory is automatically created on first run.
-
-## 🧪 Testing
-
-Run JUnit 5 tests:
-
-```bash
-mvn test
-```
-
-Tests cover:
-- Input validation (email, phone, postcode, password)
-- Bill calculations (unit costs, standing charges, VAT)
-- Tariff pricing (flat-rate and tiered)
-
-##   OOP Principles Demonstrated
-
-### Encapsulation
-- All model classes use private fields with public getters/setters
-- Services expose only necessary methods
-- Internal state protected from external modification
-
-### Inheritance
-- `Tariff` (abstract) → `ElectricityTariff`, `GasTariff`
-- `UtilityBillException` → All custom exceptions
-- `AbstractJsonDAO` → All DAO implementations
-
-### Polymorphism
-- Tariff calculations vary by subclass
-- DAO operations work on generic types
-- Exception handling with hierarchy
-
-### Abstraction
-- `DataPersistence<T, ID>` interface for all DAOs
-- Abstract `Tariff` class with abstract methods
-- Service interfaces hide implementation details
-
-## UI Features
-
-- Modern, clean design with teal/cyan theme
-- Responsive layout with sidebar navigation
-- Interactive dashboard with statistics cards
-- Data tables with search and filtering
-- Modal dialogs for data entry
-- Form validation with error messages
-
-## 📝 Javadoc
-
-Generate documentation:
-
-```bash
-mvn javadoc:javadoc
-```
-
-Documentation will be generated in `target/site/apidocs/`
-
-## 🔐 Security Features
-
-- Password hashing with SHA-256 and salt
-- Account lockout after 3 failed attempts
-- Role-based access control (Admin, Operator, Viewer)
-- Input validation and sanitization
-
-## 📏 Meter Reading Module
-
-The Meter Reading module records customer energy consumption over a period and converts raw readings into billable energy usage. These readings are the foundation for the **Invoice Management** module.
-
-### Meter Reading Input
-
-| Input Field | Description |
-| :--- | :--- |
-| **Account Number** | Unique customer identifier |
-| **Meter Type** | GAS or ELECTRICITY |
-| **Opening Read** | Meter reading at the start of the period |
-| **Closing Read** | Meter reading at the end of the period |
-| **Opening Date** | Start date of billing period |
-| **Closing Date** | End date of billing period |
-
-#### Additional Inputs by Meter Type
-
-**Gas Meter**
-- **Units**: Calculated automatically (Closing − Opening)
-- **Imperial to m³ Factor**: Fixed (2.83)
-- **Correction Factor**: System-defined default (~1.02264)
-- **Calorific Value**: System-defined default (~39.0 MJ/m³)
-
-**Electricity Meter**
-- **Day Opening/Closing Read**: Day meter values
-- **Night Opening/Closing Read**: Night meter values
 
 ---
 
-### Meter Reading Output
+## Data Persistence
 
-#### Gas Meter Output
-| Output Field | Description |
-| :--- | :--- |
-| **Units** | Closing Read − Opening Read |
-| **m³** | Units × 2.83 |
-| **kWh** | (m³ × Correction Factor × Calorific Value) ÷ 3.6 |
+This application uses a high-performance **Binary Serialization** layer for data storage. All state is persisted in the `data/` directory:
 
-**Example (Gas)**:
-- Opening: 10091.5, Closing: 10127.6 → Units: 36.1
-- m³ = 36.1 × 2.83 = 102.16
-- kWh = (102.16 × 1.02264 × 39.0) ÷ 3.6 = 1143.43
-
-#### Electricity Meter Output
-| Output Field | Description |
-| :--- | :--- |
-| **Day/Night Units** | Respective Closing − Opening |
-| **Total Units** | Day Units + Night Units |
-| **kWh** | Same as total units |
+- `customers.dat`: Customer profiles and addresses.
+- `tariffs.dat`: Active and historic utility rates.
+- `invoices.dat`: Billing records and itemized charges.
+- `payments.dat`: Transaction history.
+- `users.dat`: System users and encrypted credentials.
 
 ---
 
-### Validation Rules
-- **Logical Check**: Closing read cannot be less than Opening read.
-- **Completeness**: All required fields must be present.
-- **Format**: Non-numeric input is rejected.
-- **Temporality**: Invalid date ranges or future dates are flagged.
+## Academic: OOP Principles
+
+This project serves as a showcase for core Object-Oriented principles:
+
+- **Inheritance**: Abstract `Tariff` base class with `ElectricityTariff` and `GasTariff` specializations.
+- **Polymorphism**: Dynamic calculation of bills based on utility type using method overriding.
+- **Encapsulation**: Strict use of private fields, public getters/setters, and service-layer abstraction.
+- **Abstraction**: Interface-driven design (e.g., `DataPersistence` interface) to decouple logic from storage.
 
 ---
 
-## 📊 Billing Features
+## Testing
 
-## 🛠️ Future Enhancements
+The system includes a comprehensive suite of JUnit 5 tests covering business logic and validation.
 
-- [ ] PDF invoice export
-- [ ] Email notifications
-- [ ] Smart meter integration
-- [ ] Payment gateway integration
-- [ ] Advanced analytics and charts
-- [ ] Data export (CSV/Excel)
+**Run All Tests:**
+```bash
+./mvnw test
+```
 
-## 📄 License
+---
 
-This project is developed for educational purposes as part of an academic assignment.
+## Author
+Inioluwa Alake
 
-## 👨‍💻 Author
-
-Utility Bill Management System - Academic Project
+## Github
+https://github.com/IniBuilds-git/Utility-Bill-Calculator

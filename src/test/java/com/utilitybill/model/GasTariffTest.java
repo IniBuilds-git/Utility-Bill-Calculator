@@ -14,10 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Unit tests for the GasTariff model class.
  * Tests gas unit conversion, kWh calculation, and cost calculation.
- *
- * @author Utility Bill Management System
- * @version 1.0
- * @since 2024
  */
 @DisplayName("GasTariff Model Tests")
 class GasTariffTest {

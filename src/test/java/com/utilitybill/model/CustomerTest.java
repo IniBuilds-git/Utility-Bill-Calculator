@@ -12,10 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Unit tests for the Customer model class.
  * Tests customer creation, meter management, and account operations.
- *
- * @author Utility Bill Management System
- * @version 1.0
- * @since 2024
  */
 @DisplayName("Customer Model Tests")
 class CustomerTest {

@@ -12,10 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Unit tests for ValidationUtil class.
  * Demonstrates white-box testing with JUnit 5.
- *
- * @author Utility Bill Management System
- * @version 1.0
- * @since 2024
+ 
  */
 @DisplayName("ValidationUtil Tests")
 class ValidationUtilTest {
