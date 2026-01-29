@@ -9,7 +9,7 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.utilitybill.controller.LoginController"
             styleClass="gradient-background"
-            stylesheets="@styles.css">
+            stylesheets="@../css/styles.css">
 
     <center>
         <VBox alignment="CENTER" spacing="0" maxWidth="450">
@@ -19,9 +19,8 @@
                     <Insets top="50" right="40" bottom="50" left="40"/>
                 </padding>
 
-                <!-- Logo/Header Section -->
-                <VBox alignment="CENTER" spacing="10">
-                    <Label text="Power" styleClass="logo-text"/>
+                <!-- Header Section -->
+                <VBox alignment="CENTER" spacing="5">
                     <Label text="Utility Bill Manager" styleClass="login-title"/>
                     <Label text="Sign in to your account" styleClass="login-subtitle"/>
                 </VBox>

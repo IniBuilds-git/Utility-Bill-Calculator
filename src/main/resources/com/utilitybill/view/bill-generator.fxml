@@ -9,22 +9,19 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.utilitybill.controller.BillGeneratorController"
             fitToWidth="true"
-            style="-fx-background-color: #f1f5f9; -fx-background: #f1f5f9;">
+            styleClass="light-background"
+            stylesheets="@../css/styles.css">
 
-    <VBox spacing="25" style="-fx-background-color: #f1f5f9;">
+    <VBox spacing="25" styleClass="content-area">
         <padding>
             <Insets top="30" right="30" bottom="30" left="30"/>
         </padding>
 
         <!-- Page Header -->
         <VBox spacing="5">
-            <Label text="Monthly Bill Calculator">
-                <font>
-                    <Font name="System Bold" size="28"/>
-                </font>
-            </Label>
+            <Label text="Monthly Bill Calculator" styleClass="page-title"/>
             <Label text="Calculate electricity and gas bills based on meter readings" 
-                   style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                   styleClass="page-subtitle"/>
         </VBox>
 
         <!-- Error Label -->

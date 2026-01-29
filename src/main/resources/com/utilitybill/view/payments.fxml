@@ -8,7 +8,9 @@
 <VBox xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.utilitybill.controller.PaymentController"
-      spacing="20" style="-fx-background-color: #f1f5f9;">
+      spacing="20"
+      styleClass="light-background"
+      stylesheets="@../css/styles.css">
 
     <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>
@@ -17,68 +19,57 @@
     <!-- Page Header -->
     <HBox alignment="CENTER_LEFT" spacing="20">
         <VBox spacing="5" HBox.hgrow="ALWAYS">
-            <Label text="Payment Processing">
-                <font>
-                    <Font name="System Bold" size="28"/>
-                </font>
-            </Label>
-            <Label text="Record and track customer payments" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+            <Label text="Payment Processing" styleClass="page-title"/>
+            <Label text="Record and track customer payments" styleClass="page-subtitle"/>
         </VBox>
         <Button text="+ Record Payment"
                 onAction="#showRecordPaymentDialog"
-                style="-fx-background-color: #0d9488; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-padding: 14 30; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                styleClass="primary-button">
+            <padding>
+                <Insets top="14" right="30" bottom="14" left="30"/>
+            </padding>
+        </Button>
     </HBox>
 
     <!-- Summary Cards -->
     <HBox spacing="20">
         <VBox HBox.hgrow="ALWAYS" spacing="5"
-              style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-border-color: #10b981; -fx-border-width: 0 0 0 4;">
-            <Label text="Today's Payments" style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-font-weight: bold;"/>
-            <Label fx:id="todayPaymentsLabel" text="£0.00">
-                <font>
-                    <Font name="System Bold" size="24"/>
-                </font>
-            </Label>
+              styleClass="stat-card-success">
+            <Label text="Today's Payments" styleClass="stat-label"/>
+            <Label fx:id="todayPaymentsLabel" text="£0.00" styleClass="stat-value"/>
         </VBox>
         <VBox HBox.hgrow="ALWAYS" spacing="5"
-              style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-border-color: #06b6d4; -fx-border-width: 0 0 0 4;">
-            <Label text="This Week" style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-font-weight: bold;"/>
-            <Label fx:id="weekPaymentsLabel" text="£0.00">
-                <font>
-                    <Font name="System Bold" size="24"/>
-                </font>
-            </Label>
+              styleClass="stat-card">
+            <Label text="This Week" styleClass="stat-label"/>
+            <Label fx:id="weekPaymentsLabel" text="£0.00" styleClass="stat-value"/>
         </VBox>
         <VBox HBox.hgrow="ALWAYS" spacing="5"
-              style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-border-color: #8b5cf6; -fx-border-width: 0 0 0 4;">
-            <Label text="This Month" style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-font-weight: bold;"/>
-            <Label fx:id="monthPaymentsLabel" text="£0.00">
-                <font>
-                    <Font name="System Bold" size="24"/>
-                </font>
-            </Label>
+              styleClass="stat-card">
+            <Label text="This Month" styleClass="stat-label"/>
+            <Label fx:id="monthPaymentsLabel" text="£0.00" styleClass="stat-value"/>
         </VBox>
     </HBox>
 
     <!-- Filter Bar -->
-    <HBox spacing="15" alignment="CENTER_LEFT" 
-          style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 15 20;">
+    <HBox spacing="15" alignment="CENTER_LEFT"
+          styleClass="search-bar">
         <TextField fx:id="searchField"
                    promptText="Search by reference or customer..."
                    HBox.hgrow="ALWAYS"
                    prefHeight="40"
-                   style="-fx-background-color: #f1f5f9; -fx-background-radius: 8; -fx-border-color: transparent; -fx-padding: 10 15; -fx-font-size: 14px;"/>
-        <ComboBox fx:id="methodCombo" promptText="Payment Method" prefWidth="150" prefHeight="40"/>
-        <ComboBox fx:id="statusCombo" promptText="Status" prefWidth="120" prefHeight="40"/>
-        <DatePicker fx:id="fromDatePicker" promptText="From Date" prefHeight="40"/>
-        <DatePicker fx:id="toDatePicker" promptText="To Date" prefHeight="40"/>
-        <Button text="Search" 
+                   styleClass="search-field"/>
+        <ComboBox fx:id="methodCombo" promptText="Payment Method" prefWidth="150" prefHeight="40" styleClass="combo-box"/>
+        <ComboBox fx:id="statusCombo" promptText="Status" prefWidth="120" prefHeight="40" styleClass="combo-box"/>
+        <DatePicker fx:id="fromDatePicker" promptText="From Date" prefHeight="40" styleClass="date-picker"/>
+        <DatePicker fx:id="toDatePicker" promptText="To Date" prefHeight="40" styleClass="date-picker"/>
+        <Button text="Search"
                 onAction="#handleSearch"
-                style="-fx-background-color: #e2e8f0; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                styleClass="secondary-button"
+                style="-fx-font-weight: bold;"/>
     </HBox>
 
     <!-- Payments Table -->
-    <TableView fx:id="paymentsTable" VBox.vgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 12;">
+    <TableView fx:id="paymentsTable" VBox.vgrow="ALWAYS">
         <columns>
             <TableColumn fx:id="referenceCol" text="Reference" prefWidth="120"/>
             <TableColumn fx:id="customerCol" text="Customer" prefWidth="180"/>

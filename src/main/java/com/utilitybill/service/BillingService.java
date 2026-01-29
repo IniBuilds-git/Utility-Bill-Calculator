@@ -540,6 +540,12 @@ public class BillingService {
         Optional<Invoice> invoiceOpt = invoiceDAO.findById(invoiceId);
         if (invoiceOpt.isPresent()) {
             Invoice invoice = invoiceOpt.get();
+            
+            if (invoice.getStatus() == Invoice.InvoiceStatus.CANCELLED) {
+                AppLogger.warning(CLASS_NAME, "Attempted to cancel already cancelled invoice: " + invoiceId);
+                return;
+            }
+
             invoice.setStatus(Invoice.InvoiceStatus.CANCELLED);
             invoiceDAO.update(invoice);
 

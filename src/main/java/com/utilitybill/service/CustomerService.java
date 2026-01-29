@@ -177,6 +177,14 @@ public class CustomerService {
         AppLogger.info(CLASS_NAME, "Customer deactivated: " + customer.getAccountNumber());
     }
 
+    public void deleteCustomer(String customerId) throws CustomerNotFoundException, DataPersistenceException {
+        if (!customerDAO.exists(customerId)) {
+            throw new CustomerNotFoundException(customerId);
+        }
+        customerDAO.delete(customerId);
+        AppLogger.info(CLASS_NAME, "Customer deleted: " + customerId);
+    }
+
     public void reactivateCustomer(String customerId) throws CustomerNotFoundException, DataPersistenceException {
         Customer customer = getCustomerById(customerId);
         customer.setActive(true);

@@ -36,8 +36,6 @@ public class InvoiceController {
     @FXML private TableColumn<Invoice, String> balanceCol;
     @FXML private TableColumn<Invoice, String> statusCol;
 
-    @FXML private TextArea billSummaryArea;
-
     private final BillingService billingService = BillingService.getInstance();
     private final CustomerService customerService = CustomerService.getInstance();
     private final PaymentService paymentService = PaymentService.getInstance();
@@ -87,11 +85,16 @@ public class InvoiceController {
 
         invoiceTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-        // Auto-show summary when single selection changes
-        invoiceTable.getSelectionModel().selectedItemProperty().addListener((obs, oldV, newV) -> {
-            if (newV != null) {
-                billSummaryArea.setText(newV.getRunSummary());
-            }
+        // Double-click to show summary
+        invoiceTable.setRowFactory(tv -> {
+            TableRow<Invoice> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    Invoice rowData = row.getItem();
+                    showSummaryDialog(rowData.getRunSummary());
+                }
+            });
+            return row;
         });
 
         // Populate customer dropdown
@@ -108,8 +111,6 @@ public class InvoiceController {
         } catch (DataPersistenceException e) {
             showError("Failed to load customers: " + e.getMessage());
         }
-
-        clearSummary();
     }
 
     @FXML
@@ -123,7 +124,6 @@ public class InvoiceController {
             List<Invoice> list = billingService.getCustomerInvoices(customer.getCustomerId());
             invoiceTable.setItems(FXCollections.observableArrayList(list));
             updateSummary(list);
-            billSummaryArea.clear();
         } catch (DataPersistenceException e) {
             showError("Failed to load invoices: " + e.getMessage());
         }
@@ -134,7 +134,6 @@ public class InvoiceController {
         customerComboBox.setValue(null);
         invoiceTable.setItems(FXCollections.observableArrayList());
         clearSummary();
-        billSummaryArea.clear();
     }
 
     @FXML
@@ -187,7 +186,7 @@ public class InvoiceController {
                     chosen.getReadingDate()
                 );
                 handleLoadInvoices();
-                billSummaryArea.setText(inv.getRunSummary());
+                showSummaryDialog(inv.getRunSummary());
             }
         } catch (Exception e) {
             showError("Failed to generate invoice: " + e.getMessage());
@@ -231,7 +230,7 @@ public class InvoiceController {
             try {
                 paymentService.recordPayment(selected.getInvoiceId(), amount, Payment.PaymentMethod.BANK_TRANSFER);
                 handleLoadInvoices();
-                billSummaryArea.setText(selected.getRunSummary());
+                showSummaryDialog(selected.getRunSummary());
             } catch (Exception e) {
                 showError("Payment failed: " + e.getMessage());
             }
@@ -256,7 +255,6 @@ public class InvoiceController {
             try {
                 billingService.cancelInvoice(selected.getInvoiceId());
                 handleLoadInvoices();
-                billSummaryArea.clear();
             } catch (Exception e) {
                 showError("Cancellation failed: " + e.getMessage());
             }
@@ -275,7 +273,7 @@ public class InvoiceController {
         for (Invoice inv : selectedItems) {
             sb.append(inv.getRunSummary()).append("\n\n");
         }
-        billSummaryArea.setText(sb.toString());
+        showSummaryDialog(sb.toString().trim());
     }
 
     private void updateSummary(List<Invoice> list) {
@@ -309,12 +307,29 @@ public class InvoiceController {
                 try {
                     paymentService.recordPayment(selected.getInvoiceId(), balance, Payment.PaymentMethod.BANK_TRANSFER);
                     handleLoadInvoices();
-                    billSummaryArea.setText(selected.getRunSummary());
+                    showSummaryDialog(selected.getRunSummary());
                 } catch (Exception e) {
                     showError("Payment failed: " + e.getMessage());
                 }
             }
         });
+    }
+
+    private void showSummaryDialog(String summary) {
+        Dialog<Void> dialog = new Dialog<>();
+        dialog.setTitle("Detailed Bill Summary");
+        dialog.setHeaderText(null);
+
+        TextArea textArea = new TextArea(summary);
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
+        textArea.setPrefWidth(500);
+        textArea.setPrefHeight(400);
+        textArea.setStyle("-fx-font-family: 'Courier New'; -fx-font-size: 13px;");
+
+        dialog.getDialogPane().setContent(textArea);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+        dialog.showAndWait();
     }
 
     private String formatMoney(BigDecimal gbp) {

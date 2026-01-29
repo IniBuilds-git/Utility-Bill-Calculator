@@ -131,10 +131,10 @@ public class EmailService implements NotificationService {
             message.setContent(multipart);
 
             Transport.send(message);
-            AppLogger.info(CLASS_NAME, "Email sent successfully to " + to);
+            AppLogger.info(CLASS_NAME, "Email sent successfully to " + to + " with subject: " + subject);
 
         } catch (MessagingException e) {
-            AppLogger.error(CLASS_NAME, "Failed to send email", e);
+            com.utilitybill.util.AppLogger.error(CLASS_NAME, "Failed to send email", e);
             throw new NotificationException("Failed to send email: " + e.getMessage(), e);
         }
     }

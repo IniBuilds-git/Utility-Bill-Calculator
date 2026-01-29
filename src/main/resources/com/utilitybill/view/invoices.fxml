@@ -7,82 +7,68 @@
 <VBox xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.utilitybill.controller.InvoiceController"
-      spacing="12"
-      style="-fx-background-color: white;">
+      spacing="20"
+      styleClass="light-background"
+      stylesheets="@../css/styles.css">
 
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
+        <Insets top="30" right="30" bottom="30" left="30"/>
     </padding>
 
-    <Label text="Invoice Management"
-           style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+    <!-- Header Section -->
+    <VBox spacing="5">
+        <Label text="Invoice Management" styleClass="page-title"/>
+        <Label text="Generate and manage customer invoices" styleClass="page-subtitle"/>
+    </VBox>
 
-    <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: #f8fafc; -fx-padding: 15; -fx-background-radius: 10; -fx-border-color: #e2e8f0; -fx-border-radius: 10;">
-        <Label text="Customer:" style="-fx-font-weight: bold;"/>
-        <ComboBox fx:id="customerComboBox" prefWidth="300" promptText="Select Customer..." style="-fx-background-radius: 5;"/>
-        <Button text="Load Invoices" onAction="#handleLoadInvoices"
-                style="-fx-background-color: #0d9488; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;"/>
-        <Button text="Clear" onAction="#handleClear"
-                style="-fx-background-color: #64748b; -fx-text-fill: white; -fx-cursor: hand;"/>
+    <!-- Controls Bar -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <ComboBox fx:id="customerComboBox" prefWidth="250" promptText="Select Customer..." styleClass="combo-box"/>
+        <Button text="Load Invoices" onAction="#handleLoadInvoices" styleClass="primary-button"/>
+        <Button text="Clear" onAction="#handleClear" styleClass="secondary-button"/>
     </HBox>
 
-    <HBox spacing="30" alignment="CENTER_LEFT" style="-fx-padding: 10 0;">
+    <!-- Summary Stats (Simplified) -->
+    <HBox spacing="40" alignment="CENTER_LEFT">
         <VBox spacing="2">
-            <Label text="Total Billed" style="-fx-font-size: 12px; -fx-text-fill: #64748b;"/>
-            <Label fx:id="totalBilledLabel" text="£0.00" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+            <Label text="TOTAL BILLED" styleClass="status-text"/>
+            <Label fx:id="totalBilledLabel" text="£0.00" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #0f172a;"/>
         </VBox>
-        <Separator orientation="VERTICAL"/>
         <VBox spacing="2">
-            <Label text="Total Paid" style="-fx-font-size: 12px; -fx-text-fill: #64748b;"/>
-            <Label fx:id="totalPaidLabel" text="£0.00" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #10b981;"/>
+            <Label text="TOTAL PAID" styleClass="status-text"/>
+            <Label fx:id="totalPaidLabel" text="£0.00" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #10b981;"/>
         </VBox>
-        <Separator orientation="VERTICAL"/>
         <VBox spacing="2">
-            <Label text="Balance Due" style="-fx-font-size: 12px; -fx-text-fill: #64748b;"/>
-            <Label fx:id="balanceDueLabel" text="£0.00" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #ef4444;"/>
+            <Label text="BALANCE DUE" styleClass="status-text"/>
+            <Label fx:id="balanceDueLabel" text="£0.00" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #ef4444;"/>
         </VBox>
     </HBox>
 
+    <!-- Actions Bar -->
     <HBox spacing="10" alignment="CENTER_LEFT">
-        <Button text="+ Generate Invoice" onAction="#handleGenerateInvoice"
-                style="-fx-background-color: #0d9488; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 8; -fx-cursor: hand;"/>
-        <Button text="Add Payment (Full)" onAction="#handleAddPayment"
-                style="-fx-background-color: #0d9488; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 8; -fx-cursor: hand;"/>
-        <Button text="Delete Invoice" onAction="#handleDeleteInvoice"
-                style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 8; -fx-cursor: hand;"/>
-        <Button text="View Bill Summary" onAction="#handleViewSummary"
-                style="-fx-background-color: #64748b; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 8; -fx-cursor: hand;"/>
+        <Button text="+ Generate Invoice" onAction="#handleGenerateInvoice" styleClass="secondary-button"/>
+        <Button text="Record Payment" onAction="#handleAddPayment" styleClass="secondary-button"/>
+        <Region HBox.hgrow="ALWAYS" />
+        <Button text="View Detailed Summary" onAction="#handleViewSummary" styleClass="secondary-button"/>
+        <Button text="Delete Selected" onAction="#handleDeleteInvoice" style="-fx-text-fill: #ef4444; -fx-background-color: transparent; -fx-cursor: hand; -fx-font-weight: 600;"/>
     </HBox>
 
-    <SplitPane dividerPositions="0.7" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent; -fx-padding: 5 0 0 0;">
-        <VBox spacing="8" style="-fx-background-color: white;">
-            <TableView fx:id="invoiceTable" VBox.vgrow="ALWAYS" style="-fx-background-radius: 8; -fx-border-color: #e2e8f0; -fx-border-radius: 8;">
-                <columns>
-                    <TableColumn fx:id="invoiceIdCol" text="Invoice ID" prefWidth="180"/>
-                    <TableColumn fx:id="periodCol" text="Billing Period" prefWidth="180"/>
-                    <TableColumn fx:id="meterTypeCol" text="Meter" prefWidth="90"/>
-                    <TableColumn fx:id="tariffCol" text="Tariff" prefWidth="140"/>
-                    <TableColumn fx:id="kwhCol" text="kWh" prefWidth="80"/>
-                    <TableColumn fx:id="totalCol" text="Total (£)" prefWidth="90"/>
-                    <TableColumn fx:id="paidCol" text="Paid (£)" prefWidth="90"/>
-                    <TableColumn fx:id="balanceCol" text="Balance (£)" prefWidth="100"/>
-                    <TableColumn fx:id="statusCol" text="Status" prefWidth="90"/>
-                </columns>
-                <placeholder>
-                    <Label text="No invoices loaded" style="-fx-text-fill: #94a3b8;"/>
-                </placeholder>
-            </TableView>
-        </VBox>
-
-        <VBox spacing="10" style="-fx-background-color: #f8fafc; -fx-padding: 15; -fx-background-radius: 8; -fx-border-color: #e2e8f0; -fx-border-radius: 8;">
-            <Label text="Bill Summary"
-                   style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
-            <TextArea fx:id="billSummaryArea"
-                      editable="false"
-                      wrapText="true"
-                      VBox.vgrow="ALWAYS"
-                      style="-fx-font-family: 'Courier New'; -fx-font-size: 13px; -fx-control-inner-background: #ffffff; -fx-background-color: white;"/>
-        </VBox>
-    </SplitPane>
+    <!-- Data Table -->
+    <TableView fx:id="invoiceTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="invoiceIdCol" text="ID" prefWidth="120"/>
+            <TableColumn fx:id="periodCol" text="Billing Period" prefWidth="200"/>
+            <TableColumn fx:id="meterTypeCol" text="Type" prefWidth="80"/>
+            <TableColumn fx:id="tariffCol" text="Tariff" prefWidth="140"/>
+            <TableColumn fx:id="kwhCol" text="Usage" prefWidth="100"/>
+            <TableColumn fx:id="totalCol" text="Total" prefWidth="90"/>
+            <TableColumn fx:id="paidCol" text="Paid" prefWidth="90"/>
+            <TableColumn fx:id="balanceCol" text="Balance" prefWidth="100"/>
+            <TableColumn fx:id="statusCol" text="Status" prefWidth="90"/>
+        </columns>
+        <placeholder>
+            <Label text="No invoices found" styleClass="hint-text"/>
+        </placeholder>
+    </TableView>
 
 </VBox>

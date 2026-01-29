@@ -22,6 +22,7 @@ import com.utilitybill.util.ViewUtil;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 public class CustomerController {
 
@@ -139,16 +140,20 @@ public class CustomerController {
         actionsCol.setCellFactory(col -> new TableCell<>() {
             private final Button viewBtn = new Button("View");
             private final Button editBtn = new Button("Edit");
-            private final HBox buttons = new HBox(5, viewBtn, editBtn);
+            private final Button deleteBtn = new Button("Delete");
+            private final HBox buttons = new HBox(5, viewBtn, editBtn, deleteBtn);
 
             {
                 viewBtn.setStyle("-fx-background-color: #e0f2f1; -fx-text-fill: #0d9488; " +
                         "-fx-font-size: 11px; -fx-padding: 5px 10px; -fx-cursor: hand;");
                 editBtn.setStyle("-fx-background-color: #f1f5f9; -fx-text-fill: #475569; " +
                         "-fx-font-size: 11px; -fx-padding: 5px 10px; -fx-cursor: hand;");
+                deleteBtn.setStyle("-fx-background-color: #fee2e2; -fx-text-fill: #ef4444; " +
+                        "-fx-font-size: 11px; -fx-padding: 5px 10px; -fx-cursor: hand;");
 
                 viewBtn.setOnAction(e -> viewCustomer(getTableView().getItems().get(getIndex())));
                 editBtn.setOnAction(e -> editCustomer(getTableView().getItems().get(getIndex())));
+                deleteBtn.setOnAction(e -> deleteCustomer(getTableView().getItems().get(getIndex())));
             }
 
             @Override
@@ -157,6 +162,24 @@ public class CustomerController {
                 setGraphic(empty ? null : buttons);
             }
         });
+    }
+
+    private void deleteCustomer(Customer customer) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Customer");
+        alert.setHeaderText("Are you sure you want to delete customer: " + customer.getFullName() + "?");
+        alert.setContentText("This action cannot be undone.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                customerService.deleteCustomer(customer.getCustomerId());
+                refreshData();
+                ViewUtil.showInfo("Success", "Customer deleted successfully.");
+            } catch (Exception e) {
+                ViewUtil.showError("Error", "Failed to delete customer: " + e.getMessage());
+            }
+        }
     }
 
     @FXML

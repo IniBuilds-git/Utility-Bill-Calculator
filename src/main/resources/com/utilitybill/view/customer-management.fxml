@@ -9,7 +9,9 @@
 <VBox xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.utilitybill.controller.CustomerController"
-      spacing="20" style="-fx-background-color: #f1f5f9;">
+      spacing="20"
+      styleClass="light-background"
+      stylesheets="@../css/styles.css">
 
     <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>
@@ -18,48 +20,36 @@
     <!-- Page Header -->
     <HBox alignment="CENTER_LEFT" spacing="20">
         <VBox spacing="5" HBox.hgrow="ALWAYS">
-            <Label text="Customer Management">
-                <font>
-                    <Font name="System Bold" size="28"/>
-                </font>
-            </Label>
-            <Label text="Manage customer accounts and information"
-                   style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+            <Label text="Customer Management" styleClass="page-title"/>
+            <Label text="Manage customer accounts and information" styleClass="page-subtitle"/>
         </VBox>
         <Button text="+ Add Customer"
                 onAction="#showAddCustomerDialog"
-                style="-fx-background-color: #0d9488; -fx-text-fill: white;
-                       -fx-font-size: 15px; -fx-font-weight: bold;
-                       -fx-padding: 14 30; -fx-background-radius: 8;
-                       -fx-cursor: hand;"/>
+                styleClass="primary-button">
+            <padding>
+                <Insets top="14" right="30" bottom="14" left="30"/>
+            </padding>
+        </Button>
     </HBox>
 
     <!-- Search Bar (filter removed) -->
     <HBox spacing="15" alignment="CENTER_LEFT"
-          style="-fx-background-color: white; -fx-background-radius: 10;
-                 -fx-padding: 15 20;">
+          styleClass="search-bar">
         <TextField fx:id="searchField"
                    promptText="Search by name, account number, or email..."
                    HBox.hgrow="ALWAYS"
                    prefHeight="40"
-                   style="-fx-background-color: #f1f5f9; -fx-background-radius: 8;
-                          -fx-border-color: transparent; -fx-padding: 10 15;
-                          -fx-font-size: 14px;"/>
+                   styleClass="search-field"/>
         <Button text="Search" onAction="#handleSearch"
-                style="-fx-background-color: #e2e8f0; -fx-text-fill: #475569;
-                       -fx-font-size: 14px; -fx-font-weight: bold;
-                       -fx-padding: 10 20; -fx-background-radius: 8;
-                       -fx-cursor: hand;"/>
+                styleClass="secondary-button"
+                style="-fx-font-weight: bold;"/>
         <Button text="Refresh" onAction="#refreshData"
-                style="-fx-background-color: #e2e8f0; -fx-text-fill: #475569;
-                       -fx-font-size: 14px; -fx-font-weight: bold;
-                       -fx-padding: 10 20; -fx-background-radius: 8;
-                       -fx-cursor: hand;"/>
+                styleClass="secondary-button"
+                style="-fx-font-weight: bold;"/>
     </HBox>
 
     <!-- Customer Table -->
-    <TableView fx:id="customerTable" VBox.vgrow="ALWAYS"
-               style="-fx-background-color: white; -fx-background-radius: 12;">
+    <TableView fx:id="customerTable" VBox.vgrow="ALWAYS">
         <columns>
             <TableColumn fx:id="accountNumberCol" text="Account #" prefWidth="120"/>
             <TableColumn fx:id="nameCol" text="Name" prefWidth="180"/>

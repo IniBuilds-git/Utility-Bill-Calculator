@@ -82,8 +82,7 @@ public class PaymentService {
         invoice.applyPayment(amount);
         invoiceDAO.update(invoice);
 
-        customer.creditAccount(amount);
-        customerService.updateCustomer(customer);
+        customerService.creditAccount(customer.getCustomerId(), amount);
 
         return payment;
     }
@@ -107,8 +106,7 @@ public class PaymentService {
 
         paymentDAO.save(payment);
 
-        customer.creditAccount(amount);
-        customerService.updateCustomer(customer);
+        customerService.creditAccount(customerId, amount);
 
         return payment;
     }

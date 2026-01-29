@@ -9,7 +9,7 @@
       fx:controller="com.utilitybill.controller.TariffController"
       spacing="20"
       styleClass="light-background"
-      stylesheets="@styles.css">
+      stylesheets="@../css/styles.css">
 
     <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>
